@@ -78,6 +78,11 @@ public:
 
 	}
 
+	virtual void CreateColliders()
+	{
+	
+	}
+
 public:
 
 	p2SString	name;
