@@ -5,6 +5,7 @@
 
 struct SDL_Texture;
 class Text;
+class Scene;
 
 class j1Scene : public j1Module
 {
@@ -34,6 +35,7 @@ public:
 	bool CleanUp();
 
 private:
+	Scene* current_scene = nullptr;
 
 };
 
