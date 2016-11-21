@@ -61,9 +61,9 @@ bool j1Text::CleanUp()
 // ------------------------------
 
 // Loads a font a return it
-TTF_Font* j1Text::LoadFont(char * path, int size)
+int j1Text::LoadFont(char * path, int size)
 {
-	TTF_Font* ret = NULL;
+	int ret = -1;
 
 	TTF_Font* font = TTF_OpenFontRW(App->fs->Load(path), 1, size);
 
@@ -73,7 +73,8 @@ TTF_Font* j1Text::LoadFont(char * path, int size)
 	}
 	else
 	{
-		ret = font;
+		fonts.add(font);
+		ret = fonts.count() - 1;
 	}
 
 	return ret;
@@ -82,7 +83,7 @@ TTF_Font* j1Text::LoadFont(char * path, int size)
 // ------------------------------
 
 // Text constructors
-Text::Text(char* _text, int x, int y, TTF_Font* _font, int _spacing, uint _r, uint _g, uint _b)
+Text::Text(char* _text, int x, int y, int _font, int _spacing, uint _r, uint _g, uint _b)
 {
 	print = true;
 	alignment = middle;
@@ -91,7 +92,7 @@ Text::Text(char* _text, int x, int y, TTF_Font* _font, int _spacing, uint _r, ui
 	text = _text;
 	pos.x = x; 
 	pos.y = y;
-	font = _font;
+	font = App->text->fonts[_font];
 	color.r = _r; color.g = _g; color.b = _b;
 	spacing = _spacing;
 
@@ -100,7 +101,7 @@ Text::Text(char* _text, int x, int y, TTF_Font* _font, int _spacing, uint _r, ui
 
 // ------------------------------
 
-Text::Text(int x, int y, TTF_Font * _font, int _spacing, uint _r, uint _g, uint _b)
+Text::Text(int x, int y, int _font, int _spacing, uint _r, uint _g, uint _b)
 {
 	print = true; 
 	alignment = middle;
@@ -108,7 +109,7 @@ Text::Text(int x, int y, TTF_Font * _font, int _spacing, uint _r, uint _g, uint 
 
 	pos.x = x;
 	pos.y = y;
-	font = _font;
+	font = App->text->fonts[_font];
 	color.r = _r; color.g = _g; color.b = _b;
 	spacing = _spacing;
 }
@@ -145,9 +146,10 @@ Text::~Text()
 }
 
 // Changes the text
-void Text::SetText(char* _text)
+void Text::SetText(char* _text, Alignment _alignment)
 {
 	text = _text;
+	alignment = _alignment;
 	SetUpText();
 }
 

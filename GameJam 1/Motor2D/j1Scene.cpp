@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1PathFinding.h"
+#include "j1Text.h"
 #include "j1Scene.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -40,8 +41,6 @@ bool j1Scene::Start()
 
 		RELEASE_ARRAY(data);
 	}
-
-	debug_tex = App->tex->Load("maps/path2.png");
 
 	return true;
 }

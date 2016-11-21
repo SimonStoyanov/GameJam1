@@ -54,10 +54,10 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	TTF_Font* LoadFont(char* path, int size);
+	int LoadFont(char* path, int size);
 
 public:
-	TTF_Font*	f1;
+	p2List<TTF_Font*> fonts;
 
 };
 
@@ -65,8 +65,8 @@ class Text
 {
 public:
 	// Constructors
-	Text(char* _text, int x, int y, TTF_Font* _font, int _spacing = 10, uint _r = 255, uint _g = 255, uint _b = 255);
-	Text(int x, int y, TTF_Font* _font, int _spacing = 10, uint _r = 255, uint _g = 255, uint _b = 255);
+	Text(char* _text, int x, int y, int font, int _spacing = 10, uint _r = 255, uint _g = 255, uint _b = 255);
+	Text(int x, int y, int _font, int _spacing = 10, uint _r = 255, uint _g = 255, uint _b = 255);
 	Text(Text* text);
 
 	// Destructor
@@ -75,7 +75,7 @@ public:
 	// Functions
 	void PrintText();
 	void SetFont(TTF_Font* _font);
-	void SetText(char* _text);
+	void SetText(char* _text, Alignment _alignment = left);
 
 private:
 	void SetUpText();
