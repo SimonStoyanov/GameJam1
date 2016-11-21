@@ -1,25 +1,25 @@
-#include "Enemies.h"
+#include "ModuleEnemies.h"
 #include "p2Defs.h"
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1FileSystem.h"
 #include "j1Audio.h"
 
-Enemies::Enemies() : j1Module()
+ModuleEnemies::ModuleEnemies()
 {
 	name.create("enemies");
 }
 
-Enemies::~Enemies()
+ModuleEnemies::~ModuleEnemies()
 {
 }
 
-bool Enemies::Awake(pugi::xml_node &)
+bool ModuleEnemies::Awake(pugi::xml_node &)
 {
 	return true;
 }
 
-bool Enemies::CleanUp()
+bool ModuleEnemies::CleanUp()
 {
 	return true;
 }

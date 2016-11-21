@@ -27,10 +27,10 @@ bool Player::CleanUp()
 
 void Player::LoadTextures()
 {
-	player = new Prefab(NULL, 0, 0, 0, 0, 1, 1);
+	player = new Prefab(1, 0, nullptr, { 0,0,0,0 });
 }
 
 void Player::CreateColliders()
 {
-	player->pb = App->physics->CreateRectangle(0, 0, 10, 30);
+	player->body = App->physics->CreateRectangle(0, 0, 10, 30);
 }

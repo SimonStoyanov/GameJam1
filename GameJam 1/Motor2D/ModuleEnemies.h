@@ -3,13 +3,13 @@
 
 #include "j1Module.h"
 
-class Enemies : public j1Module
+class ModuleEnemies : public j1Module
 {
 public:
-	Enemies();
+	ModuleEnemies();
 
 	// Destructor
-	virtual ~Enemies();
+	virtual ~ModuleEnemies();
 
 	// Called before render is available
 	bool Awake(pugi::xml_node&);

@@ -20,8 +20,7 @@ class j1PathFinding;
 class ModulePhysics;
 class j1Text;
 
-class Background;
-class Enemies;
+class ModuleEnemies;
 class Player;
 
 class j1Scene;
@@ -101,8 +100,7 @@ public:
 	j1PathFinding*		pathfinding = NULL;
 	ModulePhysics*		physics = NULL;
 	j1Text*				text = NULL;
-	Background*			bg = NULL;
-	Enemies*			enemies = NULL;
+	ModuleEnemies*		enemies = NULL;
 	Player*				player = NULL;
 
 private:

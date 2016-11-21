@@ -16,8 +16,7 @@
 #include "j1App.h"
 #include "j1Text.h"
 
-#include "Background.h"
-#include "Enemies.h"
+#include "ModuleEnemies.h"
 #include "Player.h"
 
 #include "j1Scene.h"
@@ -38,8 +37,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	physics = new ModulePhysics();
 	text = new j1Text();
 
-	bg = new Background();
-	enemies = new Enemies();
+	enemies = new ModuleEnemies();
 	player = new Player();
 
 	scene = new j1Scene();
@@ -56,7 +54,6 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(pathfinding);
 	AddModule(text);
-	AddModule(bg);
 	AddModule(enemies);
 	AddModule(player);
 
