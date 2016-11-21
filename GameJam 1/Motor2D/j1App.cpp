@@ -15,6 +15,7 @@
 #include "j1Pathfinding.h"
 #include "ModulePhysics.h"
 #include "j1App.h"
+#include "j1Text.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -31,6 +32,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	map = new j1Map();
 	pathfinding = new j1PathFinding();
 	physics = new ModulePhysics();
+	text = new j1Text();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -43,6 +45,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(scene);
 	AddModule(pathfinding);
+	AddModule(text);
 
 	// render last to swap buffer
 	AddModule(render);

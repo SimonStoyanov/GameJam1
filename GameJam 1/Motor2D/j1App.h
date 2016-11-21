@@ -18,6 +18,7 @@ class j1Scene;
 class j1Map;
 class j1PathFinding;
 class ModulePhysics;
+class j1Text;
 
 class j1App
 {
@@ -91,6 +92,7 @@ public:
 	j1Map*				map = NULL;
 	j1PathFinding*		pathfinding = NULL;
 	ModulePhysics*		physics = NULL;
+	j1Text*				text = NULL;
 
 private:
 
