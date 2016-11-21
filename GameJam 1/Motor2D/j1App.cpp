@@ -9,13 +9,18 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Audio.h"
-#include "j1Scene.h"
 #include "j1FileSystem.h"
 #include "j1Map.h"
 #include "j1Pathfinding.h"
 #include "ModulePhysics.h"
 #include "j1App.h"
 #include "j1Text.h"
+
+#include "Background.h"
+#include "Enemies.h"
+#include "Player.h"
+
+#include "j1Scene.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -27,12 +32,17 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	render = new j1Render();
 	tex = new j1Textures();
 	audio = new j1Audio();
-	scene = new j1Scene();
 	fs = new j1FileSystem();
 	map = new j1Map();
 	pathfinding = new j1PathFinding();
 	physics = new ModulePhysics();
 	text = new j1Text();
+
+	bg = new Background();
+	enemies = new Enemies();
+	player = new Player();
+
+	scene = new j1Scene();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -46,6 +56,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(pathfinding);
 	AddModule(text);
+	AddModule(bg);
+	AddModule(enemies);
+	AddModule(player);
 
 	// render last to swap buffer
 	AddModule(render);

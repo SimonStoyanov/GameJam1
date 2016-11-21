@@ -20,6 +20,12 @@ class j1PathFinding;
 class ModulePhysics;
 class j1Text;
 
+class Background;
+class Enemies;
+class Player;
+
+class j1Scene;
+
 class j1App
 {
 public:
@@ -93,6 +99,9 @@ public:
 	j1PathFinding*		pathfinding = NULL;
 	ModulePhysics*		physics = NULL;
 	j1Text*				text = NULL;
+	Background*			bg = NULL;
+	Enemies*			enemies = NULL;
+	Player*				player = NULL;
 
 private:
 

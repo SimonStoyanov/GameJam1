@@ -250,3 +250,11 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+*.obj
+*.idb
+GameJam 1/Motor2D/Debug/vc140.pdb
+*.filters
+*.obj
+*.filters
+*.pdb
+*.idb
