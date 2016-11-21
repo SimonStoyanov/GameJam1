@@ -28,9 +28,19 @@ struct Sprite {
 class Prefab
 {
 public:
+	//Constructors
 	Prefab();
 	Prefab(int pos_x, int pos_y, char* texture_path, SDL_Rect rect );
+
+	//Destructor
 	~Prefab();
+
+	//Methods
+	void CreateCollision(int width, int height, int cat, int mask);
+	void CreateCollision(int radius, int cat, int mask);
+
+	void CreateStaticCollision(int width, int height, int cat, int mask);
+	void CreateStaticCollision(int radius, int cat, int mask);
 
 public:
 	Sprite sprite;

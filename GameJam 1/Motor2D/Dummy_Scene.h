@@ -1,5 +1,7 @@
 #include "Scene.h"
 
+class Prefab;
+
 class Dummy : public Scene
 {
 
@@ -11,4 +13,7 @@ public:
 	bool Update(float dt);
 	void Draw();
 	bool CleanUp();
+
+private:
+	Prefab* ground = nullptr;
 };
