@@ -1,15 +1,6 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Development - Class 10.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   j1Scene.cpp
-c:\users\ibanmo1\desktop\gamejam1\gamejam 1\motor2d\j1scene.cpp(88): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-c:\users\ibanmo1\desktop\gamejam1\gamejam 1\motor2d\j1scene.cpp(91): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-c:\users\ibanmo1\desktop\gamejam1\gamejam 1\motor2d\j1scene.cpp(94): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-c:\users\ibanmo1\desktop\gamejam1\gamejam 1\motor2d\j1scene.cpp(97): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  Compiling...
-  j1App.cpp
-c:\users\ibanmo1\desktop\gamejam1\gamejam 1\motor2d\j1app.cpp(213): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  j1Text.cpp
+     Creating library C:\Users\ibanmo1\Desktop\GameJam1\GameJam 1\Debug\GameJam1.lib and object C:\Users\ibanmo1\Desktop\GameJam1\GameJam 1\Debug\GameJam1.exp
+physfs.lib(physfs.obj) : warning LNK4217: locally defined symbol _sprintf imported in function _PHYSFS_setSaneConfig
   Motor2D.vcxproj -> C:\Users\ibanmo1\Desktop\GameJam1\GameJam 1\Debug\GameJam1.exe
   Motor2D.vcxproj -> C:\Users\ibanmo1\Desktop\GameJam1\GameJam 1\Debug\GameJam1.pdb (Full PDB)
