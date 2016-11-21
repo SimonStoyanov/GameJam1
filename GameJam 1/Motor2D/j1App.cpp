@@ -208,11 +208,11 @@ void j1App::FinishUpdate()
 	uint32 last_frame_ms = frame_time.Read();
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
 
-	if (framecap != -1) {
+	if (framecap != -1) 
+	{
 		delay_timer.Start();
 		int delay = ((1 / (float)framecap) * 1000) - last_frame_ms;
 		SDL_Delay(delay);
-		LOG("I want to stop %d, but Güindous stop me for: %f", delay, delay_timer.ReadMs());
 	}
 }
 
@@ -228,7 +228,8 @@ bool j1App::PreUpdate()
 	{
 		pModule = item->data;
 
-		if(pModule->active == false) {
+		if(pModule->active == false) 
+		{
 			continue;
 		}
 
@@ -250,7 +251,8 @@ bool j1App::DoUpdate()
 	{
 		pModule = item->data;
 
-		if(pModule->active == false) {
+		if(pModule->active == false) 
+		{
 			continue;
 		}
 
@@ -271,7 +273,8 @@ bool j1App::PostUpdate()
 	{
 		pModule = item->data;
 
-		if(pModule->active == false) {
+		if(pModule->active == false) 
+		{
 			continue;
 		}
 

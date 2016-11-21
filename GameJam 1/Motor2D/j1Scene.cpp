@@ -43,6 +43,11 @@ bool j1Scene::Start()
 		RELEASE_ARRAY(data);
 	}
 
+	if (current_scene != nullptr && current_scene->IsEnabled())
+	{
+		current_scene->Start();
+	}
+
 	return true;
 }
 
@@ -79,13 +84,15 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	/*
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame("save_game.xml");
 
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
+	*/
 
-	if (current_scene != nullptr)
+	if (current_scene != nullptr && current_scene->IsEnabled())
 	{
 		current_scene->Update(dt);
 		current_scene->Draw();
