@@ -23,3 +23,7 @@ bool Player::CleanUp()
 {
 	return true;
 }
+
+void Player::CreateColliders()
+{
+}

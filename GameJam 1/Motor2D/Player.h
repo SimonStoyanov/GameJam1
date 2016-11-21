@@ -17,6 +17,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void CreateColliders();
+
 private:
 
 public:
