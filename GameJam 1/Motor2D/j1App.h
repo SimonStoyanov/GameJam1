@@ -61,6 +61,8 @@ public:
 	void SaveGame(const char* file) const;
 	void GetSaveGames(p2List<p2SString>& list_to_fill) const;
 
+	float Getdt() const;
+
 private:
 
 	// Load config file
@@ -131,6 +133,6 @@ private:
 	float				dt;
 };
 
-extern j1App* App; // No student is asking me about that ... odd :-S
+extern j1App* App; 
 
 #endif
