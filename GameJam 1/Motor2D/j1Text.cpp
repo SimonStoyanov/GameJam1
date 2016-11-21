@@ -95,6 +95,7 @@ Text::Text(char* _text, int x, int y, int _font, int _spacing, uint _r, uint _g,
 	font = App->text->fonts[_font];
 	color.r = _r; color.g = _g; color.b = _b;
 	spacing = _spacing;
+	is_ui = false;
 
 	SetUpText();
 }
@@ -112,6 +113,7 @@ Text::Text(int x, int y, int _font, int _spacing, uint _r, uint _g, uint _b)
 	font = App->text->fonts[_font];
 	color.r = _r; color.g = _g; color.b = _b;
 	spacing = _spacing;
+	is_ui = false;
 }
 
 // ------------------------------
@@ -127,6 +129,7 @@ Text::Text(Text* _text)
 	font = _text->font;
 	color = _text->color;
 	spacing = _text->spacing;
+	is_ui = _text->is_ui;
 	
 	for (int i = 0; i < _text->texture_list.count(); i++)
 		texture_list.add(_text->texture_list[i]);
@@ -306,7 +309,10 @@ void Text::PrintText()
 		case left:
 			for (int i = 0; i < texture_list.count(); i++)
 			{
-				App->render->Blit(texture_list[i].texture, pos.x, pos.y + (i * spacing), NULL);
+				if(!is_ui)
+					App->render->Blit(texture_list[i].texture, pos.x, pos.y + (i * spacing), NULL);
+				else
+					App->render->Blit(texture_list[i].texture, pos.x - App->render->camera.x, pos.y + (i * spacing) - App->render->camera.y, NULL);
 			}
 			break;
 

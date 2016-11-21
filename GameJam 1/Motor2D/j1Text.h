@@ -91,6 +91,7 @@ public:
 	bool				  print;
 	Alignment			  alignment;
 	p2List<int>			  words_position;
+	bool				  is_ui;
 
 private:
 	TTF_Font*			  font;
