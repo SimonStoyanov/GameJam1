@@ -76,6 +76,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Dummy_Scene.cpp" />
     <ClCompile Include="Enemies.cpp" />
     <ClCompile Include="j1FileSystem.cpp" />
     <ClCompile Include="j1Main.cpp" />
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Dummy_Scene.h" />
     <ClInclude Include="Enemies.h" />
     <ClInclude Include="j1FileSystem.h" />
     <ClInclude Include="j1Map.h" />

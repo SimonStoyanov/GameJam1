@@ -4,6 +4,7 @@
 #include "j1App.h"
 #include "j1FileSystem.h"
 #include "j1Audio.h"
+#include "Prefabs.h"
 
 Player::Player() : j1Module()
 {
@@ -24,6 +25,12 @@ bool Player::CleanUp()
 	return true;
 }
 
+void Player::LoadTextures()
+{
+	player = new Prefab(NULL, 0, 0, 0, 0, 1, 1);
+}
+
 void Player::CreateColliders()
 {
+	player->pb = App->physics->CreateRectangle(0, 0, 10, 30);
 }

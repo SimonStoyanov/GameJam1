@@ -3,6 +3,7 @@
 
 #include "j1Module.h"
 
+class Prefab;
 class Player : public j1Module
 {
 public:
@@ -17,11 +18,14 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void LoadTextures();
 	void CreateColliders();
 
 private:
 
 public:
+	Prefab* player = nullptr;
+
 private:
 };
 

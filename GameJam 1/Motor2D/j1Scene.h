@@ -4,8 +4,11 @@
 #include "j1Module.h"
 
 struct SDL_Texture;
+
 class Text;
 class Scene;
+
+class Dummy;
 
 class j1Scene : public j1Module
 {
@@ -33,6 +36,9 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
+
+public:
+	Dummy* dummy_scene = nullptr;
 
 private:
 	Scene* current_scene = nullptr;

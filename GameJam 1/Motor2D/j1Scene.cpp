@@ -11,6 +11,7 @@
 #include "j1Text.h"
 #include "j1Scene.h"
 #include "Scene.h"
+#include "Dummy_Scene.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -43,7 +44,10 @@ bool j1Scene::Start()
 		RELEASE_ARRAY(data);
 	}
 
-	if (current_scene != nullptr && current_scene->IsEnabled())
+	dummy_scene = new Dummy();
+	current_scene = dummy_scene;
+
+	if (current_scene != nullptr)
 	{
 		current_scene->Start();
 	}
@@ -92,7 +96,7 @@ bool j1Scene::Update(float dt)
 		App->SaveGame("save_game.xml");
 	*/
 
-	if (current_scene != nullptr && current_scene->IsEnabled())
+	if (current_scene != nullptr)
 	{
 		current_scene->Update(dt);
 		current_scene->Draw();
