@@ -99,6 +99,7 @@
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Dummy_Scene.h" />
     <ClInclude Include="ModuleEnemies.h" />

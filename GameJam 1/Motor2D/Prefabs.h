@@ -7,6 +7,7 @@
 #include "p2Point.h"
 #include "ModulePhysics.h"
 #include "j1Textures.h"
+#include "Animation.h"
 #include "j1App.h"
 
 struct Sprite 
@@ -45,6 +46,7 @@ public:
 
 public:
 	Sprite sprite;
+	Animation animation;
 	PhysBody* pbody = nullptr;
 };
 
