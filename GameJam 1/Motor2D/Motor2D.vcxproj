@@ -97,6 +97,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Prefabs.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="SpellManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -129,6 +130,7 @@
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SpellManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">

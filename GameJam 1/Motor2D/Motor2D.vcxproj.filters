@@ -67,6 +67,9 @@
     <ClCompile Include="j1Scene.cpp">
       <Filter>Desenvolupament  ========\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="SpellManager.cpp">
+      <Filter>Desenvolupament  ========\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -158,6 +161,9 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellManager.h">
+      <Filter>Desenvolupament  ========\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

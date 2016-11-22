@@ -49,7 +49,8 @@ public:
 		curr_frame = (float)frame;
 	}
 
-	void SetFrames(SDL_Rect* _frames, uint n_frames) {
+	void SetFrames(SDL_Rect* _frames, uint n_frames) 
+	{
 		for (int i = 0; i < n_frames; i++)
 		{
 			frames.add(_frames[i]);
