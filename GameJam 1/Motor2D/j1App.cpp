@@ -224,10 +224,14 @@ void j1App::FinishUpdate()
 	{
 		delay_timer.Start();
 		int delay = ((1 / (float)framecap) * 1000) - last_frame_ms;
-		SDL_Delay(delay);
+
+		if (delay >= 0)
+		{
+			SDL_Delay(delay);
+		}
 	}
 
-	p2SString tmp; tmp.create("%.1f", avg_fps);
+	p2SString tmp; tmp.create("%.1f ", avg_fps);
 	char* tmp2 = new char[tmp.Length()+1];
 	strcpy_s(tmp2, tmp.Length()+1, tmp.GetString());
 	App->text->fps->SetText(tmp2);
