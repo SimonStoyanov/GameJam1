@@ -52,13 +52,16 @@ bool j1Scene::Start()
 		current_scene->Start();
 	}
 
+	// fps
+	App->text->fps = new Text(5, 5, App->text->timeless_15, 1);
+	App->text->fps->is_ui = true;
+
 	return true;
 }
 
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
-
 	return true;
 }
 
@@ -78,6 +81,8 @@ bool j1Scene::Update(float dt)
 		current_scene->Update(dt);
 		current_scene->Draw();
 	}
+
+	App->text->fps->PrintText();
 
 	return true;
 }

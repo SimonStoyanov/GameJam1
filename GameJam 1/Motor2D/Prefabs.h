@@ -9,7 +9,8 @@
 #include "j1Textures.h"
 #include "j1App.h"
 
-struct Sprite {
+struct Sprite 
+{
 	SDL_Texture* texture = nullptr;
 	SDL_Rect rect;
 	iPoint pos;

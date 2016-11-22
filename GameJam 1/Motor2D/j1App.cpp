@@ -51,11 +51,12 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(physics);
 	AddModule(map);
-	AddModule(scene);
 	AddModule(pathfinding);
 	AddModule(text);
 	AddModule(enemies);
 	AddModule(player);
+
+	AddModule(scene);
 
 	// render last to swap buffer
 	AddModule(render);
@@ -141,7 +142,7 @@ bool j1App::Start()
 	startup_time.Start();
 
 	PERF_PEEK(ptimer);
-
+	
 	return ret;
 }
 
@@ -164,6 +165,7 @@ bool j1App::Update()
 		ret = PostUpdate();
 
 	FinishUpdate();
+
 	return ret;
 }
 
@@ -224,6 +226,11 @@ void j1App::FinishUpdate()
 		int delay = ((1 / (float)framecap) * 1000) - last_frame_ms;
 		SDL_Delay(delay);
 	}
+
+	p2SString tmp; tmp.create("%.1f", avg_fps);
+	char* tmp2 = new char[tmp.Length()+1];
+	strcpy_s(tmp2, tmp.Length()+1, tmp.GetString());
+	App->text->fps->SetText(tmp2);
 }
 
 // Call modules before each loop iteration

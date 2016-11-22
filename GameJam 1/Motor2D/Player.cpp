@@ -27,7 +27,7 @@ bool Player::CleanUp()
 
 void Player::LoadTextures()
 {
-	player = new Prefab(1, 0, nullptr, NULLRECT);
+	player = new Prefab(100, 0, nullptr, NULLRECT);
 }
 
 void Player::CreateColliders()

@@ -44,6 +44,8 @@ bool j1Text::Start()
 	LOG("start text");
 	bool ret = true;
 
+	timeless_15 = LoadFont("Timeless.ttf", 15);
+
 	return ret;
 }
 
@@ -248,7 +250,7 @@ void Text::SetUpText()
 
 			words_position.add(previous - 2);
 
-			LOG("%d %d", previous, surface->w);
+			//LOG("%d %d", previous, surface->w);
 			SDL_FreeSurface(surface);
 		}
 

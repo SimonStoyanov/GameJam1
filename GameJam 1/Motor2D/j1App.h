@@ -102,7 +102,6 @@ public:
 	j1Text*				text = NULL;
 	ModuleEnemies*		enemies = NULL;
 	Player*				player = NULL;
-
 private:
 
 	p2List<j1Module*>	modules;

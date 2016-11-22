@@ -2,7 +2,7 @@
 
 <config>
   <app>
-    <framerate value="100"/>
+    <framerate value="60"/>
     <title>GameJam 1</title>
     <organization>SuperTeam</organization>
   </app>
