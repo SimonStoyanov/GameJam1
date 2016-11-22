@@ -14,8 +14,13 @@ public:
 	// Called before render is available
 	bool Awake(pugi::xml_node&);
 
+	// Update all enemies
+	bool Update(float dt);
+
 	// Called before quitting
 	bool CleanUp();
+
+	
 
 private:
 
