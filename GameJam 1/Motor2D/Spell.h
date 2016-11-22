@@ -10,7 +10,7 @@ enum Spelltypes {
 };
 
 class Spell{
-private:
+public:
 	p2SString name;
 	Spelltypes type;
 	Prefab prefab;

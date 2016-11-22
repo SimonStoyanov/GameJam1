@@ -28,3 +28,8 @@ bool ModuleEnemies::CleanUp()
 {
 	return true;
 }
+
+Boss * ModuleEnemies::CreateEnemy(EnemiesTypes type)
+{
+	return nullptr;
+}

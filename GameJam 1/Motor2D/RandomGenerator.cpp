@@ -30,7 +30,7 @@ void RandomGenerator::CheckRand(int x, int to_del)
 	//LOG("%d %d", x, pos.x);
 	if(x >= pos.x)
 	{
-		LOG("Generating something");
+		//LOG("Generating something");
 		Prefab* tmp= new Prefab(prefab);
 		tmp->sprite.pos.x = pos.x;
 		tmp->sprite.pos.y = pos.y;
@@ -68,6 +68,6 @@ void RandomGenerator::Blit(int x, int to_del)
 		}
 		i++;
 
-		LOG("%d", to_blit.count());
+		//LOG("%d", to_blit.count());
 	}
 }

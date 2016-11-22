@@ -2,6 +2,7 @@
 #define __ENEMIES_H__
 
 #include "j1Module.h"
+#include "Boss.h"
 
 class ModuleEnemies : public j1Module
 {
@@ -20,7 +21,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	
+	Boss* CreateEnemy(EnemiesTypes type);
 
 private:
 

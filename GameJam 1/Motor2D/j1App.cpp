@@ -15,7 +15,7 @@
 #include "ModulePhysics.h"
 #include "j1App.h"
 #include "j1Text.h"
-
+#include "SpellManager.h"
 #include "ModuleEnemies.h"
 #include "Player.h"
 
@@ -36,7 +36,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	pathfinding = new j1PathFinding();
 	physics = new ModulePhysics();
 	text = new j1Text();
-
+	spellmanager = new SpellManager();
 	enemies = new ModuleEnemies();
 	player = new Player();
 
@@ -55,6 +55,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(text);
 	AddModule(enemies);
 	AddModule(player);
+	AddModule(spellmanager);
 
 	AddModule(scene);
 

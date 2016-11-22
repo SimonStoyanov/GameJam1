@@ -34,9 +34,9 @@ bool Player::Update(float dt)
 		on_ground = false;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) { //Fireball
-		App->spellmanager->CreateSpell(fireball, "fireball");
+		App->spellmanager->CreateSpell(fireball);
 	}
-
+	
 
 	if (!player->pbody->body->IsAwake())
 		player->pbody->body->SetAwake(true);

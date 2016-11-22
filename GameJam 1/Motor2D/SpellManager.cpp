@@ -49,7 +49,7 @@ bool SpellManager::CleanUp()
 	return true;
 }
 
-Spell* SpellManager::CreateSpell(Spelltypes type, char* name)
+Spell* SpellManager::CreateSpell(Spelltypes type)
 {
 	Spell* spell = nullptr;
 	switch (type)
