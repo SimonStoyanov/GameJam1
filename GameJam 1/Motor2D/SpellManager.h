@@ -33,7 +33,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	Spell* CreateSpell(Spelltypes type);
+	Spell* CreateSpell(Spelltypes type, char* name);
 
 private:
 

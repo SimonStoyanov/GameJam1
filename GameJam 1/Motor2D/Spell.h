@@ -10,16 +10,15 @@ enum Spelltypes {
 	unknown
 };
 
-class Spell {
+class Spell{
 private:
 	p2SString name;
+	Spelltypes type;
 	Prefab* prefab;
-	uint damage;
-	
 public:
 	Spell();
 	Spell(Spelltypes type_);
-	Spell(Spelltypes type_, uint damage_);
+	Spell(Spelltypes type_, char* name);
 	~Spell();
 
 	virtual void Start();

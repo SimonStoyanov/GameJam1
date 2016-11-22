@@ -70,6 +70,10 @@
     <ClCompile Include="j1Main.cpp">
       <Filter>Desenvolupament ===========</Filter>
     </ClCompile>
+    <ClCompile Include="Spell.cpp">
+      <Filter>Desenvolupament ===========\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Fireball.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ModuleEnemies.h">
@@ -167,6 +171,9 @@
     </ClInclude>
     <ClInclude Include="j1Module.h">
       <Filter>Desenvolupament ===========</Filter>
+    </ClInclude>
+    <ClInclude Include="Fireball.h">
+      <Filter>Desenvolupament ===========\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

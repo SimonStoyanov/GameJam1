@@ -36,10 +36,15 @@ bool SpellManager::PostUpdate()
 
 bool SpellManager::CleanUp()
 {
+	while (spells.count() > 0) {
+		spells.del(spells.end);
+	}
 	return true;
 }
 
-Spell * SpellManager::CreateSpell(Spelltypes type)
+Spell* SpellManager::CreateSpell(Spelltypes type, char* name)
 {
-	return nullptr;
+	Spell* spell = new Spell(type, name);
+	spells.add(spell);
+	return spell;
 }

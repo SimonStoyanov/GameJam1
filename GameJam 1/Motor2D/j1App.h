@@ -19,7 +19,7 @@ class j1Map;
 class j1PathFinding;
 class ModulePhysics;
 class j1Text;
-
+class SpellManager;
 class ModuleEnemies;
 class Player;
 
@@ -100,6 +100,7 @@ public:
 	j1PathFinding*		pathfinding = NULL;
 	ModulePhysics*		physics = NULL;
 	j1Text*				text = NULL;
+	SpellManager*		spellmanager = NULL;
 	ModuleEnemies*		enemies = NULL;
 	Player*				player = NULL;
 private:
