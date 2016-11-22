@@ -1,8 +1,7 @@
 #include "Fireball.h"
 
-Fireball::Fireball()
+Fireball::Fireball() : Spell(fireball, "fireball")
 {
-	
 }
 
 Fireball::~Fireball()
