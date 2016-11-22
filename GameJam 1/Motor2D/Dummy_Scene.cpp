@@ -34,23 +34,20 @@ bool Dummy::Start()
 
 	App->player->LoadTextures();
 
-	//Load textures
-	background_tex = App->tex->Load("Spritesheets/background_sheet.png");
-
 	// Grounds
 	int posx, posy;
-	grounds.add(new Prefab(430, 560, nullptr, NULLRECT));
+	grounds.add(new Prefab(430, 560, "Spritesheets/background_sheet.png", NULLRECT));
 	grounds[0]->CreateStaticCollision(860, 8, WORLD, PLAYER);
 	grounds[0]->pbody->GetPosition(posx, posy);
-	grounds.add(new Prefab(posx+1290, 560, nullptr, NULLRECT));
+	grounds.add(new Prefab(posx+1290, 560, "Spritesheets/background_sheet.png", NULLRECT));
 	grounds[1]->CreateStaticCollision(860, 8, WORLD, PLAYER);
 	grounds[1]->pbody->GetPosition(posx, posy);
-	grounds.add(new Prefab(posx + 1290, 560, nullptr, NULLRECT));
+	grounds.add(new Prefab(posx + 1290, 560, "Spritesheets/background_sheet.png", NULLRECT));
 	grounds[2]->CreateStaticCollision(860, 8, WORLD, PLAYER);
 
 	// Random generators
-	test_pref = new Prefab(0, 0, nullptr, NULLRECT);
-	test_rand = new RandomGenerator(test_pref, 120, 55, 560, 50, 50, 10);
+	test_pref = new Prefab(0, 0, "Spritesheets/background_sheet.png", NULLRECT);
+	test_rand = new RandomGenerator(test_pref, 400, 50, 560, 300, 100, 10);
 
 	return true;
 }
@@ -75,6 +72,7 @@ bool Dummy::Update(float dt)
 
 void Dummy::Draw()
 {
+
 }
 
 bool Dummy::CleanUp()

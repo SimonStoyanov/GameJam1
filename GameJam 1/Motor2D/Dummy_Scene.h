@@ -27,6 +27,4 @@ private:
 	RandomGenerator* test_rand;
 	Prefab* test_pref;
 
-	SDL_Texture* background_tex;
-
 };
