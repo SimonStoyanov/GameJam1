@@ -32,6 +32,7 @@ public:
 	//Constructors
 	Prefab();
 	Prefab(int pos_x, int pos_y, char* texture_path, SDL_Rect rect );
+	Prefab(Prefab* prefab);
 
 	//Destructor
 	~Prefab();
