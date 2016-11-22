@@ -27,6 +27,8 @@ struct Sprite
 		if(texture_path != nullptr)
 			texture = App->tex->Load(texture_path);
 	}
+
+	Sprite(int x, int y, SDL_Texture* texture, SDL_Rect rect) : pos(x, y), rect(rect), texture(texture)	{	}
 };
 
 class Prefab
@@ -35,6 +37,7 @@ public:
 	//Constructors
 	Prefab();
 	Prefab(int pos_x, int pos_y, char* texture_path, SDL_Rect rect );
+	Prefab(int pos_x, int pos_y, SDL_Texture* texture, SDL_Rect rect);
 	Prefab(Prefab* prefab);
 
 	//Destructor

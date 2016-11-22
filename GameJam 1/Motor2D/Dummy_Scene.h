@@ -3,8 +3,9 @@
 #include "p2Point.h"
 #include "PugiXml\src\pugixml.hpp"
 #include "j1Textures.h"
+#include "SDL\include\SDL.h"
+#include "Prefabs.h"
 
-class Prefab;
 class PhysBody;
 class RandomGenerator;
 
@@ -27,4 +28,6 @@ private:
 	RandomGenerator* test_rand;
 	Prefab* test_pref;
 
+	Sprite background;
+	Sprite path_image;
 };

@@ -36,18 +36,20 @@ bool Dummy::Start()
 
 	// Grounds
 	int posx, posy;
-	grounds.add(new Prefab(430, 560, "Spritesheets/background_sheet.png", NULLRECT));
-	grounds[0]->CreateStaticCollision(860, 8, WORLD, PLAYER);
+	grounds.add(new Prefab(1017, 560, "Spritesheets/background_sheet.png", { 0,752,2034,146 }));
+	grounds[0]->CreateStaticCollision(2034, 8, WORLD, PLAYER);
 	grounds[0]->pbody->GetPosition(posx, posy);
-	grounds.add(new Prefab(posx+1290, 560, "Spritesheets/background_sheet.png", NULLRECT));
-	grounds[1]->CreateStaticCollision(860, 8, WORLD, PLAYER);
+	grounds.add(new Prefab(posx+3051, 560, grounds[0]->sprite.texture, { 0,752,2034,146 }));
+	grounds[1]->CreateStaticCollision(2034, 8, WORLD, PLAYER);
 	grounds[1]->pbody->GetPosition(posx, posy);
-	grounds.add(new Prefab(posx + 1290, 560, "Spritesheets/background_sheet.png", NULLRECT));
-	grounds[2]->CreateStaticCollision(860, 8, WORLD, PLAYER);
+	grounds.add(new Prefab(posx + 3051, 560, grounds[0]->sprite.texture, { 0,752,2034,146 }));
+	grounds[2]->CreateStaticCollision(2034, 8, WORLD, PLAYER);
 
 	// Random generators
-	test_pref = new Prefab(0, 0, "Spritesheets/background_sheet.png", NULLRECT);
+	test_pref = new Prefab(0, 0, "", NULLRECT);
 	test_rand = new RandomGenerator(test_pref, 400, 50, 560, 300, 100, 10);
+
+	background = Sprite(0, 0, "Spritesheets/background_sheet.png", NULLRECT);
 
 	return true;
 }
@@ -62,8 +64,8 @@ bool Dummy::Update(float dt)
 	if (-App->render->camera.x > posx) 
 	{
 		grounds[2]->pbody->GetPosition(posx, posy);
-		grounds.add(new Prefab(posx + 1290, 560, nullptr, NULLRECT));
-		grounds[3]->CreateStaticCollision(860, 8, WORLD, PLAYER);
+		grounds.add(new Prefab(posx + 3051, 560, grounds[0]->sprite.texture, NULLRECT));
+		grounds[3]->CreateStaticCollision(2034, 8, WORLD, PLAYER);
 		grounds.del(grounds.start);
 	}
 
@@ -72,6 +74,10 @@ bool Dummy::Update(float dt)
 
 void Dummy::Draw()
 {
+	for (p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
+	{	
+		App->render->Blit(item->data->sprite.texture, item->data->GetPosition().x, 422, &item->data->sprite.rect);
+	}
 
 }
 

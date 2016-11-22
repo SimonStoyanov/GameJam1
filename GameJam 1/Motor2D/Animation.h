@@ -45,6 +45,10 @@ public:
 		return curr_frame;
 	}
 
+	SDL_Rect& GetFrame(int frame) {
+		return frames[frame];
+	}
+
 	void SetInitialFrame(uint frame) {
 		curr_frame = (float)frame;
 	}

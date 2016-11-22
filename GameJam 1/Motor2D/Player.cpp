@@ -53,7 +53,7 @@ bool Player::CleanUp()
 
 void Player::LoadTextures()
 {
-	player = new Prefab(100, 0, nullptr, NULLRECT);
+	player = new Prefab(100, 0, "", NULLRECT);
 	player->CreateCollision(10, 30, PLAYER, WORLD);
 	player->pbody->listener = this;
 	player->pbody->body->SetBullet(true);

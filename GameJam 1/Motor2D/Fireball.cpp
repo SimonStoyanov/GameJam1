@@ -7,7 +7,7 @@ Fireball::Fireball() : Spell(fireball, "fireball")
 {
 	int x, y;
 	App->player->player->pbody->GetPosition(x, y);
-	prefab = Prefab(x + App->render->camera.x, y + App->render->camera.y, NULL, NULLRECT);
+	prefab = Prefab(x + App->render->camera.x, y + App->render->camera.y, "", NULLRECT);
 	prefab.CreateCollision(10, PLAYER, BOSS);
 	LOG("player %d %d", x, y);
 }
