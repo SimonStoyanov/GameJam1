@@ -196,5 +196,8 @@
     <Xml Include="..\Game\config.xml">
       <Filter>Desenvolupament ===========</Filter>
     </Xml>
+    <Xml Include="LevelScene.xml">
+      <Filter>Desenvolupament ===========\Scenes</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
