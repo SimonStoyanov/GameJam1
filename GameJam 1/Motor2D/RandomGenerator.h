@@ -10,7 +10,7 @@ class Prefab;
 class RandomGenerator
 {
 public:
-	RandomGenerator(int x, int y, Prefab* prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h);
+	RandomGenerator(Prefab* prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h);
 	~RandomGenerator();
 
 	void CheckRand(int x, int to_del);
@@ -32,6 +32,8 @@ private:
 
 	int w;
 	int h;
+
+	bool start;
 
 };
 

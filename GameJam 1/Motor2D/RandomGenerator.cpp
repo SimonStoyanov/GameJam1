@@ -5,10 +5,8 @@
 #include <iostream>
 using namespace std;
 
-RandomGenerator::RandomGenerator(int x, int y, Prefab* _prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h)
+RandomGenerator::RandomGenerator(Prefab* _prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h)
 {
-	pos.x = x;
-	pos.y = y;
 	max_x = _max_x;
 	min_x = _min_x;
 	max_y = _max_y;
@@ -18,7 +16,7 @@ RandomGenerator::RandomGenerator(int x, int y, Prefab* _prefab, int _max_x, int 
 	w = pb_w;
 	h = pb_h;
 
-	SetRand(x);
+	start = true;
 }
 
 RandomGenerator::~RandomGenerator()
@@ -27,10 +25,14 @@ RandomGenerator::~RandomGenerator()
 
 void RandomGenerator::CheckRand(int x, int to_del)
 {
-	//LOG("%d %d", x, pos.x);
+	if (start)
+	{
+		SetRand(x);
+		start = false;
+	}
+
 	if(x >= pos.x)
 	{
-		LOG("Generating something");
 		Prefab* tmp= new Prefab(prefab);
 		tmp->sprite.pos.x = pos.x;
 		tmp->sprite.pos.y = pos.y;
@@ -62,12 +64,14 @@ void RandomGenerator::Blit(int x, int to_del)
 	{
 		//App->render->Blit(prefab->sprite.texture, to_blit[i]->sprite.pos.x, to_blit[i]->sprite.pos.y, &prefab->sprite.rect);
 
-		if(to_blit[i]->sprite.pos.x < to_del - x)
+		if(to_blit[i]->sprite.pos.x < -(to_del - x))
 		{
+			App->physics->DeleteObject(to_blit[i]->pbody);
+			RELEASE(to_blit[i]);
 			to_blit.del(to_blit.At(i));
 		}
 		i++;
-
-		LOG("%d", to_blit.count());
 	}
 }
+
+

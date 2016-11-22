@@ -9,6 +9,8 @@
 #include "Prefabs.h"
 #include "Dummy_Scene.h"
 
+#define PLAYER_START_POSITION 10
+
 Player::Player() : j1Module()
 {
 	name.create("player");
@@ -26,7 +28,7 @@ bool Player::Awake(pugi::xml_node &)
 bool Player::Update(float dt)
 {
 	int x; int y;
-	player->pbody->body->SetTransform(b2Vec2(player->pbody->body->GetPosition().x+PIXEL_TO_METERS((int)(200*dt)), player->pbody->body->GetPosition().y),0);
+	player->pbody->body->SetTransform(b2Vec2(player->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(200*dt)), player->pbody->body->GetPosition().y),0);
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) {
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -2000), false);
@@ -53,6 +55,7 @@ void Player::LoadTextures()
 	player = new Prefab(100, 0, nullptr, NULLRECT);
 	player->CreateCollision(10, 30, PLAYER, WORLD);
 	player->pbody->listener = this;
+	player->pbody->body->SetBullet(true);
 }
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)

@@ -21,9 +21,11 @@ struct Sprite
 		rect = { 0,0,0,0 };
 		pos = { -1,-1 };
 	}
+
 	Sprite(int x, int y, char* texture_path, SDL_Rect rect) : pos(x, y), rect(rect)
 	{
-		texture = App->tex->Load(texture_path);
+		if(texture_path != nullptr)
+			texture = App->tex->Load(texture_path);
 	}
 };
 
