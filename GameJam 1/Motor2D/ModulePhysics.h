@@ -5,7 +5,7 @@
 #include "Box2D/Box2D/Box2D.h"
 
 #define GRAVITY_X 0.0f
-#define GRAVITY_Y -10.0f
+#define GRAVITY_Y -20.0f
 
 #define PIXELS_PER_METER 50.0f // if touched change METER_PER_PIXEL too
 #define METER_PER_PIXEL 0.02f // this is 1 / PIXELS_PER_METER !
@@ -21,7 +21,7 @@ struct path_joint {
 };
 
 enum Layers {
-	LAUNCH = 1, BOARD, KICKERS = 4, BALL, TOP = 8,  //CHANGE FOR LAYERS NEEDED AND REPLACE THE METHODS!!!!
+	PLAYER = 1, WORLD = 2, BOSS = 4  //CHANGE FOR LAYERS NEEDED AND REPLACE THE METHODS!!!!
 };
 
 // Small class to return to other modules to track position and rotation of physics bodies
@@ -54,15 +54,15 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-	PhysBody* CreateCircle(int x, int y, int radius, float rest = 0.0f, int cat = BOARD, int mask = BALL);
-	PhysBody* CreateStaticCircle(int x, int y, int radius, float rest = 0.0f, int cat = BOARD, int mask = BALL);
-	PhysBody* CreateRectangle(int x, int y, int width, int height, float rest = 0.0f, int cat = BOARD, int mask = BALL, int angle = 0);
-	PhysBody* CreateStaticRectangle(int x, int y, int width, int height, float rest = 0.0f, int cat = BOARD, int mask = BALL, int angle = 0);
-	PhysBody* CreatePolygon(int x, int y, int* points, int size, float rest = 0.0f, int cat = BOARD, int mask = BALL, int angle = 0);
-	PhysBody* CreateStaticPolygon(int x, int y, int* points, int size, float rest = 0.0f, int cat = BOARD, int mask = BALL, int angle = 0);
-	PhysBody* CreateRectangleSensor(int x, int y, int width, int height, float rest = 0.0f, int cat = BOARD, int mask = BALL, int angle = 0);
-	PhysBody* CreateChain(int x, int y, int* points, int size, float rest = 0.0f, int cat = BOARD, int mask = BALL, int angle = 0);
-	PhysBody* CreateStaticChain(int x, int y, int* points, int size, float rest = 0.0f, int cat = BOARD, int mask = BALL, int angle = 0);
+	PhysBody* CreateCircle(int x, int y, int radius, float rest = 0.0f, int cat = WORLD, int mask = PLAYER);
+	PhysBody* CreateStaticCircle(int x, int y, int radius, float rest = 0.0f, int cat = WORLD, int mask = PLAYER);
+	PhysBody* CreateRectangle(int x, int y, int width, int height, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
+	PhysBody* CreateStaticRectangle(int x, int y, int width, int height, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
+	PhysBody* CreatePolygon(int x, int y, int* points, int size, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
+	PhysBody* CreateStaticPolygon(int x, int y, int* points, int size, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
+	PhysBody* CreateRectangleSensor(int x, int y, int width, int height, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
+	PhysBody* CreateChain(int x, int y, int* points, int size, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
+	PhysBody* CreateStaticChain(int x, int y, int* points, int size, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
 
 	void DeleteObject(PhysBody* object);
 

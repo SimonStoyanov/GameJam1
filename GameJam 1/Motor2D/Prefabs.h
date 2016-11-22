@@ -45,7 +45,7 @@ public:
 
 public:
 	Sprite sprite;
-	PhysBody* body = nullptr;
+	PhysBody* pbody = nullptr;
 };
 
 #endif //__PREFABS_H__

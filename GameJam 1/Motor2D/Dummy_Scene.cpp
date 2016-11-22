@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Prefabs.h"
 #include "ModulePhysics.h"
+#include "j1Render.h"
 #include "j1Input.h"
 #include "j1Text.h"
 
@@ -18,27 +19,31 @@ Dummy::~Dummy()
 bool Dummy::Start()
 {
 	App->player->LoadTextures();
-	App->player->CreateColliders();
 
-	ground = new Prefab(430, 560, nullptr, NULLRECT);
-	ground->CreateStaticCollision(870, 8, 5, 2);
+	int posx, posy;
+	grounds.add(new Prefab(430, 560, nullptr, NULLRECT));
+	grounds[0]->CreateStaticCollision(860, 8, WORLD, PLAYER);
+	grounds[0]->pbody->GetPosition(posx, posy);
+	grounds.add(new Prefab(posx+1290, 560, nullptr, NULLRECT));
+	grounds[1]->CreateStaticCollision(860, 8, WORLD, PLAYER);
+	grounds[1]->pbody->GetPosition(posx, posy);
+	grounds.add(new Prefab(posx + 1290, 560, nullptr, NULLRECT));
+	grounds[2]->CreateStaticCollision(860, 8, WORLD, PLAYER);
+
 
 	return true;
 }
 
 bool Dummy::Update(float dt)
 {
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		int x; int y;
-		App->player->player->body->GetPosition(x, y);
-		LOG("%d %d", x, y);
-		App->player->player->body->body->SetTransform(b2Vec2(PIXEL_TO_METERS(x+0.0002f), PIXEL_TO_METERS(y)), App->player->player->body->GetRotation());
-		App->player->player->body->GetPosition(x, y);
-		LOG("%d %d", x, y);
-
+	int posx, posy;
+	grounds[1]->pbody->GetPosition(posx, posy);
+	if (-App->render->camera.x > posx) {
+		grounds[2]->pbody->GetPosition(posx, posy);
+		grounds.add(new Prefab(posx + 1290, 560, nullptr, NULLRECT));
+		grounds[3]->CreateStaticCollision(860, 8, WORLD, PLAYER);
+		grounds.del(grounds.start);
 	}
-
 	return true;
 }
 
@@ -48,10 +53,19 @@ void Dummy::Draw()
 
 bool Dummy::CleanUp()
 {
-	if (ground != nullptr)
+	for (p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
 	{
-		delete ground;
-		ground = nullptr;
+		RELEASE(item->data);
 	}
 	return true;
+}
+
+bool Dummy::IsGroundBody(PhysBody* body)
+{
+	for(p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
+	{
+		if (item->data->pbody == body)
+			return true;
+	}
+	return false;
 }

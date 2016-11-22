@@ -1,6 +1,8 @@
 #include "Scene.h"
+#include "p2List.h"
 
 class Prefab;
+class PhysBody;
 
 class Dummy : public Scene
 {
@@ -14,6 +16,8 @@ public:
 	void Draw();
 	bool CleanUp();
 
+	bool Dummy::IsGroundBody(PhysBody* body);
+
 private:
-	Prefab* ground = nullptr;
+	p2List<Prefab*> grounds;
 };

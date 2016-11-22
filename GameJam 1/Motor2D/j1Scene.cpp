@@ -23,10 +23,12 @@ j1Scene::~j1Scene()
 {}
 
 // Called before render is available
-bool j1Scene::Awake()
+bool j1Scene::Awake(pugi::xml_node& node)
 {
 	LOG("Loading Scene");
 	bool ret = true;
+
+	camera_speed = node.child("camera_speed").attribute("value").as_int(2);
 
 	return ret;
 }
@@ -80,6 +82,11 @@ bool j1Scene::Update(float dt)
 	{
 		current_scene->Update(dt);
 		current_scene->Draw();
+	}
+
+	if (current_scene == dummy_scene)
+	{
+		App->render->camera.x -= camera_speed*dt;
 	}
 
 	App->text->fps->PrintText();

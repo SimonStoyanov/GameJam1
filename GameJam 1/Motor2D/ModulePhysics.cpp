@@ -127,7 +127,7 @@ PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height, fl
 
 	b2FixtureDef fixture;
 	fixture.shape = &box;
-	fixture.density = 1.0f;
+	fixture.density = 30.0f;
 	fixture.filter.categoryBits = cat;
 	fixture.filter.maskBits = mask;
 	fixture.restitution = rest;

@@ -27,4 +27,8 @@
     <folder>maps/</folder>
   </map>
 
+  <scene>
+    <camera_speed value="200"/>
+  </scene>
+
 </config>

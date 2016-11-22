@@ -15,11 +15,13 @@ public:
 	// Called before render is available
 	bool Awake(pugi::xml_node&);
 
+	//
+	bool Update(float dt);
 	// Called before quitting
 	bool CleanUp();
 
 	void LoadTextures();
-	void CreateColliders();
+	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 private:
 
@@ -27,6 +29,7 @@ public:
 	Prefab* player = nullptr;
 
 private:
+	bool on_ground = false;
 };
 
 #endif // __PLAYER_H__
