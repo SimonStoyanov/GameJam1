@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Prefabs.h"
 #include "ModulePhysics.h"
+#include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Input.h"
 #include "j1Text.h"
@@ -32,6 +33,9 @@ bool Dummy::Start()
 	levelconfig = levelscene.child("levelConfig");
 
 	App->player->LoadTextures();
+
+	//Load textures
+	background_tex = App->tex->Load("Spritesheets/background_sheet.png");
 
 	// Grounds
 	int posx, posy;

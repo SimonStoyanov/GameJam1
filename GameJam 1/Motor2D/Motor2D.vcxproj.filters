@@ -186,6 +186,9 @@
     <ClInclude Include="Boss.h">
       <Filter>Development ============\Game</Filter>
     </ClInclude>
+    <ClInclude Include="FearBoss.h">
+      <Filter>Development ============\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">
