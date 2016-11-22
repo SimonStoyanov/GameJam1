@@ -5,8 +5,7 @@
 #include "Prefabs.h"
 
 enum Spelltypes {
-	ranged,
-	melee,
+	fireball,
 	unknown
 };
 
@@ -22,7 +21,7 @@ public:
 	~Spell();
 
 	virtual void Start();
-	virtual bool Update(float dt);
+	virtual bool Update();
 	virtual void Draw();
 	virtual void Cleanup();
 };

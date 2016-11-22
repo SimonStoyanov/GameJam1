@@ -7,7 +7,7 @@ class Fireball : public Spell {
 private:
 	uint damage;
 public:
-	Fireball(uint damage_);
+	Fireball();
 	~Fireball();
 
 	void Draw();

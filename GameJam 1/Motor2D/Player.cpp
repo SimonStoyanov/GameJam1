@@ -8,6 +8,7 @@
 #include "j1Scene.h"
 #include "Prefabs.h"
 #include "Dummy_Scene.h"
+#include "SpellManager.h"
 
 Player::Player() : j1Module()
 {
@@ -32,8 +33,8 @@ bool Player::Update(float dt)
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -2000), false);
 		on_ground = false;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) {
-
+	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) { //Fireball
+		App->spellmanager->CreateSpell(fireball, "fireball");
 	}
 
 
