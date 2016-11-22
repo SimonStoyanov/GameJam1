@@ -13,6 +13,14 @@ Prefab::Prefab(int pos_x, int pos_y, char * texture_path, SDL_Rect rect) : sprit
 {
 }
 
+Prefab::Prefab(Prefab* prefab)
+{
+	pbody = prefab->pbody;
+	sprite.pos = prefab->sprite.pos;
+	sprite.rect = prefab->sprite.rect;
+	sprite.texture = prefab->sprite.texture;
+}
+
 Prefab::~Prefab()
 {
 	if (sprite.texture != nullptr)

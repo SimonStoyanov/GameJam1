@@ -74,6 +74,9 @@
       <Filter>Desenvolupament ===========\Game</Filter>
     </ClCompile>
     <ClCompile Include="Fireball.cpp" />
+    <ClCompile Include="RandomGenerator.cpp">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ModuleEnemies.h">
@@ -174,6 +177,8 @@
     </ClInclude>
     <ClInclude Include="Fireball.h">
       <Filter>Desenvolupament ===========\Game</Filter>
+    <ClInclude Include="RandomGenerator.h">
+      <Filter>Desenvolupament  ========\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +207,9 @@
   <ItemGroup>
     <Xml Include="..\Game\config.xml">
       <Filter>Desenvolupament ===========</Filter>
+    </Xml>
+    <Xml Include="LevelScene.xml">
+      <Filter>Desenvolupament ===========\Scenes</Filter>
     </Xml>
   </ItemGroup>
 </Project>

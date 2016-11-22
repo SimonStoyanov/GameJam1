@@ -1,8 +1,11 @@
 #include "Scene.h"
 #include "p2List.h"
+#include "p2Point.h"
+#include "PugiXml\src\pugixml.hpp"
 
 class Prefab;
 class PhysBody;
+class RandomGenerator;
 
 class Dummy : public Scene
 {
@@ -20,4 +23,7 @@ public:
 
 private:
 	p2List<Prefab*> grounds;
+	RandomGenerator* test_rand;
+	Prefab* test_pref;
+
 };

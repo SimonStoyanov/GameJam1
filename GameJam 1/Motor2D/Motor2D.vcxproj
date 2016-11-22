@@ -99,6 +99,7 @@
     <ClCompile Include="Prefabs.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Spell.cpp" />
+    <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="SpellManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +134,7 @@
     <ClInclude Include="Prefabs.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
+    <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpellManager.h" />
   </ItemGroup>
@@ -140,6 +142,7 @@
     <Xml Include="..\Game\config.xml">
       <SubType>Designer</SubType>
     </Xml>
+    <Xml Include="LevelScene.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
