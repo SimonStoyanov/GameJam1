@@ -1,6 +1,7 @@
 #include "Dummy_Scene.h"
 #include "p2Defs.h"
 #include "j1App.h"
+#include "j1FileSystem.h"
 #include "Player.h"
 #include "Prefabs.h"
 #include "ModulePhysics.h"
@@ -20,6 +21,16 @@ Dummy::~Dummy()
 bool Dummy::Start()
 {
 	// Player
+	pugi::xml_document levelscene;
+	pugi::xml_node levelconfig;
+
+	char* buf;
+	int size = App->fs->Load("LevelScene.xml", &buf);
+	pugi::xml_parse_result result = levelscene.load_buffer(buf, size);
+	RELEASE(buf);
+
+	levelconfig = levelscene.child("levelConfig");
+
 	App->player->LoadTextures();
 
 	// Grounds

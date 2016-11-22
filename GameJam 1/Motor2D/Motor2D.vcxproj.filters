@@ -1,194 +1,209 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="j1Window.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Audio.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1App.cpp">
-      <Filter>Desenvolupament  ========</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Input.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Main.cpp">
-      <Filter>Desenvolupament  ========</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Render.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Textures.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="p2Log.cpp">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClCompile>
-    <ClCompile Include="j1FileSystem.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="PugiXml\src\pugixml.cpp">
-      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Map.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Pathfinding.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Timer.cpp">
-      <Filter>Desenvolupament  ========\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="j1PerfTimer.cpp">
-      <Filter>Desenvolupament  ========\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePhysics.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Text.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Desenvolupament ===========\Game</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Desenvolupament  ========\Game</Filter>
+      <Filter>Desenvolupament ===========\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Prefabs.cpp">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+    <ClCompile Include="SpellManager.cpp">
+      <Filter>Desenvolupament ===========\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Audio.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1FileSystem.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Input.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Map.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Pathfinding.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Render.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Text.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Textures.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Window.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePhysics.cpp">
+      <Filter>Desenvolupament ===========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="Dummy_Scene.cpp">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleEnemies.cpp">
-      <Filter>Desenvolupament  ========\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Desenvolupament ===========\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="j1Scene.cpp">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
+      <Filter>Desenvolupament ===========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PugiXml\src\pugixml.cpp">
+      <Filter>Desenvolupament ===========\Tools\PuguiXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Desenvolupament ===========\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Prefabs.cpp">
+      <Filter>Desenvolupament ===========\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="j1PerfTimer.cpp">
+      <Filter>Desenvolupament ===========\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Timer.cpp">
+      <Filter>Desenvolupament ===========\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="p2Log.cpp">
+      <Filter>Pogramacio 2 ================</Filter>
+    </ClCompile>
+    <ClCompile Include="j1App.cpp">
+      <Filter>Desenvolupament ===========</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Main.cpp">
+      <Filter>Desenvolupament ===========</Filter>
     </ClCompile>
     <ClCompile Include="RandomGenerator.cpp">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="j1Window.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Audio.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1App.h">
-      <Filter>Desenvolupament  ========</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Input.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Module.h">
-      <Filter>Desenvolupament  ========</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Render.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Textures.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Defs.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2List.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Log.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2SString.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Point.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2DynArray.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="j1FileSystem.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="PugiXml\src\pugiconfig.hpp">
-      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
-    </ClInclude>
-    <ClInclude Include="PugiXml\src\pugixml.hpp">
-      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Map.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Pathfinding.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Timer.h">
-      <Filter>Desenvolupament  ========\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="j1PerfTimer.h">
-      <Filter>Desenvolupament  ========\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePhysics.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Text.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Desenvolupament ===========\Game</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Desenvolupament  ========\Game</Filter>
+      <Filter>Desenvolupament ===========\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Prefabs.h">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+    <ClInclude Include="Spell.h">
+      <Filter>Desenvolupament ===========\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellManager.h">
+      <Filter>Desenvolupament ===========\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Audio.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1FileSystem.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Input.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Map.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Pathfinding.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Render.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Text.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Textures.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Window.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePhysics.h">
+      <Filter>Desenvolupament ===========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="Dummy_Scene.h">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleEnemies.h">
-      <Filter>Desenvolupament  ========\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Desenvolupament ===========\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="j1Scene.h">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
+      <Filter>Desenvolupament ===========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Desenvolupament ===========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PugiXml\src\pugiconfig.hpp">
+      <Filter>Desenvolupament ===========\Tools\PuguiXML</Filter>
+    </ClInclude>
+    <ClInclude Include="PugiXml\src\pugixml.hpp">
+      <Filter>Desenvolupament ===========\Tools\PuguiXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Desenvolupament ===========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Desenvolupament ===========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Prefabs.h">
+      <Filter>Desenvolupament ===========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="j1PerfTimer.h">
+      <Filter>Desenvolupament ===========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Timer.h">
+      <Filter>Desenvolupament ===========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Defs.h">
+      <Filter>Pogramacio 2 ================</Filter>
+    </ClInclude>
+    <ClInclude Include="p2DynArray.h">
+      <Filter>Pogramacio 2 ================</Filter>
+    </ClInclude>
+    <ClInclude Include="p2List.h">
+      <Filter>Pogramacio 2 ================</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Log.h">
+      <Filter>Pogramacio 2 ================</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Pogramacio 2 ================</Filter>
+    </ClInclude>
+    <ClInclude Include="p2SString.h">
+      <Filter>Pogramacio 2 ================</Filter>
+    </ClInclude>
+    <ClInclude Include="j1App.h">
+      <Filter>Desenvolupament ===========</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Module.h">
+      <Filter>Desenvolupament ===========</Filter>
     </ClInclude>
     <ClInclude Include="RandomGenerator.h">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Programacio 2 ===========">
-      <UniqueIdentifier>{a8bfab6a-5472-4969-943e-861a8b493f08}</UniqueIdentifier>
+    <Filter Include="Desenvolupament ===========">
+      <UniqueIdentifier>{4bf6a7e2-7983-40d1-978f-2ac528d331c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========">
-      <UniqueIdentifier>{cb944693-b9d0-484c-bad2-02d5a7cdbec6}</UniqueIdentifier>
+    <Filter Include="Desenvolupament ===========\Game">
+      <UniqueIdentifier>{cf198a95-07d4-439f-a399-ae9bf9ea3354}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Tools">
-      <UniqueIdentifier>{42c748be-4a37-49de-970f-5be811d06b38}</UniqueIdentifier>
+    <Filter Include="Desenvolupament ===========\Modules">
+      <UniqueIdentifier>{80aacc4f-693c-4b53-898b-1f9de6fe65a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Scenes">
-      <UniqueIdentifier>{e07660eb-d36f-4cc9-af59-324d31c2f2f6}</UniqueIdentifier>
+    <Filter Include="Desenvolupament ===========\Scenes">
+      <UniqueIdentifier>{ea657cbb-a971-4a35-82ef-1440be7d7159}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Modules">
-      <UniqueIdentifier>{244722d1-90ce-423d-8e7a-556211865a32}</UniqueIdentifier>
+    <Filter Include="Desenvolupament ===========\Tools">
+      <UniqueIdentifier>{be310fea-e4e8-45b1-afe1-6786168e3715}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Tools\PuguiXML">
-      <UniqueIdentifier>{7cb78d67-17cc-45eb-af97-e2106becce7b}</UniqueIdentifier>
+    <Filter Include="Desenvolupament ===========\Tools\PuguiXML">
+      <UniqueIdentifier>{b3f3384a-805b-4ae3-96a9-17810d2f2eb7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Game">
-      <UniqueIdentifier>{42ec1fbd-6d7a-4fd2-8bba-7e183ed21ec3}</UniqueIdentifier>
+    <Filter Include="Pogramacio 2 ================">
+      <UniqueIdentifier>{5d289eab-cb8a-4d80-9cce-2cb5877ab656}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">
-      <Filter>Desenvolupament  ========</Filter>
+      <Filter>Desenvolupament ===========</Filter>
+    </Xml>
+    <Xml Include="LevelScene.xml">
+      <Filter>Desenvolupament ===========\Scenes</Filter>
     </Xml>
   </ItemGroup>
 </Project>

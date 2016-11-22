@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "p2List.h"
 #include "p2Point.h"
+#include "PugiXml\src\pugixml.hpp"
 
 class Prefab;
 class PhysBody;
