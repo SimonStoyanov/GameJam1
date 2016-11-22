@@ -13,9 +13,9 @@ public:
 	RandomGenerator(Prefab* prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h);
 	~RandomGenerator();
 
-	void CheckRand(int x, int to_del);
+	void CheckRand(int x, int y, int to_del);
 private:
-	void SetRand(int x);
+	void SetRand(int x, int y);
 	void Blit(int x, int to_del);
 
 public:

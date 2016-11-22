@@ -46,14 +46,14 @@ bool Dummy::Start()
 
 	// Random generators
 	test_pref = new Prefab(0, 0, nullptr, NULLRECT);
-	test_rand = new RandomGenerator(test_pref, 400, 50, 560, 300, 100, 10);
+	test_rand = new RandomGenerator(test_pref, 120, 55, 560, 50, 50, 10);
 
 	return true;
 }
 
 bool Dummy::Update(float dt)
 {
-	test_rand->CheckRand(-App->render->camera.x + 1000, 1500);
+	test_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
 
 	int posx, posy;
 	grounds[1]->pbody->GetPosition(posx, posy);

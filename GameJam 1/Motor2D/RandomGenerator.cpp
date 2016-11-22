@@ -23,11 +23,11 @@ RandomGenerator::~RandomGenerator()
 {
 }
 
-void RandomGenerator::CheckRand(int x, int to_del)
+void RandomGenerator::CheckRand(int x, int y, int to_del)
 {
 	if (start)
 	{
-		SetRand(x);
+		SetRand(x, y);
 		start = false;
 	}
 
@@ -41,22 +41,29 @@ void RandomGenerator::CheckRand(int x, int to_del)
 		tmp->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(pos.y)), 0);
 		to_blit.add(tmp);
 
-		SetRand(x);
+		SetRand(x, y);
 	}
 
 	Blit(x, to_del);
 }
 
-void RandomGenerator::SetRand(int x)
+void RandomGenerator::SetRand(int x, int y)
 {
 	random_device rd;
 	mt19937 gen(rd());
 	uniform_int_distribution<> disx(x + min_x, x + max_x);
 	pos.x = disx(gen);
 
-	uniform_int_distribution<> disy(min_y, max_y);
+	int maxy = y + max_y;
+	if (maxy > 525)
+		maxy = 525;
+
+	uniform_int_distribution<> disy(y - min_y , maxy);
 	pos.y = disy(gen);
+
+	LOG("%d   min %d  max %d", pos.y, y - min_y, maxy);
 }
+
 
 void RandomGenerator::Blit(int x, int to_del)
 {
