@@ -10,8 +10,10 @@ enum EnemiesTypes {
 class Boss {
 public:
 	Boss(){}
+	Boss(EnemiesTypes type) : type(type) {	}
 public:
 	Prefab prefab;
+	EnemiesTypes type;
 
 private:
 private:

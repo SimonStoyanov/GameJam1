@@ -50,3 +50,10 @@ void Prefab::CreateStaticCollision(int radius, int cat, int mask)
 	pbody = App->physics->CreateStaticCircle(sprite.pos.x, sprite.pos.y, radius, 0.0f, cat, mask);
 }
 
+iPoint Prefab::GetPosition() const
+{
+	iPoint pos;
+	pbody->GetPosition(pos.x, pos.y);
+	return pos;
+}
+
