@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-RandomGenerator::RandomGenerator(int x, int y, Prefab* _prefab, int _max_x, int _min_x, int _max_y, int _min_y)
+RandomGenerator::RandomGenerator(int x, int y, Prefab* _prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h)
 {
 	pos.x = x;
 	pos.y = y;
@@ -14,6 +14,9 @@ RandomGenerator::RandomGenerator(int x, int y, Prefab* _prefab, int _max_x, int 
 	max_y = _max_y;
 	min_y = _min_y;
 	prefab = _prefab;
+
+	w = pb_w;
+	h = pb_h;
 
 	SetRand(x);
 }
@@ -24,17 +27,18 @@ RandomGenerator::~RandomGenerator()
 
 void RandomGenerator::CheckRand(int x, int to_del)
 {
-	LOG("%d %d", x, pos.x);
+	//LOG("%d %d", x, pos.x);
 	if(x >= pos.x)
 	{
 		LOG("Generating something");
 		Prefab* tmp= new Prefab(prefab);
 		tmp->sprite.pos.x = pos.x;
 		tmp->sprite.pos.y = pos.y;
+
+		tmp->CreateStaticCollision(w, h, WORLD, PLAYER);
 		tmp->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(pos.y)), 0);
 		to_blit.add(tmp);
 
-		AddX(x);
 		SetRand(x);
 	}
 
@@ -52,12 +56,6 @@ void RandomGenerator::SetRand(int x)
 	pos.y = disy(gen);
 }
 
-void RandomGenerator::AddX(int x)
-{
-	max_x += x;
-	min_x += x;
-}
-
 void RandomGenerator::Blit(int x, int to_del)
 {
 	for(int i = 0; i < to_blit.count();)
@@ -69,5 +67,7 @@ void RandomGenerator::Blit(int x, int to_del)
 			to_blit.del(to_blit.At(i));
 		}
 		i++;
+
+		LOG("%d", to_blit.count());
 	}
 }

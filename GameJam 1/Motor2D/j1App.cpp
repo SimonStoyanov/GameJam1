@@ -229,6 +229,7 @@ void j1App::FinishUpdate()
 		{
 			SDL_Delay(delay);
 		}
+		//SDL_Delay(delay);
 	}
 
 	p2SString tmp; tmp.create("%.1f ", avg_fps);

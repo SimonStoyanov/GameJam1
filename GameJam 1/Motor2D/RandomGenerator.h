@@ -10,25 +10,28 @@ class Prefab;
 class RandomGenerator
 {
 public:
-	RandomGenerator(int x, int y, Prefab* prefab, int _max_x, int _min_x, int _max_y, int _min_y);
+	RandomGenerator(int x, int y, Prefab* prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h);
 	~RandomGenerator();
 
 	void CheckRand(int x, int to_del);
 private:
 	void SetRand(int x);
-	void AddX(int x);
 	void Blit(int x, int to_del);
 
 public:
+
+private:
+	Prefab* prefab;
+	p2List<Prefab*> to_blit;
+
 	iPoint pos;
 	int max_x;
 	int min_x;
 	int max_y;
 	int min_y;
 
-private:
-	Prefab* prefab;
-	p2List<Prefab*> to_blit;
+	int w;
+	int h;
 
 };
 

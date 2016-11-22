@@ -46,8 +46,8 @@ bool Dummy::Start()
 
 	// Random generators
 	test_pref = new Prefab(0, 0, nullptr, NULLRECT);
-	test_pref->CreateStaticCollision(50, 50, 1, 1);
-	test_rand = new RandomGenerator(300, 300, test_pref, 100, 50, 100, 10);
+	test_pref->CreateStaticCollision(50, 50, WORLD, PLAYER);
+	test_rand = new RandomGenerator(300, 300, test_pref, 400, 50, 500, 10, 50, 50);
 
 	return true;
 }
@@ -55,7 +55,7 @@ bool Dummy::Start()
 bool Dummy::Update(float dt)
 {
 
-	test_rand->CheckRand(-App->render->camera.x + 860, 100);
+	test_rand->CheckRand(-App->render->camera.x + 860, -100);
 
 	int posx, posy;
 	grounds[1]->pbody->GetPosition(posx, posy);
