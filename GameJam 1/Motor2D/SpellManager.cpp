@@ -1,5 +1,6 @@
 #include "SpellManager.h"
 #include "j1App.h"
+#include "Fireball.h"
 
 SpellManager::SpellManager()
 {
@@ -26,6 +27,12 @@ bool SpellManager::PreUpdate()
 
 bool SpellManager::Update(float dt)
 {
+	p2List_item<Spell*>* spell_item = spells.start;
+	while (spell_item != nullptr) {
+		spell_item->data->Update();
+		spell_item->data->Draw();
+		spell_item = spell_item->next;
+	}
 	return true;
 }
 
@@ -42,9 +49,19 @@ bool SpellManager::CleanUp()
 	return true;
 }
 
-Spell* SpellManager::CreateSpell(Spelltypes type, char* name)
+Spell* SpellManager::CreateSpell(Spelltypes type)
 {
-	Spell* spell = new Spell(type, name);
-	spells.add(spell);
+	Spell* spell = nullptr;
+	switch (type)
+	{
+	case fireball:
+		spell = new Fireball();
+		break;
+	default:
+		break;
+	}
+	if (spell != nullptr)
+		spells.add(spell);
+
 	return spell;
 }

@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Dummy_Scene.h" />
     <ClInclude Include="Fireball.h" />

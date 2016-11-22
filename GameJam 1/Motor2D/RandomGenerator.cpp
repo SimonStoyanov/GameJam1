@@ -33,7 +33,7 @@ void RandomGenerator::CheckRand(int x, int to_del)
 
 	if(x >= pos.x)
 	{
-		Prefab* tmp= new Prefab(prefab);
+		Prefab* tmp = new Prefab(prefab);
 		tmp->sprite.pos.x = pos.x;
 		tmp->sprite.pos.y = pos.y;
 

@@ -5,16 +5,15 @@
 #include "Prefabs.h"
 
 enum Spelltypes {
-	ranged,
-	melee,
+	fireball,
 	unknown
 };
 
 class Spell{
-private:
+public:
 	p2SString name;
 	Spelltypes type;
-	Prefab* prefab;
+	Prefab prefab;
 public:
 	Spell();
 	Spell(Spelltypes type_);
@@ -22,7 +21,7 @@ public:
 	~Spell();
 
 	virtual void Start();
-	virtual bool Update(float dt);
+	virtual bool Update();
 	virtual void Draw();
 	virtual void Cleanup();
 };

@@ -19,7 +19,17 @@ bool ModuleEnemies::Awake(pugi::xml_node &)
 	return true;
 }
 
+bool ModuleEnemies::Update(float dt)
+{
+	return true;
+}
+
 bool ModuleEnemies::CleanUp()
 {
 	return true;
+}
+
+Boss * ModuleEnemies::CreateEnemy(EnemiesTypes type)
+{
+	return nullptr;
 }
