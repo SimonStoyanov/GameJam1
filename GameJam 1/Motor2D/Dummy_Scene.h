@@ -37,18 +37,23 @@ private:
 
 	Sprite background;
 	Sprite forward;
+	Sprite far_background;
 	float back_speed;
 	float for_speed;
+	float farback_speed;
 
 	uint forward_min = 0;
 	uint background_min = 0;
+	uint farback_min = 0;
 
 	SDL_Rect ground_rect;
 	SDL_Rect back_rect;
 	SDL_Rect forward_rect;
+	SDL_Rect farback_rect;
 
 	int forward_count = 1;
 	int background_count = 1;
+	int farback_count = 1;
 
 	p2SString parallax_spritesheet;
 

@@ -38,8 +38,10 @@ bool Dummy::Start()
 	ground_rect = { levelconfig.child("parallax").child("ground").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("ground").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("ground").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("ground").attribute("rect_h").as_int(0) };
 	back_rect = { levelconfig.child("parallax").child("background").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("background").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("background").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("background").attribute("rect_h").as_int(0) };
 	forward_rect = { levelconfig.child("parallax").child("forward").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("forward").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("forward").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("forward").attribute("rect_h").as_int(0) };
+	farback_rect = { levelconfig.child("parallax").child("farbackground").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("farbackground").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("farbackground").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("farbackground").attribute("rect_h").as_int(0) };
 	back_speed = levelconfig.child("parallax").child("background").attribute("speed").as_float(1);
 	for_speed = levelconfig.child("parallax").child("forward").attribute("speed").as_float(1);
+	farback_speed = levelconfig.child("parallax").child("farbackground").attribute("speed").as_float(1);
 	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
 
 	test_boss = (FearBoss*)App->enemies->CreateEnemy(fear);
@@ -103,6 +105,14 @@ bool Dummy::PostUpdate()
 
 void Dummy::Draw()
 {
+	App->render->Blit(background.texture, farback_min, 0, &farback_rect, farback_speed);
+	App->render->Blit(background.texture, farback_min + farback_rect.w, 0, &farback_rect, farback_speed);
+
+	if (((int)(-App->render->camera.x*farback_speed) > background.rect.w * farback_count)) {
+		farback_min += background.rect.w;
+		farback_count++;
+	}
+	
 	App->render->Blit(background.texture, background_min, 0, &background.rect, back_speed);
 	App->render->Blit(background.texture, background_min + background.rect.w, 0, &background.rect, back_speed);
 
