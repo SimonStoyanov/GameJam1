@@ -33,6 +33,14 @@ bool SpellManager::Start()
 
 bool SpellManager::PreUpdate()
 {
+	p2List_item<Spell*>* spell_item = spells.start;
+	while (spell_item != nullptr) {
+		if (spell_item->data->to_delete) {
+			App->physics->DeleteObject(spell_item->data->prefab->pbody);
+			spells.del(spell_item);
+		}
+		spell_item = spell_item->next;
+	}
 	return true;
 }
 
@@ -156,7 +164,7 @@ bool SpellManager::IsSpell(PhysBody * body)
 {
 	p2List_item<Spell*>* spell_item = spells.start;
 	while (spell_item != nullptr) {
-		if (spell_item->data->prefab.pbody == body)
+		if (spell_item->data->prefab->pbody == body)
 			return true;
 		spell_item = spell_item->next;
 	}
@@ -167,8 +175,8 @@ void SpellManager::DeleteSpell(PhysBody * body)
 {
 	p2List_item<Spell*>* spell_item = spells.start;
 	while (spell_item != nullptr) {
-		if (spell_item->data->prefab.pbody == body) {
-			spells.del(spell_item);
+		if (spell_item->data->prefab->pbody == body) {
+			spell_item->data->to_delete = true;
 			break;
 		}
 		spell_item = spell_item->next;

@@ -4,7 +4,7 @@
   <position x="700" y="220"/>
   <fear>
     <spritesheet path="Spritesheets/boss_sheet.png"/>
-    <collisionsize w="50" h="50"/>
+    <collisionsize w="50" h="350"/>
     <movement value="150"/>
     <anim type="0" speed ="0.15f"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4 ¡JUST 1 ANIM OF EACH TYPE!-->
       <frame x="0" y="0" w="286" h="388"/>

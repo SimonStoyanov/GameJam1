@@ -19,9 +19,9 @@ Fireball::Fireball() : Spell(fireball, "fireball")
 	float delta_y = xy.y - App->render->camera.y - y - player_body->height;
 
 
-	prefab = Prefab(x + App->render->camera.x + player_body->width, y + App->render->camera.y + player_body->height, "", NULLRECT);
-	prefab.CreateCollision(10, PLAYER, WORLD);
-	prefab.pbody->listener = App->spellmanager;
+	prefab = new Prefab(x + App->render->camera.x + player_body->width, y + App->render->camera.y + player_body->height, "", NULLRECT);
+	prefab->CreateCollision(10, PLAYER, WORLD);
+	prefab->pbody->listener = App->spellmanager;
 
 	float alpha = atan(delta_y / delta_x);
 
@@ -45,8 +45,8 @@ Fireball::~Fireball()
 
 bool Fireball::Update()
 {
-	if (prefab.pbody != nullptr)
-		prefab.pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
+	if (prefab->pbody != nullptr)
+		prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
 
 	return true;
 }
