@@ -16,17 +16,23 @@ Fireball::Fireball() : Spell(fireball, "fireball")
 	float delta_x = xy.x - App->render->camera.x - x - 4;
 	float delta_y = xy.y - App->render->camera.y - y - 14;
 
-	if (delta_x >= -5) {
+	if (1) 
+	{
 		prefab = Prefab(x + App->render->camera.x, y + App->render->camera.y, "", NULLRECT);
 		prefab.CreateCollision(10, PLAYER, BOSS);
 
-		if (delta_x <= 3) {
-			delta_x = 1;
-		}
-
 		float alpha = atan(delta_y / delta_x);
-		vel.x = fireball_speed*cos(alpha);
-		vel.y = fireball_speed*sin(alpha);
+
+		if (delta_x < 0)
+		{
+			vel.x = fireball_speed*-cos(alpha);
+			vel.y = fireball_speed*-sin(alpha);
+		}
+		else
+		{
+			vel.x = fireball_speed*cos(alpha);
+			vel.y = fireball_speed*sin(alpha);
+		}
 
 		LOG("player %d %d", x, y);
 	}
@@ -40,6 +46,7 @@ bool Fireball::Update()
 {
 	if (prefab.pbody != nullptr)
 		prefab.pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
+
 	return true;
 }
 
