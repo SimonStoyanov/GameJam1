@@ -26,6 +26,12 @@ bool Player::Awake(pugi::xml_node &)
 	return true;
 }
 
+bool Player::Start()
+{
+	App->spellmanager->Q = fireball;
+	return true;
+}
+
 bool Player::Update(float dt)
 {
 	int x; int y;
@@ -35,10 +41,6 @@ bool Player::Update(float dt)
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -2000), false);
 		on_ground = false;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) { //Fireball
-		App->spellmanager->CreateSpell(fireball);
-	}
-	
 
 	if (!player->pbody->body->IsAwake())
 		player->pbody->body->SetAwake(true);

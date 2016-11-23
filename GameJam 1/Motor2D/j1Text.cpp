@@ -151,9 +151,12 @@ Text::~Text()
 }
 
 // Changes the text
-void Text::SetText(char* _text, Alignment _alignment)
+void Text::SetText(p2SString _text, Alignment _alignment)
 {
-	text = _text;
+	char* tmp2 = new char[_text.Length() + 1];
+	strcpy_s(tmp2, _text.Length() + 1, _text.GetString());
+
+	text = tmp2;
 	alignment = _alignment;
 	SetUpText();
 }

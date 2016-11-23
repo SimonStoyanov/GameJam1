@@ -4,6 +4,7 @@
 #include "j1Module.h"
 #include "p2List.h"
 #include "Spell.h"
+#include "j1Timer.h"
 
 class SpellManager : public j1Module {
 public:
@@ -34,6 +35,19 @@ public:
 	bool CleanUp();
 
 	Spell* CreateSpell(Spelltypes type);
+	int GetCd(Spelltypes type);
+
+
+	j1Timer* time;
+
+	Spelltypes Q;
+	float timeQ;
+	Spelltypes W;
+	float timeW;
+	Spelltypes E;
+	float timeE;
+	Spelltypes R;
+	float timeR;
 
 private:
 

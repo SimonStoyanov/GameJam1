@@ -60,6 +60,7 @@ public:
 	p2List<TTF_Font*> fonts;
 	Text*				fps;
 	Text*				position;
+	Text*				cdQ;
 	uint				timeless_15;
 
 };
@@ -78,7 +79,7 @@ public:
 	// Functions
 	void PrintText();
 	void SetFont(TTF_Font* _font);
-	void SetText(char* _text, Alignment _alignment = left);
+	void SetText(p2SString text, Alignment _alignment = left);
 
 private:
 	void SetUpText();

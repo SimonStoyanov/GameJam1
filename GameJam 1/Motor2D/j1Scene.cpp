@@ -59,8 +59,12 @@ bool j1Scene::Start()
 	App->text->fps->is_ui = true;
 
 	// Mouse position
-	App->text->position = new Text(50, 5, App->text->timeless_15, 1);
+	App->text->position = new Text(690, 5, App->text->timeless_15, 1);
 	App->text->position->is_ui = true;
+
+	// cdQ
+	App->text->cdQ = new Text(350,546, App->text->timeless_15, 1);
+	App->text->cdQ->is_ui = true;
 	return true;
 }
 
@@ -92,9 +96,13 @@ bool j1Scene::Update(float dt)
 		App->render->camera.x -= camera_speed*dt;
 	}
 
+	
+	SDL_Rect rect; rect.x = 340; rect.y = 545; rect.w = 100; rect.h = 50;
+	App->render->DrawQuad(rect, 0, 0, 0, 150, true, false);
 	App->text->fps->PrintText();
 	App->text->position->PrintText();
-
+	App->text->cdQ->PrintText();
+	
 	return true;
 }
 

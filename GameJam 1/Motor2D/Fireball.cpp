@@ -34,7 +34,6 @@ Fireball::Fireball() : Spell(fireball, "fireball")
 	}
 
 	LOG("player %d %d", x, y);
-	
 }
 
 Fireball::~Fireball()
