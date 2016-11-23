@@ -73,6 +73,38 @@ bool SpellManager::CleanUp()
 	return true;
 }
 
+void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
+{
+	if (IsSpell(bodyA)) {
+		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) {
+			DeleteSpell(bodyA);
+		}
+	}
+}
+
+bool SpellManager::IsSpell(PhysBody * body)
+{
+	p2List_item<Spell*>* spell_item = spells.start;
+	while (spell_item != nullptr) {
+		if (spell_item->data->prefab.pbody == body)
+			return true;
+		spell_item = spell_item->next;
+	}
+	return false;
+}
+
+void SpellManager::DeleteSpell(PhysBody * body)
+{
+	p2List_item<Spell*>* spell_item = spells.start;
+	while (spell_item != nullptr) {
+		if (spell_item->data->prefab.pbody == body) {
+			spells.del(spell_item);
+			break;
+		}
+		spell_item = spell_item->next;
+	}
+}
+
 Spell* SpellManager::CreateSpell(Spelltypes type)
 {
 	Spell* spell = nullptr;

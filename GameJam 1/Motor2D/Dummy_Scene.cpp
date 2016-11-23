@@ -35,7 +35,7 @@ bool Dummy::Start()
 
 	ground_rect = { levelconfig.child("parallax").child("ground").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("ground").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("ground").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("ground").attribute("rect_h").as_int(0) };
 	back_rect = { levelconfig.child("parallax").child("background").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("background").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("background").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("background").attribute("rect_h").as_int(0) };
-	ford_rect = { levelconfig.child("parallax").child("forward").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("forward").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("forward").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("forward").attribute("rect_h").as_int(0) };
+	forward_rect = { levelconfig.child("parallax").child("forward").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("forward").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("forward").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("forward").attribute("rect_h").as_int(0) };
 	back_speed = levelconfig.child("parallax").child("background").attribute("speed").as_float(1);
 	for_speed = levelconfig.child("parallax").child("forward").attribute("speed").as_float(1);
 	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
@@ -58,7 +58,7 @@ bool Dummy::Start()
 	test_rand = new RandomGenerator(test_pref, 400, 50, 560, 300, 100, 10);
 
 	background = Sprite(0, 0, grounds[0]->sprite.texture, back_rect);
-	forward = Sprite(0, 0, background.texture, ford_rect);
+	forward = Sprite(0, 0, background.texture, forward_rect);
 
 	return true;
 }
@@ -81,27 +81,32 @@ bool Dummy::Update(float dt)
 	return true;
 }
 
+bool Dummy::PostUpdate()
+{
+	App->render->Blit(forward.texture, forward_min, App->win->height - forward.rect.h, &forward.rect, for_speed);
+	App->render->Blit(forward.texture, forward_min + forward.rect.w, App->win->height - forward.rect.h, &forward.rect, for_speed);
+
+
+	if (((int)(-App->render->camera.x*for_speed) > forward.rect.w*forward_count)) {
+		forward_min += forward.rect.w;
+		forward_count++;
+	}
+	return true;
+}
+
 void Dummy::Draw()
 {
 	App->render->Blit(background.texture, background_min, 0, &background.rect, back_speed);
 	App->render->Blit(background.texture, background_min + background.rect.w, 0, &background.rect, back_speed);
-	//App->render->Blit(background.texture, background_min + background.rect.w * 2, 0, &background.rect, back_speed);
-	
+
+	if (((int)(App->render->camera.x*back_speed) > background.rect.w * background_count)) {
+		background_min += background.rect.w;
+		background_count++;
+	}
+
 	for (p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
 	{	
 		App->render->Blit(item->data->sprite.texture, item->data->GetPosition().x, App->win->height-ground_rect.h, &item->data->sprite.rect);
-	}
-
-	App->render->Blit(forward.texture, forward_min, App->win->height - forward.rect.h, &forward.rect, for_speed);
-	App->render->Blit(forward.texture, forward_min + forward.rect.w, App->win->height - forward.rect.h, &forward.rect, for_speed);
-	//App->render->Blit(forward.texture, forward_min + forward.rect.w * 2, App->win->height - forward.rect.h, &forward.rect, for_speed);
-
-	if (((int)(App->render->camera.x*back_speed) % background.rect.w == 0) && (App->render->camera.x != 0)) {
-		background_min += background.rect.w;
-	}
-	if (((int)(-App->render->camera.x*for_speed) > forward.rect.w*count) && (App->render->camera.x != 0)) {
-		forward_min += forward.rect.w;
-		count++;
 	}
 }
 

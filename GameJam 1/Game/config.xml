@@ -31,4 +31,9 @@
     <camera_speed value="200"/>
   </scene>
 
+  <player>
+    <spritesheet path="Spritesheets/char_test.png"/>
+    <frame x="0" y="0" w="118" h="146"/>
+  </player>
+
 </config>

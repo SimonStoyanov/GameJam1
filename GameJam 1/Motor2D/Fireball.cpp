@@ -4,21 +4,24 @@
 #include "j1Render.h"
 #include "j1Input.h"
 #include <math.h>
+#include "SpellManager.h"
 
 Fireball::Fireball() : Spell(fireball, "fireball")
 {
+	PhysBody* player_body = App->player->player->pbody;
 	int x, y;
-	App->player->player->pbody->GetPosition(x, y);
+	player_body->GetPosition(x, y);
 
 	iPoint xy;
 	App->input->GetMousePosition(xy.x, xy.y);
 
-	float delta_x = xy.x - App->render->camera.x - x - 4;
-	float delta_y = xy.y - App->render->camera.y - y - 10;
+	float delta_x = xy.x - App->render->camera.x - x - player_body->width;
+	float delta_y = xy.y - App->render->camera.y - y - player_body->height;
 
 
-	prefab = Prefab(x + App->render->camera.x, y + App->render->camera.y + 16, "", NULLRECT);
-	prefab.CreateCollision(10, PLAYER, BOSS);
+	prefab = Prefab(x + App->render->camera.x + player_body->width, y + App->render->camera.y + player_body->height, "", NULLRECT);
+	prefab.CreateCollision(10, PLAYER, WORLD);
+	prefab.pbody->listener = App->spellmanager;
 
 	float alpha = atan(delta_y / delta_x);
 

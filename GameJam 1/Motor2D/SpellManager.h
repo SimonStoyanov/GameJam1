@@ -34,6 +34,12 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
+
+	bool IsSpell(PhysBody* body);
+
+	void DeleteSpell(PhysBody* body);
+
 	Spell* CreateSpell(Spelltypes type);
 	int GetCd(Spelltypes type);
 

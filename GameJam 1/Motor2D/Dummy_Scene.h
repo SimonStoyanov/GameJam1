@@ -18,6 +18,7 @@ public:
 
 	bool Start();
 	bool Update(float dt);
+	bool PostUpdate();
 	void Draw();
 	bool CleanUp();
 
@@ -38,9 +39,10 @@ private:
 
 	SDL_Rect ground_rect;
 	SDL_Rect back_rect;
-	SDL_Rect ford_rect;
+	SDL_Rect forward_rect;
 
-	int count = 1;
+	int forward_count = 1;
+	int background_count = 1;
 
 	p2SString parallax_spritesheet;
 

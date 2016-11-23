@@ -11,6 +11,7 @@ public:
 
 	virtual bool Start() { return true; }
 	virtual bool Update(float dt) { return true; }
+	virtual bool PostUpdate() { return true; }
 	virtual void Draw() {}
 	virtual bool CleanUp() { return true; }
 
