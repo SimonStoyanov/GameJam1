@@ -5,7 +5,7 @@
 #include "j1Render.h"
 #include "j1App.h"
 #include <math.h>
-#include "PugiXml\src\pugixml.hpp"
+
 
 class FearBoss : public Boss {
 public:
@@ -24,10 +24,15 @@ public:
 		if (current_anim == -1) current_anim = 0;
 	}
 
-	bool Update() {
-		int move;
-		move = movement*sin(prefab.GetPosition().x);
-		prefab.pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(initial_pos.x), PIXEL_TO_METERS(initial_pos.y+move)), 0);
+	bool Update(float dt) {
+		if (move < -movement) {
+			increment = 1;
+		}
+		if (move > movement) {
+			increment = -1;
+		}
+		move += increment;
+		prefab.pbody->body->SetTransform(b2Vec2(prefab.pbody->body->GetPosition().x+ PIXEL_TO_METERS((int)(200*dt)), PIXEL_TO_METERS((int)(initial_pos.y+move))), 0);
 		return true;
 	}
 
@@ -39,7 +44,7 @@ public:
 	
 private:
 	iPoint initial_pos;
-	int movement;
+	int movement, move = 0, increment = 1;
 
 private:
 

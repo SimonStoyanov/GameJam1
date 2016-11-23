@@ -29,7 +29,7 @@ bool ModuleEnemies::Awake(pugi::xml_node &)
 bool ModuleEnemies::Update(float dt)
 {
 	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
-		//enemy->data->Update();
+		enemy->data->Update(dt);
 		enemy->data->Draw();
 	}
 	return true;

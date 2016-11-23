@@ -38,6 +38,9 @@ bool Player::Start()
 	App->spellmanager->W = unknown;
 	App->spellmanager->E = unknown;
 	App->spellmanager->R = unknown;
+
+	LoadTextures();
+
 	return true;
 }
 

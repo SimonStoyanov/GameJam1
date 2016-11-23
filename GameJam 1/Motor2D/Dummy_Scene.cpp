@@ -12,6 +12,7 @@
 #include "j1Text.h"
 #include "RandomGenerator.h"
 #include "ModuleEnemies.h"
+#include "FearBoss.h"
 
 Dummy::Dummy() : Scene()
 {
@@ -42,7 +43,7 @@ bool Dummy::Start()
 	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
 
 	test_boss = (FearBoss*)App->enemies->CreateEnemy(fear);
-	App->player->LoadTextures();
+
 
 	// Grounds
 	int posx, posy;

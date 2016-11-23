@@ -5,7 +5,7 @@
 #include "j1App.h"
 #include "j1Scene.h"
 #include "Dummy_Scene.h"
-#include "PugiXml\src\pugixml.hpp"
+
 
 class Animation;
 
@@ -21,7 +21,7 @@ public:
 		max_hp = curr_hp = 10 + 2 * App->scene->dummy_scene->round;
 	}
 
-	virtual bool Update() { return true; }
+	virtual bool Update(float dt) { return true; }
 	virtual void Draw(){}
 
 	void LoadAnimations(pugi::xml_node& config) {

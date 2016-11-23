@@ -24,7 +24,7 @@ struct Sprite
 
 	Sprite(int x, int y,const char* texture_path, SDL_Rect rect) : pos(x, y), rect(rect)
 	{
-		if(texture_path != nullptr)
+		if(texture_path != nullptr && texture_path[0] != '0')
 			texture = App->tex->Load(texture_path);
 	}
 
