@@ -82,10 +82,10 @@ void Dummy::Draw()
 	App->render->Blit(path_image.texture, path_min + 2575, 300, &path_image.rect, 0.25f);
 	App->render->Blit(path_image.texture, path_min + 2575 * 2, 300, &path_image.rect, 0.25f);
 
-	if (App->render->camera.x % 2575*5 == 0 && App->render->camera.x != 0) {
+	if (App->render->camera.x % 2575*8 == 0 && App->render->camera.x != 0) {
 		path_min += 2575;
 	}
-	if (App->render->camera.x % 3434*25 == 0 && App->render->camera.x != 0) {
+	if (App->render->camera.x % 3434*40 == 0 && App->render->camera.x != 0) {
 		background_min += 3434;
 	}
 	for (p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
