@@ -12,7 +12,7 @@ j1Render::j1Render() : j1Module()
 	background.r = 0;
 	background.g = 0;
 	background.b = 0;
-	background.a = 0;
+	background.a = 255;
 }
 
 // Destructor

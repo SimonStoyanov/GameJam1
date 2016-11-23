@@ -106,7 +106,7 @@ void Dummy::Draw()
 	App->render->Blit(background.texture, background_min, 0, &background.rect, back_speed);
 	App->render->Blit(background.texture, background_min + background.rect.w, 0, &background.rect, back_speed);
 
-	if (((int)(App->render->camera.x*back_speed) > background.rect.w * background_count)) {
+	if (((int)(-App->render->camera.x*back_speed) > background.rect.w * background_count)) {
 		background_min += background.rect.w;
 		background_count++;
 	}
