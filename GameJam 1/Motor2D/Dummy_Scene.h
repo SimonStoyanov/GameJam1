@@ -30,4 +30,7 @@ private:
 
 	Sprite background;
 	Sprite path_image;
+
+	uint path_min = 0;
+	uint background_min = 0;
 };
