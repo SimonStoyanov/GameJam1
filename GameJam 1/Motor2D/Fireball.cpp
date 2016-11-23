@@ -14,28 +14,27 @@ Fireball::Fireball() : Spell(fireball, "fireball")
 	App->input->GetMousePosition(xy.x, xy.y);
 
 	float delta_x = xy.x - App->render->camera.x - x - 4;
-	float delta_y = xy.y - App->render->camera.y - y - 14;
+	float delta_y = xy.y - App->render->camera.y - y - 10;
 
-	if (1) 
+
+	prefab = Prefab(x + App->render->camera.x, y + App->render->camera.y + 16, "", NULLRECT);
+	prefab.CreateCollision(10, PLAYER, BOSS);
+
+	float alpha = atan(delta_y / delta_x);
+
+	if (delta_x < 0)
 	{
-		prefab = Prefab(x + App->render->camera.x, y + App->render->camera.y, "", NULLRECT);
-		prefab.CreateCollision(10, PLAYER, BOSS);
-
-		float alpha = atan(delta_y / delta_x);
-
-		if (delta_x < 0)
-		{
-			vel.x = fireball_speed*-cos(alpha);
-			vel.y = fireball_speed*-sin(alpha);
-		}
-		else
-		{
-			vel.x = fireball_speed*cos(alpha);
-			vel.y = fireball_speed*sin(alpha);
-		}
-
-		LOG("player %d %d", x, y);
+		vel.x = fireball_speed*-cos(alpha);
+		vel.y = fireball_speed*-sin(alpha);
 	}
+	else
+	{
+		vel.x = fireball_speed*cos(alpha);
+		vel.y = fireball_speed*sin(alpha);
+	}
+
+	LOG("player %d %d", x, y);
+	
 }
 
 Fireball::~Fireball()

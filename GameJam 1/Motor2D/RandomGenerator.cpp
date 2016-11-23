@@ -61,7 +61,7 @@ void RandomGenerator::SetRand(int x, int y)
 	uniform_int_distribution<> disy(y - min_y , maxy);
 	pos.y = disy(gen);
 
-	LOG("%d   min %d  max %d", pos.y, y - min_y, maxy);
+	//LOG("%d   min %d  max %d", pos.y, y - min_y, maxy);
 }
 
 
