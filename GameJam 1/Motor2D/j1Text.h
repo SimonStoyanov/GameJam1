@@ -61,6 +61,9 @@ public:
 	Text*				fps;
 	Text*				position;
 	Text*				cdQ;
+	Text*				cdW;
+	Text*				cdE;
+	Text*				cdR;
 	uint				timeless_15;
 
 };

@@ -6,6 +6,7 @@
 #include "Spell.h"
 #include "j1Timer.h"
 
+
 class SpellManager : public j1Module {
 public:
 	p2List<Spell*> spells;

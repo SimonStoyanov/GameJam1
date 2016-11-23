@@ -4,6 +4,8 @@
 #include "j1Input.h"
 #include "j1Text.h"
 
+#define EMPTY -1
+
 SpellManager::SpellManager()
 {
 }
@@ -19,7 +21,12 @@ bool SpellManager::Awake(pugi::xml_node & node)
 
 bool SpellManager::Start()
 {
+	// Cooldowns
 	time = new j1Timer();
+	timeQ = -99;
+	timeW = -99;
+	timeE = -99;
+	timeR = -99;
 
 	return true;
 }
@@ -40,34 +47,83 @@ bool SpellManager::Update(float dt)
 		spell_item = spell_item->next;
 	}
 
-
+	// Spells
 	// Q ---------------------
 
-	if (time->ReadSec() > timeQ + GetCd(App->spellmanager->Q))
+	if (time->ReadSec() > timeQ + GetCd(Q) && GetCd(Q) != EMPTY)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
 		{
-			App->spellmanager->CreateSpell(App->spellmanager->Q);
+			CreateSpell(Q);
 			timeQ = time->ReadSec();
 		}
 	}
-	if((timeQ + GetCd(App->spellmanager->Q) - time->ReadSec()) > 0)
-	{
-		p2SString tmp; tmp.create("Q: %0.1f", timeQ + GetCd(App->spellmanager->Q) - time->ReadSec());
-		App->text->cdQ->SetText(tmp);
-	}
-
+	
+	p2SString tmpQ;
+	if((timeQ + GetCd(Q) - time->ReadSec()) > 0)
+		tmpQ.create("Q: %0.1f", timeQ + GetCd(Q) - time->ReadSec());
+	else
+		tmpQ.create("Q: 0", timeQ + GetCd(Q) - time->ReadSec());
+	App->text->cdQ->SetText(tmpQ);
 	// -----------------------
 
 	// W ---------------------
+
+	if (time->ReadSec() > timeW + GetCd(W) && GetCd(W) != EMPTY)
+	{
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
+		{
+			CreateSpell(W);
+			timeW = time->ReadSec();
+		}
+	}
+
+	p2SString tmpW;
+	if ((timeW + GetCd(W) - time->ReadSec()) > 0)
+		tmpW.create("W: %0.1f", timeW + GetCd(W) - time->ReadSec());
+	else
+		tmpW.create("W: 0", timeW + GetCd(W) - time->ReadSec());
+	App->text->cdW->SetText(tmpW);
 
 	// -----------------------
 
 	// E ---------------------
 
+	if (time->ReadSec() > timeE + GetCd(E) && GetCd(E) != EMPTY)
+	{
+		if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+		{
+			CreateSpell(E);
+			timeE = time->ReadSec();
+		}
+	}
+
+	p2SString tmpE;
+	if ((timeE + GetCd(E) - time->ReadSec()) > 0)
+		tmpE.create("E: %0.1f", timeE + GetCd(E) - time->ReadSec());
+	else
+		tmpE.create("E: 0", timeE + GetCd(E) - time->ReadSec());
+	App->text->cdE->SetText(tmpE);
+
 	// -----------------------
 
 	// R ---------------------
+
+	if (time->ReadSec() > timeR + GetCd(R) && GetCd(R) != EMPTY)
+	{
+		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+		{
+			CreateSpell(R);
+			timeE = time->ReadSec();
+		}
+	}
+
+	p2SString tmpR;
+	if ((timeE + GetCd(R) - time->ReadSec()) > 0)
+		tmpR.create("R: %0.1f", timeE + GetCd(R) - time->ReadSec());
+	else
+		tmpR.create("R: 0", timeE + GetCd(R) - time->ReadSec());
+	App->text->cdR->SetText(tmpR);
 
 	// -----------------------
 
@@ -141,7 +197,11 @@ int SpellManager::GetCd(Spelltypes type)
 	switch (type)
 	{
 	case fireball:
-		return 2;
+		return 1;
 		break;
+	case unknown:
+		return EMPTY;
+	default:
+		return -99;
 	}
 }

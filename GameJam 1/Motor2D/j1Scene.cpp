@@ -59,12 +59,21 @@ bool j1Scene::Start()
 	App->text->fps->is_ui = true;
 
 	// Mouse position
-	App->text->position = new Text(690, 5, App->text->timeless_15, 1);
+	App->text->position = new Text(680, 5, App->text->timeless_15, 1);
 	App->text->position->is_ui = true;
 
-	// cdQ
-	App->text->cdQ = new Text(350,546, App->text->timeless_15, 1);
+	// cd
+	App->text->cdQ = new Text(350, 546, App->text->timeless_15, 1);
 	App->text->cdQ->is_ui = true;
+
+	App->text->cdW = new Text(390, 546, App->text->timeless_15, 1);
+	App->text->cdW->is_ui = true;
+
+	App->text->cdE = new Text(435, 546, App->text->timeless_15, 1);
+	App->text->cdE->is_ui = true;
+
+	App->text->cdR = new Text(475, 546, App->text->timeless_15, 1);
+	App->text->cdR->is_ui = true;
 	return true;
 }
 
@@ -95,13 +104,6 @@ bool j1Scene::Update(float dt)
 	{
 		App->render->camera.x -= camera_speed*dt;
 	}
-
-	
-	SDL_Rect rect; rect.x = 340; rect.y = 545; rect.w = 100; rect.h = 50;
-	App->render->DrawQuad(rect, 0, 0, 0, 150, true, false);
-	App->text->fps->PrintText();
-	App->text->position->PrintText();
-	App->text->cdQ->PrintText();
 	
 	return true;
 }
@@ -118,6 +120,19 @@ bool j1Scene::PostUpdate()
 	{
 		current_scene->PostUpdate();
 	}
+
+	// Temporal UI
+	SDL_Rect rect; rect.x = 340; rect.y = 545; rect.w = 170; rect.h = 50;
+	App->render->DrawQuad(rect, 0, 0, 0, 150, true, false);
+	rect.x = 0, rect.y = 0; rect.w = 900; rect.h = 25;
+	App->render->DrawQuad(rect, 0, 0, 0, 150, true, false);
+
+	App->text->fps->PrintText();
+	App->text->position->PrintText();
+	App->text->cdQ->PrintText();
+	App->text->cdW->PrintText();
+	App->text->cdE->PrintText();
+	App->text->cdR->PrintText();
 
 	return ret;
 }

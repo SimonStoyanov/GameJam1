@@ -65,7 +65,10 @@ bool Dummy::Start()
 
 bool Dummy::Update(float dt)
 {
+	// Random updater
 	test_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
+
+	// Ground creation --
 
 	int posx, posy;
 	grounds[1]->pbody->GetPosition(posx, posy);
@@ -78,6 +81,7 @@ bool Dummy::Update(float dt)
 		grounds.del(grounds.start);
 	}
 
+	// ------------------ 
 	return true;
 }
 

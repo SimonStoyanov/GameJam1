@@ -34,6 +34,9 @@ bool Player::Awake(pugi::xml_node & node)
 bool Player::Start()
 {
 	App->spellmanager->Q = fireball;
+	App->spellmanager->W = unknown;
+	App->spellmanager->E = unknown;
+	App->spellmanager->R = unknown;
 	return true;
 }
 
