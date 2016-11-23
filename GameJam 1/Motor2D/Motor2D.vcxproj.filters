@@ -194,7 +194,7 @@
     <Xml Include="..\Game\config.xml">
       <Filter>Development ============</Filter>
     </Xml>
-    <Xml Include="LevelScene.xml">
+    <Xml Include="..\Game\LevelScene.xml">
       <Filter>Development ============\Scenes</Filter>
     </Xml>
   </ItemGroup>

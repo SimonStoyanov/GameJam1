@@ -1,5 +1,10 @@
 <!-- Config file for the level -->
 
 <LevelConfig>
-  
+  <parallax>
+    <spritesheet path="Spritesheets/background_sheet.png"/>
+    <ground rect_x="0" rect_y="480" rect_w="2576" rect_h="272"/>
+    <background rect_x="0" rect_y="0" rect_w="3434" rect_h="480" speed="0.5"/>
+    <forward rect_x="0" rect_y="752" rect_w="2035" rect_h="146" speed="2.0"/>
+  </parallax>
 </LevelConfig>

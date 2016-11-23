@@ -9,7 +9,7 @@ Prefab::Prefab()
 {
 }
 
-Prefab::Prefab(int pos_x, int pos_y, char * texture_path, SDL_Rect rect) : sprite(Sprite(pos_x, pos_y, texture_path, rect))
+Prefab::Prefab(int pos_x, int pos_y, const char * texture_path, SDL_Rect rect) : sprite(Sprite(pos_x, pos_y, texture_path, rect))
 {
 }
 

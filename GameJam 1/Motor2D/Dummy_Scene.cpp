@@ -8,6 +8,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Input.h"
+#include "j1Window.h"
 #include "j1Text.h"
 #include "RandomGenerator.h"
 
@@ -30,27 +31,34 @@ bool Dummy::Start()
 	pugi::xml_parse_result result = levelscene.load_buffer(buf, size);
 	RELEASE(buf);
 
-	levelconfig = levelscene.child("levelConfig");
+	levelconfig = levelscene.child("LevelConfig");
+
+	ground_rect = { levelconfig.child("parallax").child("ground").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("ground").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("ground").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("ground").attribute("rect_h").as_int(0) };
+	back_rect = { levelconfig.child("parallax").child("background").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("background").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("background").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("background").attribute("rect_h").as_int(0) };
+	ford_rect = { levelconfig.child("parallax").child("forward").attribute("rect_x").as_int(0),levelconfig.child("parallax").child("forward").attribute("rect_y").as_int(0), levelconfig.child("parallax").child("forward").attribute("rect_w").as_int(0),levelconfig.child("parallax").child("forward").attribute("rect_h").as_int(0) };
+	back_speed = levelconfig.child("parallax").child("background").attribute("speed").as_float(1);
+	for_speed = levelconfig.child("parallax").child("forward").attribute("speed").as_float(1);
+	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
 
 	App->player->LoadTextures();
 
 	// Grounds
 	int posx, posy;
-	grounds.add(new Prefab(1017, 560, "Spritesheets/background_sheet.png", { 0,752,2034,146 }));
-	grounds[0]->CreateStaticCollision(2034, 8, WORLD, PLAYER);
+	grounds.add(new Prefab(ground_rect.w / 2, App->win->height - ground_rect.h / 4, parallax_spritesheet.GetString(), ground_rect));
+	grounds[0]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 	grounds[0]->pbody->GetPosition(posx, posy);
-	grounds.add(new Prefab(posx+3051, 560, grounds[0]->sprite.texture, { 0,752,2034,146 }));
-	grounds[1]->CreateStaticCollision(2034, 8, WORLD, PLAYER);
+	grounds.add(new Prefab(posx+ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4, grounds[0]->sprite.texture, ground_rect));
+	grounds[1]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 	grounds[1]->pbody->GetPosition(posx, posy);
-	grounds.add(new Prefab(posx + 3051, 560, grounds[0]->sprite.texture, { 0,752,2034,146 }));
-	grounds[2]->CreateStaticCollision(2034, 8, WORLD, PLAYER);
+	grounds.add(new Prefab(posx + ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4, grounds[0]->sprite.texture, ground_rect));
+	grounds[2]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 
 	// Random generators
 	test_pref = new Prefab(0, 0, "", NULLRECT);
 	test_rand = new RandomGenerator(test_pref, 400, 50, 560, 300, 100, 10);
 
-	background = Sprite(0, 0, grounds[0]->sprite.texture, { 0,0,3434,480 });
-	path_image = Sprite(0, 0, background.texture, { 0,480,2576,272 });
+	background = Sprite(0, 0, grounds[0]->sprite.texture, back_rect);
+	forward = Sprite(0, 0, background.texture, ford_rect);
 
 	return true;
 }
@@ -65,8 +73,8 @@ bool Dummy::Update(float dt)
 	if (-App->render->camera.x > posx) 
 	{
 		grounds[2]->pbody->GetPosition(posx, posy);
-		grounds.add(new Prefab(posx + 3051, 560, grounds[0]->sprite.texture, { 0,752,2034,146 }));
-		grounds[3]->CreateStaticCollision(2034, 8, WORLD, PLAYER);
+		grounds.add(new Prefab(posx + ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4, grounds[0]->sprite.texture, ground_rect));
+		grounds[3]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 		grounds.del(grounds.start);
 	}
 
@@ -75,22 +83,25 @@ bool Dummy::Update(float dt)
 
 void Dummy::Draw()
 {
-	App->render->Blit(background.texture, background_min, 0, &background.rect, 0.05f);
-	App->render->Blit(background.texture, background_min + 3434, 0, &background.rect, 0.05f);
-	App->render->Blit(background.texture, background_min + 3434 * 2, 0, &background.rect, 0.05f);
-	App->render->Blit(path_image.texture, path_min, 300, &path_image.rect, 0.25f);
-	App->render->Blit(path_image.texture, path_min + 2575, 300, &path_image.rect, 0.25f);
-	App->render->Blit(path_image.texture, path_min + 2575 * 2, 300, &path_image.rect, 0.25f);
-
-	if (App->render->camera.x % 2575*8 == 0 && App->render->camera.x != 0) {
-		path_min += 2575;
-	}
-	if (App->render->camera.x % 3434*40 == 0 && App->render->camera.x != 0) {
-		background_min += 3434;
-	}
+	App->render->Blit(background.texture, background_min, 0, &background.rect, back_speed);
+	App->render->Blit(background.texture, background_min + background.rect.w, 0, &background.rect, back_speed);
+	//App->render->Blit(background.texture, background_min + background.rect.w * 2, 0, &background.rect, back_speed);
+	
 	for (p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
 	{	
-		App->render->Blit(item->data->sprite.texture, item->data->GetPosition().x, 422, &item->data->sprite.rect);
+		App->render->Blit(item->data->sprite.texture, item->data->GetPosition().x, App->win->height-ground_rect.h, &item->data->sprite.rect);
+	}
+
+	App->render->Blit(forward.texture, forward_min, App->win->height - forward.rect.h, &forward.rect, for_speed);
+	App->render->Blit(forward.texture, forward_min + forward.rect.w, App->win->height - forward.rect.h, &forward.rect, for_speed);
+	//App->render->Blit(forward.texture, forward_min + forward.rect.w * 2, App->win->height - forward.rect.h, &forward.rect, for_speed);
+
+	if (((int)(App->render->camera.x*back_speed) % background.rect.w == 0) && (App->render->camera.x != 0)) {
+		background_min += background.rect.w;
+	}
+	if (((int)(-App->render->camera.x*for_speed) > forward.rect.w*count) && (App->render->camera.x != 0)) {
+		forward_min += forward.rect.w;
+		count++;
 	}
 }
 
