@@ -56,6 +56,7 @@ public:
 
 	PhysBody* CreateCircle(int x, int y, int radius, float rest = 0.0f, int cat = WORLD, int mask = PLAYER);
 	PhysBody* CreateStaticCircle(int x, int y, int radius, float rest = 0.0f, int cat = WORLD, int mask = PLAYER);
+	PhysBody* CreateCircleSensor(int x, int y, int radius, float rest = 0.0f, int cat = WORLD, int mask = PLAYER);
 	PhysBody* CreateRectangle(int x, int y, int width, int height, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
 	PhysBody* CreateStaticRectangle(int x, int y, int width, int height, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
 	PhysBody* CreatePolygon(int x, int y, int* points, int size, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);

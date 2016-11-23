@@ -49,6 +49,8 @@ public:
 
 	void CreateStaticCollision(int width, int height, int cat, int mask);
 	void CreateStaticCollision(int radius, int cat, int mask);
+	void CreateSensorCollision(int width, int height, int cat, int mask);
+	void CreateSensorCollision(int radius, int cat, int mask);
 
 	iPoint GetPosition() const;
 

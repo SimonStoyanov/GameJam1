@@ -54,6 +54,16 @@ void Prefab::CreateStaticCollision(int radius, int cat, int mask)
 	pbody = App->physics->CreateStaticCircle(sprite.pos.x, sprite.pos.y, radius, 0.0f, cat, mask);
 }
 
+void Prefab::CreateSensorCollision(int width, int height, int cat, int mask)
+{
+	pbody = App->physics->CreateRectangleSensor(sprite.pos.x, sprite.pos.y, width, height, 0.0f, cat, mask);
+}
+
+void Prefab::CreateSensorCollision(int radius, int cat, int mask)
+{
+	pbody = App->physics->CreateCircleSensor(sprite.pos.x, sprite.pos.y, radius, 0.0f, cat, mask);
+}
+
 iPoint Prefab::GetPosition() const
 {
 	iPoint pos;
