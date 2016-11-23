@@ -11,6 +11,7 @@
 #include "j1Window.h"
 #include "j1Text.h"
 #include "RandomGenerator.h"
+#include "ModuleEnemies.h"
 
 Dummy::Dummy() : Scene()
 {
@@ -40,6 +41,7 @@ bool Dummy::Start()
 	for_speed = levelconfig.child("parallax").child("forward").attribute("speed").as_float(1);
 	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
 
+	test_boss = (FearBoss*)App->enemies->CreateEnemy(fear);
 	App->player->LoadTextures();
 
 	// Grounds

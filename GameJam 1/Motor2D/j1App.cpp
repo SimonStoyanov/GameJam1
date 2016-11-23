@@ -53,8 +53,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(pathfinding);
 	AddModule(text);
-	AddModule(enemies);
 	AddModule(scene);
+	AddModule(enemies);
 	AddModule(player);
 	AddModule(spellmanager);
 

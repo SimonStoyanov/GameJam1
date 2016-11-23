@@ -3,6 +3,7 @@
 
 #include "j1Module.h"
 #include "SDL\include\SDL.h"
+#include "p2Point.h"
 
 class Prefab;
 class Player : public j1Module
@@ -38,6 +39,7 @@ private:
 	p2SString texture_path;
 
 	int jump_force;
+	iPoint start_pos;
 };
 
 #endif // __PLAYER_H__

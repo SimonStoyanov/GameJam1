@@ -8,17 +8,22 @@
 
 struct SDL_Texture;
 
+enum AnimTypes {
+	Idle, Run, Shoot, Jump, Fall
+};
+
 class Animation {
 public:
 	p2List<SDL_Rect> frames;
 	float speed = 1.0f;
 	bool loop = false;
+	AnimTypes type;
 
 public:
 	Animation() {	}
-	Animation(SDL_Rect* _frames, uint n_frames, float speed, bool loop = true): speed(speed), loop(loop) {
-		for (int i = 0; i < n_frames; i++) {
-			frames.add(_frames[i]);
+	Animation(p2List<SDL_Rect>& rects, float speed, AnimTypes type, bool loop = true): speed(speed), loop(loop), type(type){
+		for (p2List_item<SDL_Rect>* rect = rects.start; rect != nullptr; rect = rect->next) {
+			frames.add(rect->data);
 		}
 	}
 	Animation(Animation& anim): frames(anim.frames), speed(anim.speed), loop(anim.loop), curr_frame(anim.curr_frame), loops(anim.loops){}

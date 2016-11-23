@@ -1,0 +1,24 @@
+<!-- Config file for Enemies -->
+
+<enemies>
+  <position x="700" y="270"/>
+  <fear>
+    <spritesheet path="Spritesheets/boss_sheet.png"/>
+    <collisionsize w="50" h="50"/>
+    <movement value="50"/>
+    <anim type="0" speed ="0.2f"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4 ¡JUST 1 ANIM OF EACH TYPE!-->
+      <frame x="0" y="0" w="382" h="518"/>
+      <frame x="0" y="518" w="382" h="518"/>
+      <frame x="0" y="1036" w="382" h="518"/>
+      <frame x="0" y="1554" w="382" h="518"/>
+      <frame x="0" y="2072" w="382" h="518"/>
+      <frame x="0" y="2590" w="382" h="518"/>
+      <frame x="382" y="0"  w="382" h="518"/>
+      <frame x="382" y="518" w="382" h="518"/>
+      <frame x="382" y="1036" w="382" h="518"/>
+      <frame x="382" y="1554" w="382" h="518"/>
+      <frame x="382" y="2072" w="382" h="518"/>
+      <frame x="382" y="2590" w="382" h="518"/>
+    </anim>
+  </fear>
+</enemies>

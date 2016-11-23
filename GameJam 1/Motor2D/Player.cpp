@@ -11,8 +11,6 @@
 #include "Dummy_Scene.h"
 #include "SpellManager.h"
 
-#define PLAYER_START_POSITION 10
-
 Player::Player() : j1Module()
 {
 	name.create("player");
@@ -24,9 +22,12 @@ Player::~Player()
 
 bool Player::Awake(pugi::xml_node & node)
 {
+	//Load Config from XML
 	texture_path = node.child("spritesheet").attribute("path").as_string();
-	Sprite_rect = { node.child("frame").attribute("x").as_int(0), node.child("frame").attribute("y").as_int(0), node.child("frame").attribute("w").as_int(0), node.child("frame").attribute("h").as_int(0) };
+	Sprite_rect = { node.child("sprite").attribute("x").as_int(0), node.child("sprite").attribute("y").as_int(0), node.child("sprite").attribute("w").as_int(0), node.child("sprite").attribute("h").as_int(0) };
 	jump_force = node.child("jump").attribute("force").as_int(10);
+	start_pos.x = node.child("position").attribute("x").as_int(0);
+	start_pos.y = node.child("position").attribute("y").as_int(0);
 
 	return true;
 }
@@ -42,7 +43,7 @@ bool Player::Start()
 
 bool Player::Update(float dt)
 {
-	int x; int y;
+
 	player->pbody->body->SetTransform(b2Vec2(player->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(200*dt)), player->pbody->body->GetPosition().y),0);
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) {
@@ -65,7 +66,7 @@ bool Player::CleanUp()
 
 void Player::LoadTextures()
 {
-	player = new Prefab(100, 0, texture_path.GetString(), Sprite_rect);
+	player = new Prefab(start_pos.x, start_pos.y, texture_path.GetString(), Sprite_rect);
 	player->CreateCollision(Sprite_rect.w, Sprite_rect.h, PLAYER, WORLD);
 	player->pbody->listener = this;
 	player->pbody->body->SetBullet(true);

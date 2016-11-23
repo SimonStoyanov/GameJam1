@@ -52,9 +52,11 @@ public:
 
 	iPoint GetPosition() const;
 
+	int FindAnimation(AnimTypes type);
+
 public:
 	Sprite sprite;
-	Animation animation;
+	p2List<Animation*> animations;
 	PhysBody* pbody = nullptr;
 };
 

@@ -61,3 +61,16 @@ iPoint Prefab::GetPosition() const
 	return pos;
 }
 
+//return the index that contains the "type" animation or -1 if not found
+int Prefab::FindAnimation(AnimTypes type)
+{
+	int ret = -1;
+	for (int i = 0; i < animations.count(); i++) {
+		if (animations[i]->type == type) {
+			ret = i;
+			break;
+		}
+	}
+	return ret;
+}
+

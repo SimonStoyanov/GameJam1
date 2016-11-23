@@ -24,8 +24,10 @@ public:
 	Boss* CreateEnemy(EnemiesTypes type);
 
 private:
-
+	pugi::xml_document enemies_config;
+	pugi::xml_node enemies_node;
 public:
+	p2List<Boss*> enemies;
 private:
 };
 
