@@ -74,6 +74,8 @@ bool j1Scene::Start()
 
 	App->text->cdR = new Text(475, 546, App->text->timeless_15, 1);
 	App->text->cdR->is_ui = true;
+
+	App->audio->PlayMusic("audio/music/Music.ogg");
 	return true;
 }
 

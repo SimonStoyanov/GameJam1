@@ -157,6 +157,9 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) {
 			DeleteSpell(bodyA);
 		}
+		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == BOSS) {
+			DeleteSpell(bodyA);
+		}
 	}
 }
 

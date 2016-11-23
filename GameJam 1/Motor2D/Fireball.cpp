@@ -18,7 +18,6 @@ Fireball::Fireball() : Spell(fireball, "fireball")
 	float delta_x = xy.x - App->render->camera.x - x - player_body->width;
 	float delta_y = xy.y - App->render->camera.y - y - player_body->height;
 
-
 	prefab = new Prefab(x + App->render->camera.x + player_body->width, y + App->render->camera.y + player_body->height, "", NULLRECT);
 	prefab->CreateCollision(10, PLAYER, WORLD);
 	prefab->pbody->listener = App->spellmanager;

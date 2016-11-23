@@ -43,7 +43,7 @@ public:
 	int max_hp;
 	int curr_hp;
 	int current_anim;
-
+	iPoint draw_offset;
 private:
 	
 private:
