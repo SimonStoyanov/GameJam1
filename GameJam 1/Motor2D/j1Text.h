@@ -59,6 +59,7 @@ public:
 public:
 	p2List<TTF_Font*> fonts;
 	Text*				fps;
+	Text*				position;
 	uint				timeless_15;
 
 };

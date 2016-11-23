@@ -58,6 +58,9 @@ bool j1Scene::Start()
 	App->text->fps = new Text(5, 5, App->text->timeless_15, 1);
 	App->text->fps->is_ui = true;
 
+	// Mouse position
+	App->text->position = new Text(50, 5, App->text->timeless_15, 1);
+	App->text->position->is_ui = true;
 	return true;
 }
 
@@ -90,6 +93,7 @@ bool j1Scene::Update(float dt)
 	}
 
 	App->text->fps->PrintText();
+	App->text->position->PrintText();
 
 	return true;
 }

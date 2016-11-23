@@ -237,6 +237,20 @@ void j1App::FinishUpdate()
 	char* tmp2 = new char[tmp.Length()+1];
 	strcpy_s(tmp2, tmp.Length()+1, tmp.GetString());
 	App->text->fps->SetText(tmp2);
+
+	// Erase Later (position) ----------------
+	int x, y;
+	App->player->player->pbody->GetPosition(x, y);
+	iPoint xy;
+	App->input->GetMousePosition(xy.x, xy.y);
+	int delta_x = xy.x - App->render->camera.x - x - 4;
+	int delta_y = xy.y - App->render->camera.y - y - 14;
+
+	p2SString tmp3; tmp3.create("delta_x: %d delta_y: %d", delta_x, delta_y);
+	char* tmp4 = new char[tmp3.Length()+1];
+	strcpy_s(tmp4, tmp3.Length()+1, tmp3.GetString());
+	App->text->position->SetText(tmp4);
+	// ---------------------------------------
 }
 
 // Call modules before each loop iteration

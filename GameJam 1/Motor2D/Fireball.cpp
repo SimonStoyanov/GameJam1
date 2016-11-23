@@ -2,21 +2,47 @@
 #include "Player.h"
 #include "j1App.h"
 #include "j1Render.h"
+#include "j1Input.h"
+#include <math.h>
 
 Fireball::Fireball() : Spell(fireball, "fireball")
 {
 	int x, y;
 	App->player->player->pbody->GetPosition(x, y);
-	prefab = Prefab(x + App->render->camera.x, y + App->render->camera.y, "", NULLRECT);
-	prefab.CreateCollision(10, PLAYER, BOSS);
-	LOG("player %d %d", x, y);
+
+	iPoint xy;
+	App->input->GetMousePosition(xy.x, xy.y);
+
+	float delta_x = xy.x - App->render->camera.x - x - 4;
+	float delta_y = xy.y - App->render->camera.y - y - 14;
+
+	if (delta_x >= -5) {
+		prefab = Prefab(x + App->render->camera.x, y + App->render->camera.y, "", NULLRECT);
+		prefab.CreateCollision(10, PLAYER, BOSS);
+
+		if (delta_x <= 3) {
+			delta_x = 1;
+		}
+
+		float alpha = atan(delta_y / delta_x);
+		vel.x = fireball_speed*cos(alpha);
+		vel.y = fireball_speed*sin(alpha);
+
+		LOG("player %d %d", x, y);
+	}
 }
 
 Fireball::~Fireball()
 {
 }
 
+bool Fireball::Update()
+{
+	if (prefab.pbody != nullptr)
+		prefab.pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
+	return true;
+}
+
 void Fireball::Draw()
 {
-
 }
