@@ -41,7 +41,8 @@ bool SpellManager::Update(float dt)
 	}
 
 
-	// Q
+	// Q ---------------------
+
 	if (time->ReadSec() > timeQ + GetCd(App->spellmanager->Q))
 	{
 		if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
@@ -55,7 +56,20 @@ bool SpellManager::Update(float dt)
 		p2SString tmp; tmp.create("Q: %0.1f", timeQ + GetCd(App->spellmanager->Q) - time->ReadSec());
 		App->text->cdQ->SetText(tmp);
 	}
-	// W
+
+	// -----------------------
+
+	// W ---------------------
+
+	// -----------------------
+
+	// E ---------------------
+
+	// -----------------------
+
+	// R ---------------------
+
+	// -----------------------
 
 	return true;
 }
