@@ -36,6 +36,8 @@ private:
 
 	SDL_Rect Sprite_rect;
 	p2SString texture_path;
+
+	int jump_force;
 };
 
 #endif // __PLAYER_H__

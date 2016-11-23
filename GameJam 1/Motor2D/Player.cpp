@@ -26,6 +26,7 @@ bool Player::Awake(pugi::xml_node & node)
 {
 	texture_path = node.child("spritesheet").attribute("path").as_string();
 	Sprite_rect = { node.child("frame").attribute("x").as_int(0), node.child("frame").attribute("y").as_int(0), node.child("frame").attribute("w").as_int(0), node.child("frame").attribute("h").as_int(0) };
+	jump_force = node.child("jump").attribute("force").as_int(10);
 
 	return true;
 }
@@ -42,7 +43,7 @@ bool Player::Update(float dt)
 	player->pbody->body->SetTransform(b2Vec2(player->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(200*dt)), player->pbody->body->GetPosition().y),0);
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) {
-		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -150000), false);
+		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -jump_force), false);
 		on_ground = false;
 	}
 
