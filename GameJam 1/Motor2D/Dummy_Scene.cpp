@@ -55,7 +55,7 @@ bool Dummy::Start()
 
 	// Random generators
 	test_pref = new Prefab(0, 0, "", NULLRECT);
-	test_rand = new RandomGenerator(test_pref, 400, 50, 560, 300, 100, 10);
+	test_rand = new RandomGenerator(test_pref, 350, 150, 450, 8, 100, 10);
 
 	background = Sprite(0, 0, grounds[0]->sprite.texture, back_rect);
 	forward = Sprite(0, 0, background.texture, forward_rect);

@@ -54,11 +54,7 @@ void RandomGenerator::SetRand(int x, int y)
 	uniform_int_distribution<> disx(x + min_x, x + max_x);
 	pos.x = disx(gen);
 
-	int maxy = y + max_y;
-	if (maxy > 525)
-		maxy = 525;
-
-	uniform_int_distribution<> disy(y - min_y , maxy);
+	uniform_int_distribution<> disy(y-min_y, max_y);
 	pos.y = disy(gen);
 
 	//LOG("%d   min %d  max %d", pos.y, y - min_y, maxy);
@@ -73,6 +69,8 @@ void RandomGenerator::Blit(int x, int to_del)
 
 		if(to_blit[i]->sprite.pos.x < -(to_del - x))
 		{
+			if(to_blit[i]->sprite.texture != nullptr)
+				App->tex->UnLoad(to_blit[i]->sprite.texture);
 			App->physics->DeleteObject(to_blit[i]->pbody);
 			RELEASE(to_blit[i]);
 			to_blit.del(to_blit.At(i));
