@@ -34,7 +34,7 @@ public:
 				anim_rects.add(new_frame);
 			}
 			if(type != -1)
-				prefab.animations.add(new Animation(anim_rects, speed, Idle));
+				prefab.animations.add(new Animation(anim_rects, speed, static_cast<AnimTypes>(type)));
 		}
 	}
 public:
