@@ -47,6 +47,7 @@ Boss * ModuleEnemies::CreateEnemy(EnemiesTypes type)
 	{
 	case fear:
 		enemy = new FearBoss(enemies_node.child("fear"));
+		enemy->Start();
 		break;
 	case unknow:
 		break;

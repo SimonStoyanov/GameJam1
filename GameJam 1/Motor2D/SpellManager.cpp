@@ -193,6 +193,7 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 	{
 	case fireball:
 		spell = new Fireball();
+		spell->Start();
 		break;
 	default:
 		break;
