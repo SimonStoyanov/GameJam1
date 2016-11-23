@@ -34,11 +34,11 @@ public:
 				anim_rects.add(new_frame);
 			}
 			if(type != -1)
-				prefab.animations.add(new Animation(anim_rects, speed, static_cast<AnimTypes>(type)));
+				prefab->animations.add(new Animation(anim_rects, speed, static_cast<AnimTypes>(type)));
 		}
 	}
 public:
-	Prefab prefab;
+	Prefab* prefab;
 	EnemiesTypes type;
 	int max_hp;
 	int curr_hp;
