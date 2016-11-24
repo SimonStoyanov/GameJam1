@@ -17,7 +17,7 @@ public:
 		initial_pos = { x,y };
 		SDL_Rect collision = { 0,0,config.child("collisionsize").attribute("w").as_int(0),config.child("collisionsize").attribute("h").as_int(0) };
 		prefab = new Prefab(x, y, tex_path.GetString(),collision);
-		LoadAnimations(config);
+		prefab->LoadAnimations(config);
 		movement = config.child("movement").attribute("value").as_int(0);
 		increment = config.child("movement").attribute("speed").as_int(0);
 		current_anim = prefab->FindAnimation(Idle);

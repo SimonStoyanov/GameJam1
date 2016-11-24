@@ -56,6 +56,7 @@ public:
 	iPoint GetPosition() const;
 
 	int FindAnimation(AnimTypes type);
+	void LoadAnimations(pugi::xml_node& node);
 
 public:
 	Sprite sprite;
