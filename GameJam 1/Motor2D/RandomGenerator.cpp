@@ -3,6 +3,7 @@
 #include "Prefabs.h"
 #include <random>
 #include <iostream>
+#include "Player.h"
 using namespace std;
 
 RandomGenerator::RandomGenerator(Prefab* _prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h)
@@ -37,8 +38,16 @@ void RandomGenerator::CheckRand(int x, int y, int to_del)
 		tmp->sprite.pos.x = pos.x;
 		tmp->sprite.pos.y = pos.y;
 
+
 		tmp->CreateStaticCollision(w, h, WORLD, PLAYER);
 		tmp->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(pos.y)), 0);
+		tmp->pbody->type = platform;
+
+		b2Filter a;
+		a.categoryBits = PLAYER;
+		a.maskBits = BOSS;
+		tmp->pbody->body->GetFixtureList()->SetFilterData(a);
+
 		to_blit.add(tmp);
 
 		SetRand(x, y);
@@ -77,6 +86,51 @@ void RandomGenerator::Blit(int x, int to_del)
 		}
 		i++;
 	}
+}
+
+PhysBody * RandomGenerator::GetClosestPlat()
+{
+	if (to_blit.count() != 0)
+	{
+		int dX0 = App->player->player->GetPosition().x + App->player->player->sprite.rect.w;
+		int dX1 = to_blit[0]->GetPosition().x;
+
+		int dY0 = App->player->player->GetPosition().y;
+		int dY1 = to_blit[0]->GetPosition().y;
+
+		int closest = 0;
+		int cdistance = sqrt((dX1 - dX0)*(dX1 - dX0) + (dY1 - dY0)*(dY1 - dY0));
+
+		for (int i = 0; i < to_blit.count(); i++)
+		{
+			int dX0 = App->player->player->GetPosition().x;
+			int dX1 = to_blit[i]->GetPosition().x;
+
+			int dY0 = App->player->player->GetPosition().y;
+			int dY1 = to_blit[i]->GetPosition().y;
+
+			int dis = sqrt((dX1 - dX0)*(dX1 - dX0) + (dY1 - dY0)*(dY1 - dY0));
+
+			if (cdistance > dis)
+			{
+				cdistance = dis;
+				closest = i;
+			}
+		}
+
+		/*
+		dX0 = App->player->player->GetPosition().x + App->player->player->sprite.rect.w;
+		dX1 = to_blit[closest]->GetPosition().x;
+
+		dY0 = App->player->player->GetPosition().y;
+		dY1 = to_blit[closest]->GetPosition().y;
+
+		App->render->DrawLine(dX0, dY0, dX1, dY1, 255, 255, 255, 255);
+		*/
+
+		return to_blit[closest]->pbody;
+	}
+	return nullptr;
 }
 
 

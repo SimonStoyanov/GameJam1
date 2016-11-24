@@ -27,6 +27,9 @@ public:
 	void LoadTextures();
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
+	bool IsGoingUp();
+	PhysBody* GetClosestPlat();
+
 private:
 
 public:
@@ -40,6 +43,9 @@ private:
 
 	int jump_force;
 	iPoint start_pos;
+
+	int last_pos = 0;
+	PhysBody* curr_platform = nullptr;
 };
 
 #endif // __PLAYER_H__

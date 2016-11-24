@@ -10,6 +10,7 @@
 #include "Prefabs.h"
 #include "Dummy_Scene.h"
 #include "SpellManager.h"
+#include "RandomGenerator.h"
 
 Player::Player() : j1Module()
 {
@@ -41,6 +42,8 @@ bool Player::Start()
 
 	LoadTextures();
 
+	last_pos = player->GetPosition().y;
+
 	return true;
 }
 
@@ -58,6 +61,38 @@ bool Player::Update(float dt)
 
 	App->render->Blit(player->sprite.texture, player->GetPosition().x, player->GetPosition().y, &player->sprite.rect);
 
+	// Platform shit ---------------------------------
+
+	curr_platform = App->scene->dummy_scene->test_rand->GetClosestPlat();
+
+	b2Filter a;
+	
+	if (player->GetPosition().y < 348 && !IsGoingUp()) //Ground
+	{
+		a.categoryBits = WORLD;
+		a.maskBits = PLAYER;
+		if(curr_platform != nullptr)
+		curr_platform->body->GetFixtureList()->SetFilterData(a);
+		LOG("CHANGING");
+	}
+		
+	if (IsGoingUp())
+	{
+		a.categoryBits = PLAYER;
+		a.maskBits = BOSS;
+		player->pbody->body->GetFixtureList()->SetFilterData(a);
+	}
+	else
+	{
+		a.categoryBits = PLAYER;
+		a.maskBits = WORLD;
+		player->pbody->body->GetFixtureList()->SetFilterData(a);
+	}
+	
+	// -------------------------------------------
+	//LOG("%d", player->GetPosition().y);
+	
+
 	return true;
 }
 
@@ -74,13 +109,33 @@ void Player::LoadTextures()
 	player->pbody->body->SetBullet(true);
 }
 
+bool Player::IsGoingUp()
+{
+	bool ret = false;
+
+	if(player->GetPosition().y < last_pos)
+	{
+		ret = true;
+	}
+	last_pos = player->GetPosition().y;
+	return ret;
+}
+
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 {
 	if (bodyA == player->pbody) {
-		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) {
+		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) 
+		{
 			on_ground = true;
+		}
+
+		if(bodyB->type == platform)
+		{
+			curr_platform = bodyB;
 		}
 	}
 }
+
+
 
 

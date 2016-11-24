@@ -13,6 +13,12 @@
 #define METERS_TO_PIXELS(m) ((int) floor(PIXELS_PER_METER * m))
 #define PIXEL_TO_METERS(p)  ((float) METER_PER_PIXEL * p)
 
+enum BodyType
+{
+	null,
+	platform
+};
+
 struct path_joint {
 	b2MouseJoint* joint;
 	b2Vec2* path;
@@ -40,6 +46,7 @@ public:
 	int width, height;
 	b2Body* body;
 	j1Module* listener;
+	BodyType type = BodyType::null;
 };
 
 // Module --------------------------------------

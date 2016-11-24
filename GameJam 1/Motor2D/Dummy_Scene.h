@@ -8,7 +8,6 @@
 #include "j1Textures.h"
 #include "SDL\include\SDL.h"
 #include "Prefabs.h"
-#include "Platform.h"
 
 class FearBoss;
 class PhysBody;
@@ -31,9 +30,9 @@ public:
 
 public:
 	int round = 1; //round counter (each win adds 1)
+	RandomGenerator* test_rand;
 private:
 	p2List<Prefab*> grounds;
-	RandomGenerator* test_rand;
 	Prefab* test_pref;
 
 	Sprite background;

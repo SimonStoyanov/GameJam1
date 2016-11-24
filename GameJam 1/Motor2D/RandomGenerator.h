@@ -14,6 +14,7 @@ public:
 	~RandomGenerator();
 
 	void CheckRand(int x, int y, int to_del);
+	PhysBody* GetClosestPlat();
 private:
 	void SetRand(int x, int y);
 	void Blit(int x, int to_del);
