@@ -57,6 +57,8 @@ public:
 	float timeR;
 
 private:
+	pugi::xml_document spellconfig_doc;
+	pugi::xml_node spells_config;
 
 private:
 

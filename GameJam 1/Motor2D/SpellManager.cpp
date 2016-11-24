@@ -1,6 +1,7 @@
 #include "SpellManager.h"
 #include "j1App.h"
 #include "Fireball.h"
+#include "j1FileSystem.h"
 #include "j1Input.h"
 #include "j1Text.h"
 
@@ -16,6 +17,11 @@ SpellManager::~SpellManager()
 
 bool SpellManager::Awake(pugi::xml_node & node)
 {
+	char* buf;
+	int size = App->fs->Load("PlayerConfig.xml", &buf);
+	spellconfig_doc.load_buffer(buf, size);
+	RELEASE(buf);
+	spells_config = spellconfig_doc.child("config");
 	return true;
 }
 
@@ -192,7 +198,7 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 	switch (type)
 	{
 	case fireball:
-		spell = new Fireball();
+		spell = new Fireball(spells_config);
 		spell->Start();
 		break;
 	default:

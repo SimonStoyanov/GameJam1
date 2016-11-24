@@ -33,7 +33,7 @@
 
   <player>
     <spritesheet path="Spritesheets/player_sheet.png"/>
-    <sprite x="0" y="0" w="95" h="170"/>
+    <sprite x="0" y="0" w="95" h="160"/>
     <position x="250" y="315"/>
     <jump force="3840"/>
   </player>

@@ -31,7 +31,6 @@ public:
 	PhysBody* GetClosestPlat();
 
 private:
-	void LoadAnimations(pugi::xml_node config);
 
 public:
 	Prefab* player = nullptr;

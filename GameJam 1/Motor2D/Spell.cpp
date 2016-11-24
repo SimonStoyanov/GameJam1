@@ -32,3 +32,13 @@ void Spell::Draw()
 void Spell::Cleanup()
 {
 }
+
+void Spell::SetDamage(int damage)
+{
+	dmg = damage;
+}
+
+int Spell::GetDamage() const
+{
+	return dmg;
+}

@@ -6,7 +6,7 @@
 #include <math.h>
 #include "SpellManager.h"
 
-Fireball::Fireball() : Spell(fireball, "fireball")
+Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
 {
 	PhysBody* player_body = App->player->player->pbody;
 	int x, y;

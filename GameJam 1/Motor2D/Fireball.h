@@ -5,12 +5,11 @@
 
 class Fireball : public Spell {
 private:
-	uint damage;
 	fPoint vel;
 
 	float fireball_speed = 10;
 public:
-	Fireball();
+	Fireball(pugi::xml_node& config);
 	~Fireball();
 
 	void Start();

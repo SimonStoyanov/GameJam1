@@ -25,6 +25,11 @@ public:
 	virtual bool Update();
 	virtual void Draw();
 	virtual void Cleanup();
+	void SetDamage(int damage);
+	int GetDamage() const;
+
+private:
+	int dmg;
 };
 
 
