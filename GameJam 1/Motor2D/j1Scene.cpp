@@ -126,6 +126,7 @@ bool j1Scene::PostUpdate()
 	App->text->cdE->PrintText();
 	App->text->cdR->PrintText();
 
+
 	return ret;
 }
 

@@ -74,12 +74,14 @@ void RandomGenerator::Blit(int x, int to_del)
 {
 	for(int i = 0; i < to_blit.count();)
 	{
-		//App->render->Blit(prefab->sprite.texture, to_blit[i]->sprite.pos.x, to_blit[i]->sprite.pos.y, &prefab->sprite.rect);
+		App->render->Blit(prefab->sprite.texture, to_blit[i]->GetPosition().x, to_blit[i]->GetPosition().y - 100, 0), &rects[0];
+		//LOG("%d, %d", to_blit[i]->GetPosition().x, to_blit[i]->GetPosition().y);
 
 		if(to_blit[i]->sprite.pos.x < -(to_del - x))
 		{
 			if(to_blit[i]->sprite.texture != nullptr)
 				App->tex->UnLoad(to_blit[i]->sprite.texture);
+
 			App->physics->DeleteObject(to_blit[i]->pbody);
 			RELEASE(to_blit[i]);
 			to_blit.del(to_blit.At(i));
@@ -88,7 +90,7 @@ void RandomGenerator::Blit(int x, int to_del)
 	}
 }
 
-PhysBody * RandomGenerator::GetClosestPlat()
+PhysBody* RandomGenerator::GetClosestPlat()
 {
 	if (to_blit.count() != 0)
 	{

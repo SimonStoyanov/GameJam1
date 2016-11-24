@@ -6,6 +6,7 @@
 
 
 class Prefab;
+struct SDL_Rect;
 
 class RandomGenerator
 {
@@ -20,7 +21,7 @@ private:
 	void Blit(int x, int to_del);
 
 public:
-
+	p2List<SDL_Rect*> rects;
 private:
 	Prefab* prefab;
 	p2List<Prefab*> to_blit;

@@ -30,10 +30,11 @@ public:
 
 public:
 	int round = 1; //round counter (each win adds 1)
-	RandomGenerator* test_rand;
+	RandomGenerator* platforms_rand;
+
 private:
 	p2List<Prefab*> grounds;
-	Prefab* test_pref;
+	Prefab* platform;
 
 	Sprite background;
 	Sprite forward;

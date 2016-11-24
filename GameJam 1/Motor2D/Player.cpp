@@ -74,7 +74,7 @@ bool Player::Update(float dt)
 
 	// Platform shit ---------------------------------
 
-	curr_platform = App->scene->dummy_scene->test_rand->GetClosestPlat();
+	curr_platform = App->scene->dummy_scene->platforms_rand->GetClosestPlat();
 
 	b2Filter a;
 	
@@ -84,7 +84,13 @@ bool Player::Update(float dt)
 		a.maskBits = PLAYER;
 		if(curr_platform != nullptr)
 		curr_platform->body->GetFixtureList()->SetFilterData(a);
-		LOG("CHANGING");
+	}
+	else
+	{
+		a.categoryBits = WORLD;
+		a.maskBits = BOSS;
+		if (curr_platform != nullptr)
+			curr_platform->body->GetFixtureList()->SetFilterData(a);
 	}
 		
 	if (IsGoingUp())

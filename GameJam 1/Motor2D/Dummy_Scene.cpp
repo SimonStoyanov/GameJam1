@@ -58,10 +58,15 @@ bool Dummy::Start()
 	grounds.add(new Prefab(posx + ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4, grounds[0]->sprite.texture, ground_rect));
 	grounds[2]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 
-	// Random generators
-	test_pref = new Prefab(0, 0, "", NULLRECT);
+	// Random generators ---
 
-	test_rand = new RandomGenerator(test_pref, 1000, 200, 460, 8, 100, 10);
+	platform = new Prefab(0, 0, "Spritesheets/platforms_sheet.png", NULLRECT);
+	platforms_rand = new RandomGenerator(platform, 1000, 200, 460, 8, 300, 10);
+	platforms_rand->rects.add(new SDL_Rect{0, 0, 326, 108});
+	platforms_rand->rects.add( new SDL_Rect{0, 108, 305, 141 });
+	platforms_rand->rects.add(new SDL_Rect{ 344, 53, 309, 182 });
+
+	// ---------------------
 
 
 	background = Sprite(0, 0, grounds[0]->sprite.texture, back_rect);
@@ -72,9 +77,6 @@ bool Dummy::Start()
 
 bool Dummy::Update(float dt)
 {
-	// Random updater
-	test_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
-
 	// Ground creation --
 
 	int posx, posy;
@@ -102,6 +104,7 @@ bool Dummy::PostUpdate()
 		forward_min += forward.rect.w;
 		forward_count++;
 	}
+
 	return true;
 }
 
@@ -127,6 +130,10 @@ void Dummy::Draw()
 	{	
 		App->render->Blit(item->data->sprite.texture, item->data->GetPosition().x, App->win->height-ground_rect.h, &item->data->sprite.rect);
 	}
+
+
+	// Random updater ---
+	platforms_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
 }
 
 bool Dummy::CleanUp()
