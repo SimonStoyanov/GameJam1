@@ -162,11 +162,6 @@ void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 		{
 			on_ground = true;
 		}
-
-		if(bodyB->type == platform)
-		{
-			curr_platform = bodyB;
-		}
 	}
 }
 
