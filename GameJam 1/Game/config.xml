@@ -35,7 +35,7 @@
     <spritesheet path="Spritesheets/char_test.png"/>
     <sprite x="0" y="0" w="95" h="146"/>
     <position x="250" y="315"/>
-    <jump force="115000"/>
+    <jump force="3840"/>
   </player>
 
 </config>

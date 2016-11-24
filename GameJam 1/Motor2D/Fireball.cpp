@@ -12,16 +12,13 @@ Fireball::Fireball() : Spell(fireball, "fireball")
 	int x, y;
 	player_body->GetPosition(x, y);
 
-	iPoint xy;
-	App->input->GetMousePosition(xy.x, xy.y);
+	iPoint mouse;
+	App->input->GetMousePosition(mouse.x, mouse.y);
 
-	float delta_x = xy.x - App->render->camera.x - x - player_body->width;
-	float delta_y = xy.y - App->render->camera.y - y - player_body->height;
+	float delta_x = mouse.x - App->render->camera.x - x - player_body->width;
+	float delta_y = mouse.y - App->render->camera.y - y - player_body->height;
 
-
-	prefab = Prefab(x + App->render->camera.x + player_body->width, y + App->render->camera.y + player_body->height, "", NULLRECT);
-	prefab.CreateCollision(10, PLAYER, WORLD);
-	prefab.pbody->listener = App->spellmanager;
+	prefab = new Prefab(x + player_body->width, y + player_body->height, "", NULLRECT);
 
 	float alpha = atan(delta_y / delta_x);
 
@@ -43,11 +40,17 @@ Fireball::~Fireball()
 {
 }
 
+void Fireball::Start()
+{
+	prefab->CreateCollision(15,15, PLAYER, WORLD);
+	prefab->pbody->listener = App->spellmanager;
+	prefab->pbody->body->SetGravityScale(0);
+	if (prefab->pbody != nullptr)
+		prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
+}
+
 bool Fireball::Update()
 {
-	if (prefab.pbody != nullptr)
-		prefab.pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
-
 	return true;
 }
 

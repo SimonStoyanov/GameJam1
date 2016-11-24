@@ -13,6 +13,7 @@ public:
 	Fireball();
 	~Fireball();
 
+	void Start();
 	bool Update();
 	void Draw();
 };

@@ -13,7 +13,8 @@ class Spell{
 public:
 	p2SString name;
 	Spelltypes type;
-	Prefab prefab;
+	Prefab* prefab;
+	bool to_delete = false;
 public:
 	Spell();
 	Spell(Spelltypes type_);

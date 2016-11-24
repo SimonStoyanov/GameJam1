@@ -21,6 +21,7 @@ public:
 		max_hp = curr_hp = 10 + 2 * App->scene->dummy_scene->round;
 	}
 
+	virtual void Start(){}
 	virtual bool Update(float dt) { return true; }
 	virtual void Draw(){}
 
@@ -43,7 +44,7 @@ public:
 	int max_hp;
 	int curr_hp;
 	int current_anim;
-
+	iPoint draw_offset;
 private:
 	
 private:
