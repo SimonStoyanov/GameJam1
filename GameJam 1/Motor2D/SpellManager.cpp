@@ -4,6 +4,7 @@
 #include "j1FileSystem.h"
 #include "j1Input.h"
 #include "j1Text.h"
+#include "j1Textures.h"
 
 #define EMPTY -1
 
@@ -17,16 +18,21 @@ SpellManager::~SpellManager()
 
 bool SpellManager::Awake(pugi::xml_node & node)
 {
-	char* buf;
-	int size = App->fs->Load("PlayerConfig.xml", &buf);
-	spellconfig_doc.load_buffer(buf, size);
-	RELEASE(buf);
-	spells_config = spellconfig_doc.child("config");
 	return true;
 }
 
 bool SpellManager::Start()
 {
+	char* buf;
+	int size = App->fs->Load("SpellsConfig.xml", &buf);
+	spellconfig_doc.load_buffer(buf, size);
+	RELEASE(buf);
+	spells_config = spellconfig_doc.child("config");
+
+	p2SString path(spells_config.child("spritesheet").attribute("path").as_string(nullptr));
+
+	spells_atlas = App->tex->Load(path.GetString());
+
 	// Cooldowns
 	time = new j1Timer();
 	timeQ = -99;
@@ -198,7 +204,7 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 	switch (type)
 	{
 	case fireball:
-		spell = new Fireball(spells_config);
+		spell = new Fireball(spells_config.child("fireball"));
 		spell->Start();
 		break;
 	default:
@@ -222,4 +228,9 @@ int SpellManager::GetCd(Spelltypes type)
 	default:
 		return -99;
 	}
+}
+
+SDL_Texture * SpellManager::GetAtlas() const
+{
+	return spells_atlas;
 }

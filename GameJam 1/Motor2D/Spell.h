@@ -15,6 +15,7 @@ public:
 	Spelltypes type;
 	Prefab* prefab;
 	bool to_delete = false;
+	int curr_anim;
 public:
 	Spell();
 	Spell(Spelltypes type_);

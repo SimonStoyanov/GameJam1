@@ -149,6 +149,7 @@
     </Xml>
     <Xml Include="..\Game\LevelScene.xml" />
     <Xml Include="..\Game\PlayerConfig.xml" />
+    <Xml Include="..\Game\SpellsConfig.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

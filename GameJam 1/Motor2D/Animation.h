@@ -9,7 +9,7 @@
 struct SDL_Texture;
 
 enum AnimTypes {
-	Idle, Run, Shoot, Jump, Fall
+	Idle, Run, Shoot, Jump, Fall, Explode
 };
 
 class Animation {

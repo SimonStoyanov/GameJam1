@@ -2,7 +2,7 @@
 
 <config>
   <draw_offset x="-60" y="-10"/>
-  <anim type="1" speed ="0.2f"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4 ¡JUST 1 ANIM OF EACH TYPE!-->
+  <anim type="1" speed ="0.2f"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
     <frame x="0" y="0" w="198" h="183"/>
     <frame x="198" y="0" w="198" h="183"/>
     <frame x="396" y="0" w="198" h="183"/>

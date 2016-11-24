@@ -20,6 +20,9 @@ Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
 
 	prefab = new Prefab(x + player_body->width, y + player_body->height, "", NULLRECT);
 
+	prefab->LoadAnimations(config);
+	curr_anim = prefab->FindAnimation(Idle);
+
 	float alpha = atan(delta_y / delta_x);
 
 	if (delta_x < 0)
@@ -56,4 +59,5 @@ bool Fireball::Update()
 
 void Fireball::Draw()
 {
+	App->render->Blit(App->spellmanager->GetAtlas(), prefab->GetPosition().x, prefab->GetPosition().y, &prefab->animations[curr_anim]->GetCurrentFrameRect());
 }

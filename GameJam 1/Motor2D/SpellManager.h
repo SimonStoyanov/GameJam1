@@ -6,6 +6,7 @@
 #include "Spell.h"
 #include "j1Timer.h"
 
+struct SDL_Texture;
 
 class SpellManager : public j1Module {
 public:
@@ -44,6 +45,7 @@ public:
 	Spell* CreateSpell(Spelltypes type);
 	int GetCd(Spelltypes type);
 
+	SDL_Texture* GetAtlas()const;
 
 	j1Timer* time;
 
@@ -59,6 +61,7 @@ public:
 private:
 	pugi::xml_document spellconfig_doc;
 	pugi::xml_node spells_config;
+	SDL_Texture* spells_atlas;
 
 private:
 
