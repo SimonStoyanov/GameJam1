@@ -95,7 +95,7 @@ bool Player::Update(float dt)
 
 	b2Filter a;
 	
-	if (player->GetPosition().y < 348 && !IsGoingUp()) //Ground
+	if (player->GetPosition().y < 450  && !IsGoingUp()) //Ground
 	{
 		a.categoryBits = WORLD;
 		a.maskBits = PLAYER;

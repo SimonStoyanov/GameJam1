@@ -78,7 +78,7 @@ void RandomGenerator::Blit(int x, int to_del)
 {
 	for(int i = 0; i < to_blit.count(); i++)
 	{
-		App->render->Blit(texture, to_blit[i].prefab->GetPosition().x, to_blit[i].prefab->GetPosition().y - 40, &rects[to_blit[i].plat]);
+		App->render->Blit(texture, to_blit[i].prefab->GetPosition().x, to_blit[i].prefab->GetPosition().y - 30, &rects[to_blit[i].plat]);
 
 		if(to_blit[i].prefab->sprite.pos.x < -(to_del - x))
 		{

@@ -28,7 +28,6 @@ public:
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 	bool IsGoingUp();
-	PhysBody* GetClosestPlat();
 
 private:
 
