@@ -34,6 +34,11 @@ void RandomGenerator::CheckRand(int x, int y, int to_del)
 
 	if(x >= pos.x)
 	{
+		plat_number++;
+
+		if (plat_number >= rects.count())
+			plat_number = 0;
+
 		Prefab* tmp = new Prefab(prefab);
 		tmp->sprite.pos.x = pos.x;
 		tmp->sprite.pos.y = pos.y;
@@ -56,10 +61,7 @@ void RandomGenerator::CheckRand(int x, int y, int to_del)
 
 	Blit(x, to_del);
 
-	plat_number++;
 
-	if (plat_number >= rects.count())
-		plat_number = 0;
 }
 
 void RandomGenerator::SetRand(int x, int y)
@@ -78,7 +80,21 @@ void RandomGenerator::Blit(int x, int to_del)
 {
 	for(int i = 0; i < to_blit.count(); i++)
 	{
-		App->render->Blit(texture, to_blit[i].prefab->GetPosition().x, to_blit[i].prefab->GetPosition().y - 30, &rects[to_blit[i].plat]);
+		int compensation = 0;
+		switch(to_blit[i].plat)
+		{
+		case 0:
+			compensation = 60; //60
+			break;
+		case 1:
+			compensation = 80; //80
+			break;
+		case 2:
+			compensation = 55; //55
+			break;
+		}
+
+		App->render->Blit(texture, to_blit[i].prefab->GetPosition().x, to_blit[i].prefab->GetPosition().y - compensation, &rects[to_blit[i].plat]);
 
 		if(to_blit[i].prefab->sprite.pos.x < -(to_del - x))
 		{

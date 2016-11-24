@@ -93,9 +93,9 @@ bool Player::Update(float dt)
 
 	curr_platform = App->scene->dummy_scene->platforms_rand->GetClosestPlat();
 
+	//LOG("%d", player->GetPosition().y);
 	b2Filter a;
-	
-	if (player->GetPosition().y < 450  && !IsGoingUp()) //Ground
+	if (player->GetPosition().y < 333  && !IsGoingUp()) //Ground
 	{
 		a.categoryBits = WORLD;
 		a.maskBits = PLAYER;
