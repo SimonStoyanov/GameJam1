@@ -60,11 +60,12 @@ bool Dummy::Start()
 
 	// Random generators ---
 
-	platform = new Prefab(0, 0, "Spritesheets/platforms_sheet.png", NULLRECT);
-	platforms_rand = new RandomGenerator(platform, 1000, 200, 460, 8, 300, 10);
-	platforms_rand->rects.add(new SDL_Rect{0, 0, 326, 108});
-	platforms_rand->rects.add( new SDL_Rect{0, 108, 305, 141 });
-	platforms_rand->rects.add(new SDL_Rect{ 344, 53, 309, 182 });
+	platform = new Prefab(0, 0, "", NULLRECT);
+	platforms_rand = new RandomGenerator(platform, 1000, 200, 460, 8, 290, 10);
+	platforms_rand->texture = App->tex->Load("Spritesheets/platforms_sheet.png");
+	platforms_rand->rects.add({0, 0, 350, 111});
+	platforms_rand->rects.add({0, 111, 325, 156 });
+	platforms_rand->rects.add({ 350, 56, 300, 193 });
 
 	// ---------------------
 
@@ -130,10 +131,6 @@ void Dummy::Draw()
 	{	
 		App->render->Blit(item->data->sprite.texture, item->data->GetPosition().x, App->win->height-ground_rect.h, &item->data->sprite.rect);
 	}
-
-
-	// Random updater ---
-	platforms_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
 }
 
 bool Dummy::CleanUp()

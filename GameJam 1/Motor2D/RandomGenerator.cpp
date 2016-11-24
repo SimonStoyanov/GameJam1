@@ -48,12 +48,18 @@ void RandomGenerator::CheckRand(int x, int y, int to_del)
 		a.maskBits = BOSS;
 		tmp->pbody->body->GetFixtureList()->SetFilterData(a);
 
-		to_blit.add(tmp);
+		prefabAndPlat pap(tmp, plat_number);
+		to_blit.add(pap);
 
 		SetRand(x, y);
 	}
 
 	Blit(x, to_del);
+
+	plat_number++;
+
+	if (plat_number >= rects.count())
+		plat_number = 0;
 }
 
 void RandomGenerator::SetRand(int x, int y)
@@ -65,28 +71,25 @@ void RandomGenerator::SetRand(int x, int y)
 
 	uniform_int_distribution<> disy(y-min_y, max_y);
 	pos.y = disy(gen);
-
-	//LOG("%d   min %d  max %d", pos.y, y - min_y, maxy);
 }
 
 
 void RandomGenerator::Blit(int x, int to_del)
 {
-	for(int i = 0; i < to_blit.count();)
+	for(int i = 0; i < to_blit.count(); i++)
 	{
-		App->render->Blit(prefab->sprite.texture, to_blit[i]->GetPosition().x, to_blit[i]->GetPosition().y - 100, 0), &rects[0];
-		//LOG("%d, %d", to_blit[i]->GetPosition().x, to_blit[i]->GetPosition().y);
+		App->render->Blit(texture, to_blit[i].prefab->GetPosition().x, to_blit[i].prefab->GetPosition().y - 40, &rects[to_blit[i].plat]);
 
-		if(to_blit[i]->sprite.pos.x < -(to_del - x))
+		if(to_blit[i].prefab->sprite.pos.x < -(to_del - x))
 		{
-			if(to_blit[i]->sprite.texture != nullptr)
-				App->tex->UnLoad(to_blit[i]->sprite.texture);
+			if(to_blit[i].prefab->sprite.texture != nullptr)
+				App->tex->UnLoad(to_blit[i].prefab->sprite.texture);
 
-			App->physics->DeleteObject(to_blit[i]->pbody);
-			RELEASE(to_blit[i]);
+			App->physics->DeleteObject(to_blit[i].prefab->pbody);
+			RELEASE(to_blit[i].prefab);
 			to_blit.del(to_blit.At(i));
+			i--;
 		}
-		i++;
 	}
 }
 
@@ -95,10 +98,10 @@ PhysBody* RandomGenerator::GetClosestPlat()
 	if (to_blit.count() != 0)
 	{
 		int dX0 = App->player->player->GetPosition().x + App->player->player->sprite.rect.w;
-		int dX1 = to_blit[0]->GetPosition().x;
+		int dX1 = to_blit[0].prefab->GetPosition().x;
 
 		int dY0 = App->player->player->GetPosition().y;
-		int dY1 = to_blit[0]->GetPosition().y;
+		int dY1 = to_blit[0].prefab->GetPosition().y;
 
 		int closest = 0;
 		int cdistance = sqrt((dX1 - dX0)*(dX1 - dX0) + (dY1 - dY0)*(dY1 - dY0));
@@ -106,10 +109,10 @@ PhysBody* RandomGenerator::GetClosestPlat()
 		for (int i = 0; i < to_blit.count(); i++)
 		{
 			int dX0 = App->player->player->GetPosition().x;
-			int dX1 = to_blit[i]->GetPosition().x;
+			int dX1 = to_blit[i].prefab->GetPosition().x;
 
 			int dY0 = App->player->player->GetPosition().y;
-			int dY1 = to_blit[i]->GetPosition().y;
+			int dY1 = to_blit[i].prefab->GetPosition().y;
 
 			int dis = sqrt((dX1 - dX0)*(dX1 - dX0) + (dY1 - dY0)*(dY1 - dY0));
 
@@ -130,7 +133,7 @@ PhysBody* RandomGenerator::GetClosestPlat()
 		App->render->DrawLine(dX0, dY0, dX1, dY1, 255, 255, 255, 255);
 		*/
 
-		return to_blit[closest]->pbody;
+		return to_blit[closest].prefab->pbody;
 	}
 	return nullptr;
 }

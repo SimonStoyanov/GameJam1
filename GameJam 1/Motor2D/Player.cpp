@@ -86,6 +86,9 @@ bool Player::Update(float dt)
 
 	App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y, &player->animations[current_animation]->GetCurrentFrameRect());
 
+	// Random updater ---
+	App->scene->dummy_scene->platforms_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
+
 	// Platform shit ---------------------------------
 
 	curr_platform = App->scene->dummy_scene->platforms_rand->GetClosestPlat();

@@ -4,9 +4,21 @@
 #include "j1App.h"
 #include "p2Point.h"
 
-
 class Prefab;
 struct SDL_Rect;
+struct SDL_Texture;
+
+struct prefabAndPlat
+{
+	prefabAndPlat(){}
+	prefabAndPlat(Prefab* _prefab, int _plat)
+	{
+		prefab = _prefab;
+		plat = _plat;
+	}
+	Prefab* prefab;
+	int plat;
+};
 
 class RandomGenerator
 {
@@ -21,10 +33,11 @@ private:
 	void Blit(int x, int to_del);
 
 public:
-	p2List<SDL_Rect*> rects;
+	p2List<SDL_Rect> rects;
+	SDL_Texture* texture;
 private:
 	Prefab* prefab;
-	p2List<Prefab*> to_blit;
+	p2List<prefabAndPlat> to_blit;
 
 	iPoint pos;
 	int max_x;
@@ -37,6 +50,7 @@ private:
 
 	bool start;
 
+	int plat_number;
 };
 
 #endif // __RANDGEN_H__
