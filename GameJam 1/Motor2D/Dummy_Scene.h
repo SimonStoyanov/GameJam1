@@ -8,6 +8,7 @@
 #include "j1Textures.h"
 #include "SDL\include\SDL.h"
 #include "Prefabs.h"
+#include "Platform.h"
 
 class FearBoss;
 class PhysBody;
