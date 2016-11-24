@@ -49,6 +49,7 @@ private:
 	PhysBody* curr_platform = nullptr;
 
 	int current_animation = 0;
+	iPoint draw_offset;
 };
 
 #endif // __PLAYER_H__

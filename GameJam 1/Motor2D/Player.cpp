@@ -44,6 +44,9 @@ bool Player::Start()
 	RELEASE(buf);
 	config_node = playerconfig_doc.child("config");
 
+	draw_offset.x = config_node.child("draw_offset").attribute("x").as_int(0);
+	draw_offset.y = config_node.child("draw_offset").attribute("y").as_int(0);
+
 	App->spellmanager->Q = fireball;
 	App->spellmanager->W = unknown;
 	App->spellmanager->E = unknown;
@@ -60,7 +63,18 @@ bool Player::Start()
 
 bool Player::Update(float dt)
 {
+	if ((player->GetPosition().x + App->render->camera.x) < start_pos.x - 5) {
+		player->pbody->body->SetTransform(b2Vec2(player->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(100 * dt)), player->pbody->body->GetPosition().y), 0);
+	}
+	if ((player->GetPosition().x + App->render->camera.x) > start_pos.x + 5) {
+		player->pbody->body->SetTransform(b2Vec2(player->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(-100 * dt)), player->pbody->body->GetPosition().y), 0);
+	}
+	
 	player->pbody->body->SetTransform(b2Vec2(player->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(200*dt)), player->pbody->body->GetPosition().y),0);
+
+	if (player->pbody->body->GetLinearVelocity().x != 0) {
+		player->pbody->body->SetLinearVelocity(b2Vec2(0, player->pbody->body->GetLinearVelocity().y));
+	}
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) {
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -jump_force), false);
@@ -70,7 +84,7 @@ bool Player::Update(float dt)
 	if (!player->pbody->body->IsAwake())
 		player->pbody->body->SetAwake(true);
 
-	App->render->Blit(player->sprite.texture, player->GetPosition().x, player->GetPosition().y, &player->animations[current_animation]->GetCurrentFrameRect());
+	App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y, &player->animations[current_animation]->GetCurrentFrameRect());
 
 	// Platform shit ---------------------------------
 
