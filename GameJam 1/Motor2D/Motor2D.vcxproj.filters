@@ -200,6 +200,9 @@
     <Xml Include="..\Game\EnemyConfig.xml">
       <Filter>Development ============\Game</Filter>
     </Xml>
+    <Xml Include="..\Game\PlayerConfig.xml">
+      <Filter>Development ============\Game</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Development ============">

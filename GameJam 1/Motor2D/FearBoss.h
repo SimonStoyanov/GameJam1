@@ -37,7 +37,11 @@ public:
 			increment = -increment;
 
 		move += increment;
-		prefab->pbody->body->SetTransform(b2Vec2(prefab->pbody->body->GetPosition().x+ PIXEL_TO_METERS((int)(200*dt)), PIXEL_TO_METERS((int)(initial_pos.y+move))), 0);
+		prefab->pbody->body->SetTransform(b2Vec2(prefab->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(200 * dt)), PIXEL_TO_METERS((int)(initial_pos.y + move))), 0);
+
+		if (prefab->pbody->body->GetLinearVelocity().x != 0) {
+			prefab->pbody->body->SetLinearVelocity(b2Vec2(0, 0));
+		}
 
 		return true;
 	}

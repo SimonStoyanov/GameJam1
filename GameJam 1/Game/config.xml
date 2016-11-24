@@ -32,7 +32,7 @@
   </scene>
 
   <player>
-    <spritesheet path="Spritesheets/char_test.png"/>
+    <spritesheet path="Spritesheets/player_sheet.png"/>
     <sprite x="0" y="0" w="95" h="146"/>
     <position x="250" y="315"/>
     <jump force="3840"/>

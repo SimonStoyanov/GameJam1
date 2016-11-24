@@ -96,7 +96,7 @@ public:
 	j1Audio*			audio = NULL;
 	j1Scene*			scene = NULL;
 	j1FileSystem*		fs = NULL;
-	j1Map*				map = NULL;
+	//j1Map*				map = NULL;
 	j1PathFinding*		pathfinding = NULL;
 	ModulePhysics*		physics = NULL;
 	j1Text*				text = NULL;

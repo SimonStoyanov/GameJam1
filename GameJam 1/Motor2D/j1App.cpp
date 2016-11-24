@@ -32,7 +32,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	tex = new j1Textures();
 	audio = new j1Audio();
 	fs = new j1FileSystem();
-	map = new j1Map();
+	//map = new j1Map();
 	pathfinding = new j1PathFinding();
 	physics = new ModulePhysics();
 	text = new j1Text();
@@ -50,7 +50,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(physics);
-	AddModule(map);
+	//AddModule(map);
 	AddModule(pathfinding);
 	AddModule(text);
 	AddModule(scene);

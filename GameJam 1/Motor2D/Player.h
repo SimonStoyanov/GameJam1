@@ -31,6 +31,7 @@ public:
 	PhysBody* GetClosestPlat();
 
 private:
+	void LoadAnimations(pugi::xml_node config);
 
 public:
 	Prefab* player = nullptr;
@@ -46,6 +47,8 @@ private:
 
 	int last_pos = 0;
 	PhysBody* curr_platform = nullptr;
+
+	int current_animation = 0;
 };
 
 #endif // __PLAYER_H__
