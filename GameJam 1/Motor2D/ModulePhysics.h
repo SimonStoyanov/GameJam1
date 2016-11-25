@@ -16,7 +16,8 @@
 enum BodyType
 {
 	null,
-	platform
+	platform,
+	wall
 };
 
 struct path_joint {

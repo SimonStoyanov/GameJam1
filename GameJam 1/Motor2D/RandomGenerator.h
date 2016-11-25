@@ -23,7 +23,7 @@ struct prefabAndPlat
 class RandomGenerator
 {
 public:
-	RandomGenerator(Prefab* prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h);
+	RandomGenerator(Prefab* prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h, int ground);
 	~RandomGenerator();
 
 	void CheckRand(int x, int y, int to_del);
@@ -51,6 +51,7 @@ private:
 	bool start;
 
 	int plat_number;
+	int ground;
 };
 
 #endif // __RANDGEN_H__

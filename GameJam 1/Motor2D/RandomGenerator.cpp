@@ -6,7 +6,7 @@
 #include "Player.h"
 using namespace std;
 
-RandomGenerator::RandomGenerator(Prefab* _prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h)
+RandomGenerator::RandomGenerator(Prefab* _prefab, int _max_x, int _min_x, int _max_y, int _min_y, int pb_w, int pb_h, int _ground)
 {
 	max_x = _max_x;
 	min_x = _min_x;
@@ -16,6 +16,8 @@ RandomGenerator::RandomGenerator(Prefab* _prefab, int _max_x, int _min_x, int _m
 
 	w = pb_w;
 	h = pb_h;
+
+	ground = _ground;
 
 	start = true;
 }
@@ -35,25 +37,45 @@ void RandomGenerator::CheckRand(int x, int y, int to_del)
 	if(x >= pos.x)
 	{
 		plat_number++;
-		if (plat_number >= rects.count())
+		if (plat_number >= 4) //
 			plat_number = 0;
 
-		Prefab* tmp = new Prefab(prefab);
-		tmp->sprite.pos.x = pos.x;
-		tmp->sprite.pos.y = pos.y;
+		if (plat_number != 3)
+		{
+			Prefab* tmp = new Prefab(prefab);
+			tmp->sprite.pos.x = pos.x;
+			tmp->sprite.pos.y = pos.y;
 
+			tmp->CreateStaticCollision(w, h, WORLD, PLAYER);
+			tmp->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(pos.y)), 0);
+			tmp->pbody->type = platform;
 
-		tmp->CreateStaticCollision(w, h, WORLD, PLAYER);
-		tmp->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(pos.y)), 0);
-		tmp->pbody->type = platform;
+			b2Filter a;
+			a.categoryBits = PLAYER;
+			a.maskBits = BOSS;
+			tmp->pbody->body->GetFixtureList()->SetFilterData(a);
 
-		b2Filter a;
-		a.categoryBits = PLAYER;
-		a.maskBits = BOSS;
-		tmp->pbody->body->GetFixtureList()->SetFilterData(a);
+			prefabAndPlat pap(tmp, plat_number);
+			to_blit.add(pap);
+		}
+		else
+		{
+			Prefab* tmp = new Prefab(prefab);
+			tmp->sprite.pos.x = pos.x;
+			tmp->sprite.pos.y = ground;
 
-		prefabAndPlat pap(tmp, plat_number);
-		to_blit.add(pap);
+			tmp->CreateStaticCollision(50, 150, WORLD, PLAYER);
+			tmp->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(ground)), 0);
+			tmp->pbody->type = wall;
+
+			b2Filter a;
+			a.categoryBits = PLAYER;
+			a.maskBits = WORLD;
+			tmp->pbody->body->GetFixtureList()->SetFilterData(a);
+
+			prefabAndPlat pap(tmp, plat_number);
+			to_blit.add(pap);
+		}
 
 		SetRand(x, y);
 	}
@@ -91,9 +113,15 @@ void RandomGenerator::Blit(int x, int to_del)
 		case 2:
 			compensation = 55; //55
 			break;
+		case 3:
+			//compensation = 100; //100
+			break;
 		}
 
-		App->render->Blit(texture, to_blit[i].prefab->GetPosition().x, to_blit[i].prefab->GetPosition().y - compensation, &rects[to_blit[i].plat]);
+		if(to_blit[i].plat == 3)
+			App->render->Blit(texture, to_blit[i].prefab->GetPosition().x - 100, to_blit[i].prefab->GetPosition().y, &rects[to_blit[i].plat]);
+		else
+			App->render->Blit(texture, to_blit[i].prefab->GetPosition().x, to_blit[i].prefab->GetPosition().y - compensation, &rects[to_blit[i].plat]);
 
 		if(to_blit[i].prefab->sprite.pos.x < -(to_del - x))
 		{

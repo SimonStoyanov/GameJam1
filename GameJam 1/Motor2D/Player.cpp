@@ -98,39 +98,52 @@ bool Player::Update(float dt)
 	curr_platform = App->scene->dummy_scene->platforms_rand->GetClosestPlat();
 
 	//LOG("%d", player->GetPosition().y);
-	b2Filter a;
-	if (player->GetPosition().y < 333  && !IsGoingUp()) //Ground
+	if (curr_platform != nullptr)
 	{
-		a.categoryBits = WORLD;
-		a.maskBits = PLAYER;
-		if(curr_platform != nullptr)
-		curr_platform->body->GetFixtureList()->SetFilterData(a);
-	}
-	else
-	{
-		a.categoryBits = WORLD;
-		a.maskBits = BOSS;
-		if (curr_platform != nullptr)
-			curr_platform->body->GetFixtureList()->SetFilterData(a);
-	}
-		
-	if (IsGoingUp())
-	{
-		a.categoryBits = PLAYER;
-		a.maskBits = BOSS;
-		player->pbody->body->GetFixtureList()->SetFilterData(a);
-	}
-	else
-	{
-		a.categoryBits = PLAYER;
-		a.maskBits = WORLD;
-		player->pbody->body->GetFixtureList()->SetFilterData(a);
+		b2Filter a;
+		if (player->GetPosition().y < 333 && !IsGoingUp()) //Ground
+		{
+			a.categoryBits = WORLD;
+			a.maskBits = PLAYER;
+			if (curr_platform != nullptr)
+				curr_platform->body->GetFixtureList()->SetFilterData(a);
+		}
+		else
+		{
+			a.categoryBits = WORLD;
+			a.maskBits = BOSS;
+			if (curr_platform != nullptr)
+				curr_platform->body->GetFixtureList()->SetFilterData(a);
+		}
+
+		if (IsGoingUp())
+		{
+			a.categoryBits = PLAYER;
+			a.maskBits = BOSS;
+			player->pbody->body->GetFixtureList()->SetFilterData(a);
+		}
+		else
+		{
+			a.categoryBits = PLAYER;
+			a.maskBits = WORLD;
+			player->pbody->body->GetFixtureList()->SetFilterData(a);
+		}
+
+		if (curr_platform->type == wall)
+		{
+			a.categoryBits = PLAYER;
+			a.maskBits = WORLD;
+			player->pbody->body->GetFixtureList()->SetFilterData(a);
+
+			a.categoryBits = WORLD;
+			a.maskBits = PLAYER;
+			if (curr_platform != nullptr)
+				curr_platform->body->GetFixtureList()->SetFilterData(a);
+		}
 	}
 	
 	// -------------------------------------------
-	//LOG("%d", player->GetPosition().y);
 	
-
 	return true;
 }
 
