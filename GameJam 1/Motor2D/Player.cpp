@@ -78,7 +78,11 @@ bool Player::Update(float dt)
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) {
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -jump_force), false);
+		current_animation = player->FindAnimation(Jump);
 		on_ground = false;
+	}
+	else if (on_ground){
+		current_animation = player->FindAnimation(Run);
 	}
 
 	if (!player->pbody->body->IsAwake())
