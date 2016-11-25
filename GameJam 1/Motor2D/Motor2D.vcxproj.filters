@@ -189,6 +189,9 @@
     <ClInclude Include="j1Timer.h">
       <Filter>Development ============\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="InsanityBoss.h">
+      <Filter>Development ============\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">

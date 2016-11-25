@@ -109,6 +109,7 @@
     <ClInclude Include="Dummy_Scene.h" />
     <ClInclude Include="FearBoss.h" />
     <ClInclude Include="Fireball.h" />
+    <ClInclude Include="InsanityBoss.h" />
     <ClInclude Include="ModuleEnemies.h" />
     <ClInclude Include="j1FileSystem.h" />
     <ClInclude Include="j1Map.h" />

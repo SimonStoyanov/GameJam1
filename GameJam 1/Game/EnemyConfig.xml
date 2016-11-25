@@ -28,4 +28,33 @@
       <frame x="572" y="1165" w="286" h="388"/>
     </anim>
   </fear>
+  <insanity>
+    <spritesheet path="Spritesheets/boss_sheet.png"/>
+    <collisionsize w="100" h="150"/>
+    <draw_offset x="-45" y="-35"/>
+    <movement value="150" speed="3"/>
+    <anim type="0" speed ="0.15f">
+      <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
+      <frame x="858" y="0" w="286" h="388"/>
+      <frame x="858" y="388" w="286" h="388"/>
+      <frame x="858" y="777" w="286" h="388"/>
+      <frame x="858" y="1165" w="286" h="388"/>
+      <frame x="858" y="1553" w="286" h="388"/>
+      <frame x="858" y="1941" w="286" h="388"/>
+      <frame x="858" y="0" w="286" h="388"/>
+      <frame x="858" y="388" w="286" h="388"/>
+      <frame x="858" y="777" w="286" h="388"/>
+      <frame x="858" y="1165" w="286" h="388"/>
+      <frame x="858" y="1553" w="286" h="388"/>
+      <frame x="858" y="1941" w="286" h="388"/>
+    </anim>
+    <anim type="2" speed ="0.15f" loop="false">
+      <frame x="858" y="0" w="286" h="388"/>
+      <frame x="858" y="388" w="286" h="388"/>
+      <frame x="858" y="777" w="286" h="388"/>
+      <frame x="858" y="1165" w="286" h="388"/>
+      <frame x="858" y="1553" w="286" h="388"/>
+      <frame x="858" y="1941" w="286" h="388"/>
+    </anim>
+  </insanity>
 </enemies>

@@ -6,6 +6,7 @@
 #include "j1Audio.h"
 #include "Boss.h"
 #include "FearBoss.h"
+#include "InsanityBoss.h"
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -54,6 +55,10 @@ Boss * ModuleEnemies::CreateEnemy(EnemiesTypes type)
 	{
 	case fear:
 		enemy = new FearBoss(enemies_node.child("fear"));
+		enemy->Start();
+		break;
+	case insanity:
+		enemy = new InsanityBoss(enemies_node.child("insanity"));
 		enemy->Start();
 		break;
 	case unknow:

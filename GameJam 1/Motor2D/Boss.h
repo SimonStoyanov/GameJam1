@@ -10,7 +10,7 @@
 class Animation;
 
 enum EnemiesTypes {
-	fear, unknow,
+	fear, insanity, unknow
 };
 
 class Boss {
