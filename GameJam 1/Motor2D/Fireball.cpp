@@ -35,8 +35,6 @@ Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
 		vel.x = fireball_speed*cos(alpha);
 		vel.y = fireball_speed*sin(alpha);
 	}
-
-	LOG("player %d %d", x, y);
 }
 
 Fireball::~Fireball()
