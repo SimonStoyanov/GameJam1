@@ -62,7 +62,7 @@ bool Dummy::Start()
 	// Random generators ---
 
 	platform = new Prefab(0, 0, "", NULLRECT);
-	platforms_rand = new RandomGenerator(platform, 1000, 200, 460, 8, 290, 10);
+	platforms_rand = new RandomGenerator(platform, 1100, 300, 460, 8, 290, 10);
 	platforms_rand->texture = App->tex->Load("Spritesheets/platforms_sheet.png");
 	platforms_rand->rects.add({0, 0, 350, 111});
 	platforms_rand->rects.add({0, 111, 325, 156 });

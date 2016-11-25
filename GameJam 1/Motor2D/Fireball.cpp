@@ -41,6 +41,7 @@ Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
 	draw_offset.y = config.child("drawoffset").attribute("y").as_int(0);
 	size.x = config.child("size").attribute("w").as_int(10);
 	size.y = config.child("size").attribute("h").as_int(10);
+
 }
 
 Fireball::~Fireball()

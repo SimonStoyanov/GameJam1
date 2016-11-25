@@ -35,7 +35,6 @@ void RandomGenerator::CheckRand(int x, int y, int to_del)
 	if(x >= pos.x)
 	{
 		plat_number++;
-
 		if (plat_number >= rects.count())
 			plat_number = 0;
 
