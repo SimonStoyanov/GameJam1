@@ -5,9 +5,7 @@
 
 class Fearball : public Spell {
 private:
-	fPoint vel;
-	float alpha;
-	float fearball_speed = 10;
+	float fearball_speed = -5;
 	iPoint draw_offset;
 public:
 	Fearball(pugi::xml_node& config);

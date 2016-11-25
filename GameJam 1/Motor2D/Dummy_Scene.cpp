@@ -44,7 +44,7 @@ bool Dummy::Start()
 	farback_speed = levelconfig.child("parallax").child("farbackground").attribute("speed").as_float(1);
 	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
 
-	test_boss = App->enemies->CreateEnemy(insanity);
+	test_boss = App->enemies->CreateEnemy(fear);
 	test_boss->prefab->pbody->listener = App->enemies;
 	App->text->boss_hp = new Text(10, 10, App->text->timeless_25, 1, 200U, 200U, 255U);
 

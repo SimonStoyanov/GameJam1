@@ -4,6 +4,7 @@
 #include "Boss.h"
 #include "j1Render.h"
 #include "j1App.h"
+#include "SpellManager.h"
 #include <math.h>
 
 
@@ -24,7 +25,7 @@ public:
 		if (current_anim == -1) current_anim = 0;
 		draw_offset.x = config.child("draw_offset").attribute("x").as_int(0);
 		draw_offset.y = config.child("draw_offset").attribute("y").as_int(0);
-
+		shoot_time = config.child("shoot").attribute("time").as_float(10000.0f);
 	}
 
 	void Start() {
@@ -43,7 +44,29 @@ public:
 			prefab->pbody->body->SetLinearVelocity(b2Vec2(0, 0));
 		}
 
+		if (time > shoot_time) {
+			if (shoot) {
+				if (prefab->animations[current_anim]->Finished()) {
+					Shoot();
+					prefab->animations[current_anim]->Reset();
+					shoot = false;
+					time = 0.0f;
+					current_anim = prefab->FindAnimation(AnimTypes::Idle);
+				}
+			}
+			else {
+				shoot = true;
+				current_anim = prefab->FindAnimation(AnimTypes::Shoot);
+			}
+		}
+
+		time += dt;
+
 		return true;
+	}
+
+	void Shoot() {
+		App->spellmanager->CreateSpell(fearball);
 	}
 
 	void Draw() {

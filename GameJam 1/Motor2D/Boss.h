@@ -33,6 +33,9 @@ public:
 	int curr_hp;
 	int current_anim;
 	iPoint draw_offset;
+	float shoot_time;
+	float time = 0.0f;
+	bool shoot = false;
 private:
 	
 private:

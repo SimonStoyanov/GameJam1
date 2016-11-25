@@ -33,6 +33,7 @@ public:
 public:
 	int round = 1; //round counter (each win adds 1)
 	RandomGenerator* platforms_rand;
+	Boss* test_boss;
 
 private:
 	p2List<Prefab*> grounds;
@@ -60,7 +61,6 @@ private:
 
 	p2SString parallax_spritesheet;
 
-	Boss* test_boss;
 	Text* boss_hp;
 };
 

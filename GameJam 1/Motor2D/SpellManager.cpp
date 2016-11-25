@@ -6,6 +6,7 @@
 #include "j1Input.h"
 #include "j1Text.h"
 #include "j1Textures.h"
+#include "FearBall.h"
 
 #define EMPTY -1
 
@@ -180,6 +181,14 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 			}
 			DeleteSpell(bodyA);
 		}
+		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER) {
+			for (p2List_item<Boss*>* boss_item = App->enemies->enemies.start; boss_item != nullptr; boss_item = boss_item->next) {
+				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) {
+					boss_item->data->curr_hp -= 1;
+				}
+			}
+			DeleteSpell(bodyA);
+		}
 	}
 }
 
@@ -214,6 +223,11 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 	{
 	case fireball:
 		spell = new Fireball(spells_config.child("fireball"));
+		spell->SetDamage(1);
+		spell->Start();
+		break;
+	case fearball:
+		spell = new Fearball(spells_config.child("fearball"));
 		spell->SetDamage(1);
 		spell->Start();
 		break;
