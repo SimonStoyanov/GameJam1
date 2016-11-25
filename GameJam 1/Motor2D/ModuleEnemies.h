@@ -18,6 +18,9 @@ public:
 	// Update all enemies
 	bool Update(float dt);
 
+	// Draw Enemies
+	bool PostUpdate();
+
 	// Called before quitting
 	bool CleanUp();
 

@@ -28,9 +28,6 @@
     <ClCompile Include="j1Pathfinding.cpp">
       <Filter>Development ============\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1PerfTimer.cpp">
-      <Filter>Development ============\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="j1Render.cpp">
       <Filter>Development ============\Modules</Filter>
     </ClCompile>
@@ -38,9 +35,6 @@
       <Filter>Development ============\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1Textures.cpp">
-      <Filter>Development ============\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Timer.cpp">
       <Filter>Development ============\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1Window.cpp">
@@ -79,6 +73,12 @@
     <ClCompile Include="p2Log.cpp">
       <Filter>Programing 2 ===========</Filter>
     </ClCompile>
+    <ClCompile Include="j1PerfTimer.cpp">
+      <Filter>Development ============\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Timer.cpp">
+      <Filter>Development ============\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -108,9 +108,6 @@
     <ClInclude Include="j1Pathfinding.h">
       <Filter>Development ============\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1PerfTimer.h">
-      <Filter>Development ============\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="j1Render.h">
       <Filter>Development ============\Modules</Filter>
     </ClInclude>
@@ -118,9 +115,6 @@
       <Filter>Development ============\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Textures.h">
-      <Filter>Development ============\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Timer.h">
       <Filter>Development ============\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Window.h">
@@ -188,6 +182,12 @@
     </ClInclude>
     <ClInclude Include="FearBoss.h">
       <Filter>Development ============\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="j1PerfTimer.h">
+      <Filter>Development ============\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Timer.h">
+      <Filter>Development ============\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

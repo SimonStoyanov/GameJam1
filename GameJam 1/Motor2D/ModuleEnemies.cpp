@@ -30,6 +30,13 @@ bool ModuleEnemies::Update(float dt)
 {
 	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
 		enemy->data->Update(dt);
+	}
+	return true;
+}
+
+bool ModuleEnemies::PostUpdate()
+{
+	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
 		enemy->data->Draw();
 	}
 	return true;

@@ -63,7 +63,6 @@ bool SpellManager::Update(float dt)
 	while (spell_item != nullptr) 
 	{
 		spell_item->data->Update();
-		spell_item->data->Draw();
 		spell_item = spell_item->next;
 	}
 
@@ -152,6 +151,12 @@ bool SpellManager::Update(float dt)
 
 bool SpellManager::PostUpdate()
 {
+	p2List_item<Spell*>* spell_item = spells.start;
+	while (spell_item != nullptr)
+	{
+		spell_item->data->Draw();
+		spell_item = spell_item->next;
+	}
 	return true;
 }
 

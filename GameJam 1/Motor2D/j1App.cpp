@@ -53,11 +53,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	//AddModule(map);
 	AddModule(pathfinding);
 	AddModule(text);
-	AddModule(scene);
 	AddModule(enemies);
-	AddModule(player);
 	AddModule(spellmanager);
-
+	AddModule(scene);
+	AddModule(player);
 	// render last to swap buffer
 	AddModule(render);
 
