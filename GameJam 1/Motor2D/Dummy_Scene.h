@@ -59,9 +59,10 @@ private:
 	int farback_count = 1;
 
 	p2SString parallax_spritesheet;
-
+public:
 	Boss* test_boss;
 	Text* boss_hp;
+	
 };
 
 #endif
