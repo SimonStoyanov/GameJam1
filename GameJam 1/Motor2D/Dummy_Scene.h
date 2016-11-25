@@ -9,9 +9,11 @@
 #include "SDL\include\SDL.h"
 #include "Prefabs.h"
 
-class FearBoss;
+
+class Boss;
 class PhysBody;
 class RandomGenerator;
+class Text;
 
 class Dummy : public Scene
 {
@@ -58,8 +60,8 @@ private:
 
 	p2SString parallax_spritesheet;
 
-	FearBoss* test_boss;
-
+	Boss* test_boss;
+	Text* boss_hp;
 };
 
 #endif

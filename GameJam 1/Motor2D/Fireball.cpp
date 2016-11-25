@@ -23,12 +23,13 @@ Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
 	prefab->LoadAnimations(config);
 	curr_anim = prefab->FindAnimation(Idle);
 
-	float alpha = atan(delta_y / delta_x);
+	alpha = atan(delta_y / delta_x);
 
 	if (delta_x < 0)
 	{
 		vel.x = fireball_speed*-cos(alpha);
 		vel.y = fireball_speed*-sin(alpha);
+		alpha += PI;
 	}
 	else
 	{
@@ -36,7 +37,10 @@ Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
 		vel.y = fireball_speed*sin(alpha);
 	}
 
-	LOG("player %d %d", x, y);
+	draw_offset.x = config.child("drawoffset").attribute("x").as_int(0);
+	draw_offset.y = config.child("drawoffset").attribute("y").as_int(0);
+	size.x = config.child("size").attribute("w").as_int(10);
+	size.y = config.child("size").attribute("h").as_int(10);
 }
 
 Fireball::~Fireball()
@@ -45,7 +49,7 @@ Fireball::~Fireball()
 
 void Fireball::Start()
 {
-	prefab->CreateCollision(15,15, PLAYER, WORLD);
+	prefab->CreateCollision(size.x, size.y, PLAYER, WORLD);
 	prefab->pbody->listener = App->spellmanager;
 	prefab->pbody->body->SetGravityScale(0);
 	if (prefab->pbody != nullptr)
@@ -54,10 +58,17 @@ void Fireball::Start()
 
 bool Fireball::Update()
 {
+	if (collided) {
+		if(prefab->pbody->body->GetLinearVelocity().x != 0 || prefab->pbody->body->GetLinearVelocity().y != 0)
+			prefab->pbody->body->SetLinearVelocity(b2Vec2(0, 0));
+		if (prefab->animations[curr_anim]->Finished()) {
+			to_delete = true;
+		}
+	}
 	return true;
 }
 
 void Fireball::Draw()
 {
-	App->render->Blit(App->spellmanager->GetAtlas(), prefab->GetPosition().x, prefab->GetPosition().y, &prefab->animations[curr_anim]->GetCurrentFrameRect());
+	App->render->Blit(App->spellmanager->GetAtlas(), prefab->GetPosition().x + draw_offset.x, prefab->GetPosition().y + draw_offset.y, &prefab->animations[curr_anim]->GetCurrentFrameRect(), 1.0f, RADTODEG*alpha);
 }

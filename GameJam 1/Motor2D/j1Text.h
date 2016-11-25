@@ -64,7 +64,9 @@ public:
 	Text*				cdW;
 	Text*				cdE;
 	Text*				cdR;
+	Text*				boss_hp;
 	uint				timeless_15;
+	uint				timeless_25;
 
 };
 
@@ -83,6 +85,7 @@ public:
 	void PrintText();
 	void SetFont(TTF_Font* _font);
 	void SetText(p2SString text, Alignment _alignment = left);
+	void SetPosition(int x, int y);
 
 private:
 	void SetUpText();

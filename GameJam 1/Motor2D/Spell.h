@@ -4,6 +4,8 @@
 #include "p2SString.h"
 #include "Prefabs.h"
 
+#define PI 3.141592653589793
+
 enum Spelltypes {
 	fireball,
 	unknown
@@ -15,7 +17,9 @@ public:
 	Spelltypes type;
 	Prefab* prefab;
 	bool to_delete = false;
+	bool collided = false;
 	int curr_anim;
+	iPoint size;
 public:
 	Spell();
 	Spell(Spelltypes type_);

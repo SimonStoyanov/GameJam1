@@ -45,6 +45,7 @@ bool j1Text::Start()
 	bool ret = true;
 
 	timeless_15 = LoadFont("Timeless.ttf", 15);
+	timeless_25 = LoadFont("Timeless.ttf", 25);
 
 	return ret;
 }
@@ -159,6 +160,12 @@ void Text::SetText(p2SString _text, Alignment _alignment)
 	text = tmp2;
 	alignment = _alignment;
 	SetUpText();
+}
+
+void Text::SetPosition(int x, int y)
+{
+	pos.x = x;
+	pos.y = y;
 }
 
 // ------------------------------

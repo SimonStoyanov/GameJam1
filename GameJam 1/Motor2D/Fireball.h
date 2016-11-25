@@ -6,8 +6,9 @@
 class Fireball : public Spell {
 private:
 	fPoint vel;
-
+	float alpha;
 	float fireball_speed = 10;
+	iPoint draw_offset;
 public:
 	Fireball(pugi::xml_node& config);
 	~Fireball();

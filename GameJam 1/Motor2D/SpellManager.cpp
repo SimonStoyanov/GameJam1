@@ -191,7 +191,8 @@ void SpellManager::DeleteSpell(PhysBody * body)
 	p2List_item<Spell*>* spell_item = spells.start;
 	while (spell_item != nullptr) {
 		if (spell_item->data->prefab->pbody == body) {
-			spell_item->data->to_delete = true;
+			spell_item->data->collided = true;
+			spell_item->data->curr_anim = spell_item->data->prefab->FindAnimation(Explode);
 			break;
 		}
 		spell_item = spell_item->next;
