@@ -8,6 +8,7 @@
 
 enum Spelltypes {
 	fireball,
+	fearball,
 	unknown
 };
 

@@ -24,6 +24,7 @@ public:
 	virtual void Start(){}
 	virtual bool Update(float dt) { return true; }
 	virtual void Draw(){}
+	virtual void Shoot(){}
 
 public:
 	Prefab* prefab;

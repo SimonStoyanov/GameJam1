@@ -79,6 +79,9 @@
     <ClCompile Include="j1Timer.cpp">
       <Filter>Development ============\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="FearBall.cpp">
+      <Filter>Development ============\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -189,7 +192,11 @@
     <ClInclude Include="j1Timer.h">
       <Filter>Development ============\Tools</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="InsanityBoss.h">
+=======
+    <ClInclude Include="FearBall.h">
+>>>>>>> origin/master
       <Filter>Development ============\Game</Filter>
     </ClInclude>
   </ItemGroup>
