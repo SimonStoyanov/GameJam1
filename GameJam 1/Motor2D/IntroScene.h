@@ -3,7 +3,9 @@
 
 #include "Scene.h"
 
+class Prefab;
 class Button;
+struct SDL_Texture;
 
 class IntroScene : public Scene {
 public:
@@ -19,7 +21,11 @@ public:
 public:
 
 private:
-	Button* play;
+	Button* play_button;
+	Prefab* play;
+	bool play_clicked = false;
+	SDL_Texture* UI_tex;
+	SDL_Texture* Background_tex;
 
 };
 

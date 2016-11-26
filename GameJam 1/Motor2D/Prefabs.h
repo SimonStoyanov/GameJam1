@@ -62,6 +62,7 @@ public:
 	Sprite sprite;
 	p2List<Animation*> animations;
 	PhysBody* pbody = nullptr;
+	int current_anim = -1;
 };
 
 #endif //__PREFABS_H__

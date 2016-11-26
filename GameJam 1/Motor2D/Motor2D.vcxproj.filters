@@ -233,6 +233,9 @@
     <Xml Include="..\Game\config.xml">
       <Filter>Development</Filter>
     </Xml>
+    <Xml Include="..\Game\IntroScene.xml">
+      <Filter>Development\Scenes</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Development">

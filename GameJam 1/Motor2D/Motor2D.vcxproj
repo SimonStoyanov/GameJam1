@@ -156,6 +156,7 @@
     <Xml Include="..\Game\EnemyConfig.xml">
       <SubType>Designer</SubType>
     </Xml>
+    <Xml Include="..\Game\IntroScene.xml" />
     <Xml Include="..\Game\LevelScene.xml" />
     <Xml Include="..\Game\PlayerConfig.xml" />
     <Xml Include="..\Game\SpellsConfig.xml" />
