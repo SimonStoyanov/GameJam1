@@ -42,7 +42,7 @@
       <frame x="268" y="2" w="132" h="114"/>
       <frame x="136" y="568" w="132" h="114"/> <!--Ivan, note for Ivan: This frame is modified to fit the boss's animation!-->
     </anim>
-    <anim type="2" speed ="0.15f" loop ="false">
+    <anim type="5" speed ="0.15f" loop ="false"> <!--This animation should not have a destroying animation!! Change it when you fix it plz-->
       <frame x="264" y="114" w="132" h="114"/>
     </anim>
   </insanityeye>
