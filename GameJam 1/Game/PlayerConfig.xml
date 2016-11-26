@@ -12,7 +12,11 @@
     <frame x="1188" y="0" w="198" h="183"/>
     <frame x="1386" y="0" w="198" h="183"/>
   </anim>
-  <anim type="3" speed="0.2f">
+  <anim type="2" speed="0.2f">
+    <frame x="198" y="183" w="198" h="183"/>
+    <frame x="396" y="183" w="198" h="183"/>
+  </anim>
+  <anim type="3" speed="0.2f"> <!--Ivan: I made the animations and I have no idea of what's going on in this animation, wtf, I made only one frame-->     
     <frame x="0" y="183" w="198" h="183"/>
     <frame x="0" y="183" w="198" h="183"/>
     <frame x="0" y="183" w="198" h="183"/>
