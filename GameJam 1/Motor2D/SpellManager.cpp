@@ -9,6 +9,8 @@
 #include "JumpAttack.h"
 #include "FearBall.h"
 #include "InsanityEye.h"
+#include "j1Render.h"
+#include "Player.h"
 
 #define EMPTY -1
 
@@ -83,10 +85,16 @@ bool SpellManager::Update(float dt)
 	}
 	
 	p2SString tmpQ;
-	if((timeQ + GetCd(Q) - time->ReadSec()) > 0)
-		tmpQ.create("Q: %0.1f", timeQ + GetCd(Q) - time->ReadSec());
+	if ((timeQ + GetCd(Q) - time->ReadSec()) > 0)
+	{
+		tmpQ.create("%0.1f", timeQ + GetCd(Q) - time->ReadSec());
+		Qcd = true;
+	}
 	else
-		tmpQ.create("Q: 0", timeQ + GetCd(Q) - time->ReadSec());
+	{
+		tmpQ.create(" 0", timeQ + GetCd(Q) - time->ReadSec());
+		Qcd = false;
+	}
 	App->text->cdQ->SetText(tmpQ);
 	// -----------------------
 
@@ -103,9 +111,15 @@ bool SpellManager::Update(float dt)
 
 	p2SString tmpW;
 	if ((timeW + GetCd(W) - time->ReadSec()) > 0)
-		tmpW.create("W: %0.1f", timeW + GetCd(W) - time->ReadSec());
+	{
+		tmpW.create("%0.1f", timeW + GetCd(W) - time->ReadSec());
+		Wcd = true;
+	}
 	else
-		tmpW.create("W: 0", timeW + GetCd(W) - time->ReadSec());
+	{
+		tmpW.create(" 0", timeW + GetCd(W) - time->ReadSec());
+		Wcd = false;
+	}
 	App->text->cdW->SetText(tmpW);
 
 	// -----------------------
@@ -123,9 +137,15 @@ bool SpellManager::Update(float dt)
 
 	p2SString tmpE;
 	if ((timeE + GetCd(E) - time->ReadSec()) > 0)
-		tmpE.create("E: %0.1f", timeE + GetCd(E) - time->ReadSec());
+	{
+		tmpE.create("%0.1f", timeE + GetCd(E) - time->ReadSec());
+		Ecd = true;
+	}
 	else
-		tmpE.create("E: 0", timeE + GetCd(E) - time->ReadSec());
+	{
+		tmpE.create(" 0", timeE + GetCd(E) - time->ReadSec());
+		Ecd = false;
+	}
 	App->text->cdE->SetText(tmpE);
 
 	// -----------------------
@@ -143,9 +163,15 @@ bool SpellManager::Update(float dt)
 
 	p2SString tmpR;
 	if ((timeE + GetCd(R) - time->ReadSec()) > 0)
-		tmpR.create("R: %0.1f", timeE + GetCd(R) - time->ReadSec());
+	{
+		tmpR.create("%0.1f", timeE + GetCd(R) - time->ReadSec());
+		Rcd = true;
+	}
 	else
-		tmpR.create("R: 0", timeE + GetCd(R) - time->ReadSec());
+	{
+		tmpR.create(" 0", timeE + GetCd(R) - time->ReadSec());
+		Rcd = false;
+	}
 	App->text->cdR->SetText(tmpR);
 
 	// -----------------------

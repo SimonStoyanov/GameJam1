@@ -52,6 +52,8 @@ bool IntroScene::Start()
 
 bool IntroScene::Update(float dt)
 {
+	play_button->Draw();
+
 	if (play_button->MouseDown() && !play_clicked) {
 		play->current_anim = play->FindAnimation(Run);
 		play_clicked = true;

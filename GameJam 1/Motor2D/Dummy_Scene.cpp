@@ -95,10 +95,6 @@ bool Dummy::Update(float dt)
 		grounds[3]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 		grounds.del(grounds.start);
 	}
-
-	
-	
-
 	// ------------------ 
 	return true;
 }

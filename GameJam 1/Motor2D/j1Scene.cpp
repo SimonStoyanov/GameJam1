@@ -13,6 +13,8 @@
 #include "Scene.h"
 #include "Dummy_Scene.h"
 #include "IntroScene.h"
+#include "Player.h"
+#include "SpellManager.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -56,16 +58,16 @@ bool j1Scene::Start()
 	App->text->position->is_ui = true;
 
 	// cd
-	App->text->cdQ = new Text(350, 546, App->text->timeless_15, 1);
+	App->text->cdQ = new Text(320, 543, App->text->timeless_15, 1);
 	App->text->cdQ->is_ui = true;
 
-	App->text->cdW = new Text(390, 546, App->text->timeless_15, 1);
+	App->text->cdW = new Text(403, 543, App->text->timeless_15, 1);
 	App->text->cdW->is_ui = true;
 
-	App->text->cdE = new Text(435, 546, App->text->timeless_15, 1);
+	App->text->cdE = new Text(486, 543, App->text->timeless_15, 1);
 	App->text->cdE->is_ui = true;
 
-	App->text->cdR = new Text(475, 546, App->text->timeless_15, 1);
+	App->text->cdR = new Text(569, 543, App->text->timeless_15, 1);
 	App->text->cdR->is_ui = true;
 
 	return true;
@@ -126,10 +128,33 @@ bool j1Scene::PostUpdate()
 
 		App->text->fps->PrintText();
 		App->text->position->PrintText();
-		App->text->cdQ->PrintText();
+
 		App->text->cdW->PrintText();
 		App->text->cdE->PrintText();
 		App->text->cdR->PrintText();
+
+		// Spells UI
+		App->render->Blit(App->player->UI_texture, 270 - App->render->camera.x, 460 -App->render->camera.y, &App->player->UI_spells_rects[0]);
+		if(!App->spellmanager->Qcd)
+			App->render->Blit(App->player->UI_texture, 288 - App->render->camera.x, 466 - App->render->camera.y, &App->player->UI_spells_rects[1]);
+		else
+		App->text->cdQ->PrintText();
+
+		if (!App->spellmanager->Wcd)
+			App->render->Blit(App->player->UI_texture, 372 - App->render->camera.x, 466 - App->render->camera.y, &App->player->UI_spells_rects[2]);
+		else
+			App->text->cdW->PrintText();
+
+		if (!App->spellmanager->Ecd)
+			App->render->Blit(App->player->UI_texture, 456 - App->render->camera.x, 466 - App->render->camera.y, &App->player->UI_spells_rects[3]);
+		else
+			App->text->cdE->PrintText();
+
+		if (!App->spellmanager->Rcd)
+			App->render->Blit(App->player->UI_texture, 539 - App->render->camera.x, 466 - App->render->camera.y, &App->player->UI_spells_rects[4]);
+		else
+			App->text->cdR->PrintText();
+		// ---------
 	}
 
 

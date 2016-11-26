@@ -5,7 +5,12 @@
 #include "SDL\include\SDL.h"
 #include "p2Point.h"
 
+#include "j1App.h"
+#include "p2Point.h"
+
 class Prefab;
+struct SDL_Rect;
+struct SDL_Texture;
 class Player : public j1Module
 {
 public:
@@ -27,17 +32,23 @@ public:
 	void LoadTextures();
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
-	// Platforms
+	// Platforms ---
 	bool IsGoingUp();
 	bool IsGoingDown();
 	int DistanceToPlayer(PhysBody* obj);
 	bool isTouching(PhysBody* body1, PhysBody* body2);
+	// -------------
 
 
 private:
 
 public:
 	Prefab* player = nullptr;
+
+	// Player UI --
+	SDL_Texture* UI_texture;
+	p2List<SDL_Rect> UI_spells_rects;
+	// ------------
 
 private:
 	bool on_ground = false;
@@ -48,8 +59,10 @@ private:
 	int jump_force;
 	iPoint start_pos;
 
+	// Platforms --
 	int last_pos = 0;
 	PhysBody* curr_platform = nullptr;
+	// ------------
 
 	int current_animation = 0;
 	iPoint draw_offset;

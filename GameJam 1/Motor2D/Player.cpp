@@ -48,6 +48,7 @@ bool Player::Start()
 	draw_offset.x = config_node.child("draw_offset").attribute("x").as_int(0);
 	draw_offset.y = config_node.child("draw_offset").attribute("y").as_int(0);
 
+	// Spells
 	App->spellmanager->Q = fireball;
 	App->spellmanager->W = unknown;
 	App->spellmanager->E = unknown;
@@ -57,7 +58,16 @@ bool Player::Start()
 	player->LoadAnimations(config_node);
 	current_animation = player->FindAnimation(Run);
 
+	// Platforms
 	last_pos = player->GetPosition().y;
+
+	// UI
+	UI_texture = App->tex->Load("Spritesheets/UI_sheet.png");
+	UI_spells_rects.add({173, 0, 365, 119}); // bg
+	UI_spells_rects.add({ 191, 125, 77, 93 }); // Q
+	UI_spells_rects.add({ 274, 125, 77, 93 }); // W
+	UI_spells_rects.add({ 359, 125, 77, 93 }); // E
+	UI_spells_rects.add({ 443, 125, 77, 93 }); // R
 
 	return true;
 }
