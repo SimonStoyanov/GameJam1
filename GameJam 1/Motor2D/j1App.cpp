@@ -232,7 +232,8 @@ void j1App::FinishUpdate()
 	}
 
 	// Fps print -----------------------------
-	p2SString tmp; tmp.create("%.1f", avg_fps);
+	p2SString tmp; //tmp.create("%.1f", avg_fps);
+	tmp.create("camera_x: %d camera_y: %d", render->camera.x, render->camera.y);
 	App->text->fps->SetText(tmp);
 	// ---------------------------------------
 
@@ -244,8 +245,10 @@ void j1App::FinishUpdate()
 	int delta_x = xy.x - App->render->camera.x - x - 4;
 	int delta_y = xy.y - App->render->camera.y - y - 14;
 
-	p2SString tmp2; tmp2.create("delta_x: %d delta_y: %d", delta_x, delta_y);
-	App->text->position->SetText(tmp2);
+	//p2SString tmp2; tmp2.create("delta_x: %d delta_y: %d", delta_x, delta_y);
+//	App->text->position->SetText(tmp2);
+	p2SString tmp3; tmp3.create("boss_x: %d boos_y: %d", x, y);
+	App->text->position->SetText(tmp3);
 	// ---------------------------------------
 }
 

@@ -2,11 +2,13 @@
 #include "j1Scene.h"
 #include "j1App.h"
 #include "j1Render.h"
+#include "Player.h"
 #include "j1Input.h"
 #include <math.h>
 #include "SpellManager.h"
 #include "Dummy_Scene.h"
 #include "Boss.h"
+#include "ModuleEnemies.h"
 
 Fearball::Fearball(pugi::xml_node& config) : Spell(fearball, "fearball")
 {
@@ -31,8 +33,26 @@ void Fearball::Start()
 	prefab->CreateCollision(size.x, size.y, WORLD, PLAYER);
 	prefab->pbody->listener = App->spellmanager;
 	prefab->pbody->body->SetGravityScale(0);
-	if (prefab->pbody != nullptr)
-		prefab->pbody->body->SetLinearVelocity(b2Vec2(fearball_speed,0));
+	if (prefab->pbody != nullptr) {
+		iPoint vel;
+		int player_x, player_y;
+		App->player->player->pbody->GetPosition(player_x, player_y);
+		int boss_x, boss_y;
+		for (p2List_item<Boss*>* boss = App->enemies->enemies.start; boss != nullptr; boss = boss->next) {
+			if (boss->data->shoot) {
+				boss->data->prefab->pbody->GetPosition(boss_x, boss_y);
+				break;
+			}
+		}
+		float delta_x = -player_x + boss_x;
+		float delta_y = -player_y + boss_y;
+		float alpha = atan(delta_y / delta_x);
+
+		vel.x = fearball_speed*cos(alpha);
+		vel.y = fearball_speed*sin(alpha);
+
+		prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
+	}
 }
 
 bool Fearball::Update()
