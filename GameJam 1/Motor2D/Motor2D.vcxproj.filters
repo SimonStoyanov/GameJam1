@@ -82,6 +82,9 @@
     <ClCompile Include="j1App.cpp">
       <Filter>Development</Filter>
     </ClCompile>
+    <ClCompile Include="InsanityEye.cpp">
+      <Filter>Development\Game\Spells</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -197,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="j1Module.h">
       <Filter>Development</Filter>
+    </ClInclude>
+    <ClInclude Include="InsanityEye.h">
+      <Filter>Development\Game\Spells</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

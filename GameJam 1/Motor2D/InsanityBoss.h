@@ -42,7 +42,28 @@ public:
 			prefab->pbody->body->SetLinearVelocity(b2Vec2(0, 0));
 		}
 
+		if (time > shoot_time) {
+			if (shoot) {
+				if (prefab->animations[current_anim]->Finished()) {
+					Shoot();
+					prefab->animations[current_anim]->Reset();
+					shoot = false;
+					time = 0.0f;
+					current_anim = prefab->FindAnimation(AnimTypes::Idle);
+				}
+			}
+			else {
+				shoot = true;
+				current_anim = prefab->FindAnimation(AnimTypes::Shoot);
+			}
+		}
+
+		time += dt;
 		return true;
+	}
+
+	void Shoot() {
+		App->spellmanager->CreateSpell(insanity_eye);
 	}
 
 	void Draw() {
