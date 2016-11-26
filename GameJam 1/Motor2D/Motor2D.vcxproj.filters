@@ -25,12 +25,6 @@
     <ClCompile Include="j1Scene.cpp">
       <Filter>Development\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="FearBall.cpp">
-      <Filter>Development\Game\Spells</Filter>
-    </ClCompile>
-    <ClCompile Include="Fireball.cpp">
-      <Filter>Development\Game\Spells</Filter>
-    </ClCompile>
     <ClCompile Include="Spell.cpp">
       <Filter>Development\Game\Spells</Filter>
     </ClCompile>
@@ -82,8 +76,17 @@
     <ClCompile Include="j1App.cpp">
       <Filter>Development</Filter>
     </ClCompile>
+    <ClCompile Include="FearBall.cpp">
+      <Filter>Development\Game\Spells\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="InsanityEye.cpp">
-      <Filter>Development\Game\Spells</Filter>
+      <Filter>Development\Game\Spells\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Fireball.cpp">
+      <Filter>Development\Game\Spells\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpAttack.cpp">
+      <Filter>Development\Game\Spells\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,12 +131,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Development\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="FearBall.h">
-      <Filter>Development\Game\Spells</Filter>
-    </ClInclude>
-    <ClInclude Include="Fireball.h">
-      <Filter>Development\Game\Spells</Filter>
     </ClInclude>
     <ClInclude Include="Spell.h">
       <Filter>Development\Game\Spells</Filter>
@@ -201,8 +198,17 @@
     <ClInclude Include="j1Module.h">
       <Filter>Development</Filter>
     </ClInclude>
+    <ClInclude Include="FearBall.h">
+      <Filter>Development\Game\Spells\Enemy</Filter>
+    </ClInclude>
     <ClInclude Include="InsanityEye.h">
-      <Filter>Development\Game\Spells</Filter>
+      <Filter>Development\Game\Spells\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Fireball.h">
+      <Filter>Development\Game\Spells\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpAttack.h">
+      <Filter>Development\Game\Spells\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +258,12 @@
     </Filter>
     <Filter Include="Programing 2">
       <UniqueIdentifier>{7b436ff6-9d09-4d8f-b23f-33c6522addf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Development\Game\Spells\Enemy">
+      <UniqueIdentifier>{9e53d60b-d0fa-4586-a28c-fe31cd00a275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Development\Game\Spells\Player">
+      <UniqueIdentifier>{28557d32-fc1e-490b-b0bf-3c8aef329824}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,11 +1,12 @@
 #include "SpellManager.h"
 #include "j1App.h"
-#include "Fireball.h"
 #include "j1FileSystem.h"
-#include "ModuleEnemies.h"
 #include "j1Input.h"
 #include "j1Text.h"
 #include "j1Textures.h"
+#include "ModuleEnemies.h"
+#include "Fireball.h"
+#include "JumpAttack.h"
 #include "FearBall.h"
 #include "InsanityEye.h"
 
@@ -224,6 +225,11 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 	{
 	case fireball:
 		spell = new Fireball(spells_config.child("fireball"));
+		spell->SetDamage(1);
+		spell->Start();
+		break;
+	case jump_attack:
+		spell = new JumpAttack(spells_config.child("jump_attack"));
 		spell->SetDamage(1);
 		spell->Start();
 		break;
