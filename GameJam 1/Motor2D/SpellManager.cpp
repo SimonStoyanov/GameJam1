@@ -259,6 +259,9 @@ int SpellManager::GetCd(Spelltypes type)
 	case fireball:
 		return 1;
 		break;
+	case jump_attack:
+		return 2;
+		break;
 	case unknown:
 		return EMPTY;
 	default:
