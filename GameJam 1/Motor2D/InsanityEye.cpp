@@ -44,8 +44,10 @@ void InsanityEye::Start()
 				break;
 			}
 		}
-		float delta_x = -player_x + boss_x;
-		float delta_y = -player_y + boss_y;
+		float delta_x = -player_x + boss_x - 400;
+		float increment = 0;
+		if (player_y < 355) increment += 40;
+		float delta_y = -player_y + boss_y - increment;
 		float alpha = atan(delta_y / delta_x);
 
 		vel.x = insanity_speed*cos(alpha);

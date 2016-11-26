@@ -24,6 +24,7 @@ public:
 		if (current_anim == -1) current_anim = 0;
 		draw_offset.x = config.child("draw_offset").attribute("x").as_int(0);
 		draw_offset.y = config.child("draw_offset").attribute("y").as_int(0);
+		shoot_time = config.child("shoot").attribute("time").as_float(10000.0f);
 	}
 
 	void Start() {

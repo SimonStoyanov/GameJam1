@@ -34,6 +34,7 @@
     <collisionsize w="100" h="150"/>
     <draw_offset x="-45" y="-35"/>
     <movement value="150" speed="3"/>
+    <shoot time="2.5"/>
     <anim type="0" speed ="0.15f">
       <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
       <frame x="858" y="0" w="286" h="388"/>

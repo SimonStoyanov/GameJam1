@@ -32,16 +32,20 @@
     </anim>
   </fearball>
   <insanityeye>                    
-    <drawoffset x="-80" y="-25"/>   <!--Ivan: Change this when implemented!-->
-    <size w="30" h="30"/>           <!--Ivan: Change this when implemented!-->
-    <anim type="0" speed ="0.2f" loop = "false"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
+    <drawoffset x="-45" y="-40"/> 
+    <size w="32" h="32"/>
+    <anim type="0" speed ="0.2f" loop = "true"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
       <frame x="132" y="570" w="132" h="114"/>
       <frame x="129" y="680" w="132" h="114"/> <!--Ivan, note for Ivan: This frame is modified to fit the boss's animation!-->
       <frame x="268" y="2" w="132" h="114"/>   <!--Ivan, note for Ivan: This frame is modified to fit the boss's animation!-->
       <frame x="132" y="570" w="132" h="114"/>
       <frame x="268" y="2" w="132" h="114"/>
       <frame x="136" y="568" w="132" h="114"/> <!--Ivan, note for Ivan: This frame is modified to fit the boss's animation!-->
-      </anim>
+    </anim>
+    <anim type="5" speed ="0.15f" loop ="false">
+      <frame x="132" y="342" w="132" h="114"/>
+      <frame x="132" y="456" w="132" h="114"/>
+    </anim>
   </insanityeye>
   <dust>
     <drawoffset x="-80" y="-25"/> <!--Ivan: Change this when implemented!-->

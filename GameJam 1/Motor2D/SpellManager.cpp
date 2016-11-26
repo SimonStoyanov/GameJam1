@@ -7,6 +7,7 @@
 #include "j1Text.h"
 #include "j1Textures.h"
 #include "FearBall.h"
+#include "InsanityEye.h"
 
 #define EMPTY -1
 
@@ -228,6 +229,11 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		break;
 	case fearball:
 		spell = new Fearball(spells_config.child("fearball"));
+		spell->SetDamage(1);
+		spell->Start();
+		break;
+	case insanity_eye:
+		spell = new InsanityEye(spells_config.child("insanityeye"));
 		spell->SetDamage(1);
 		spell->Start();
 		break;
