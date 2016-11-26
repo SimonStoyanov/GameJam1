@@ -81,7 +81,8 @@ public:
 public:
 
 	p2SString	name;
-	bool		active;
+	bool		active = false;
+	bool		initialize = true;
 
 };
 

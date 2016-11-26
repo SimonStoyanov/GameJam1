@@ -88,6 +88,9 @@
     <ClCompile Include="JumpAttack.cpp">
       <Filter>Development\Game\Spells\Player</Filter>
     </ClCompile>
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>Development\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -209,6 +212,9 @@
     </ClInclude>
     <ClInclude Include="JumpAttack.h">
       <Filter>Development\Game\Spells\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroScene.h">
+      <Filter>Development\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

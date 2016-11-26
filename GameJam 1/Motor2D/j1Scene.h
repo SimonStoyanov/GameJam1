@@ -9,6 +9,7 @@ class Text;
 class Scene;
 
 class Dummy;
+class IntroScene;
 
 class j1Scene : public j1Module
 {
@@ -37,8 +38,11 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void ChangeScene(Scene* new_scene);
+
 public:
 	Dummy* dummy_scene = nullptr;
+	IntroScene* intro_scene = nullptr;
 
 private:
 	Scene* current_scene = nullptr;

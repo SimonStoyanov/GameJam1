@@ -8,6 +8,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Input.h"
+#include "j1Audio.h"
 #include "j1Window.h"
 #include "j1Text.h"
 #include "RandomGenerator.h"
@@ -74,6 +75,8 @@ bool Dummy::Start()
 
 	background = Sprite(0, 0, grounds[0]->sprite.texture, back_rect);
 	forward = Sprite(0, 0, background.texture, forward_rect);
+
+	App->audio->PlayMusic("audio/music/Music.ogg");
 
 	return true;
 }

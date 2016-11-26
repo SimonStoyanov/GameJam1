@@ -12,6 +12,7 @@
 #include "j1Scene.h"
 #include "Scene.h"
 #include "Dummy_Scene.h"
+#include "IntroScene.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -37,11 +38,13 @@ bool j1Scene::Awake(pugi::xml_node& node)
 bool j1Scene::Start()
 {
 	dummy_scene = new Dummy();
-	current_scene = dummy_scene;
+	intro_scene = new IntroScene();
+	current_scene = intro_scene;
 
 	if (current_scene != nullptr)
 	{
 		current_scene->Start();
+		current_scene->SetActive(true);
 	}
 
 	// fps
@@ -65,7 +68,6 @@ bool j1Scene::Start()
 	App->text->cdR = new Text(475, 546, App->text->timeless_15, 1);
 	App->text->cdR->is_ui = true;
 
-	App->audio->PlayMusic("audio/music/Music.ogg");
 	return true;
 }
 
@@ -78,6 +80,7 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	bool ret = true;
 	/*
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame("save_game.xml");
@@ -88,7 +91,7 @@ bool j1Scene::Update(float dt)
 
 	if (current_scene != nullptr)
 	{
-		current_scene->Update(dt);
+		ret = current_scene->Update(dt);
 		current_scene->Draw();
 	}
 
@@ -136,4 +139,13 @@ bool j1Scene::CleanUp()
 	LOG("Freeing scene");
 
 	return true;
+}
+
+void j1Scene::ChangeScene(Scene * new_scene)
+{
+	current_scene->CleanUp();
+	current_scene->SetActive(false);
+	current_scene = new_scene;
+	current_scene->Start();
+	current_scene->SetActive(true);
 }

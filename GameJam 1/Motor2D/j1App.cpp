@@ -42,6 +42,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 
 	scene = new j1Scene();
 
+	player->initialize = false;
+
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(fs);
@@ -80,7 +82,8 @@ j1App::~j1App()
 
 void j1App::AddModule(j1Module* module)
 {
-	module->Init();
+	if(module->initialize)
+		module->Init();
 	modules.add(module);
 }
 
@@ -135,7 +138,8 @@ bool j1App::Start()
 
 	while(item != NULL && ret == true)
 	{
-		ret = item->data->Start();
+		if(item->data->active)
+			ret = item->data->Start();
 		item = item->next;
 	}
 	startup_time.Start();
@@ -238,18 +242,18 @@ void j1App::FinishUpdate()
 	// ---------------------------------------
 
 	// Erase Later (position) ----------------
-	int x, y;
-	App->player->player->pbody->GetPosition(x, y);
-	iPoint xy;
-	App->input->GetMousePosition(xy.x, xy.y);
-	int delta_x = xy.x - App->render->camera.x - x - 4;
-	int delta_y = xy.y - App->render->camera.y - y - 14;
-
-	//p2SString tmp2; tmp2.create("delta_x: %d delta_y: %d", delta_x, delta_y);
-//	App->text->position->SetText(tmp2);
-	p2SString tmp3; tmp3.create("boss_x: %d boos_y: %d", x, y);
-	App->text->position->SetText(tmp3);
-	// ---------------------------------------
+//	int x, y;
+//	App->player->player->pbody->GetPosition(x, y);
+//	iPoint xy;
+//	App->input->GetMousePosition(xy.x, xy.y);
+//	int delta_x = xy.x - App->render->camera.x - x - 4;
+//	int delta_y = xy.y - App->render->camera.y - y - 14;
+//
+//	//p2SString tmp2; tmp2.create("delta_x: %d delta_y: %d", delta_x, delta_y);
+////	App->text->position->SetText(tmp2);
+//	p2SString tmp3; tmp3.create("boss_x: %d boos_y: %d", x, y);
+//	App->text->position->SetText(tmp3);
+	// ---------------------------------------º
 }
 
 // Call modules before each loop iteration

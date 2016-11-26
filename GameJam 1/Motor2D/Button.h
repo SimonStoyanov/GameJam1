@@ -16,7 +16,7 @@ public:
 	void Draw();
 
 public:
-	bool		draw;
+	bool		draw = true;
 
 private:
 	SDL_Rect	rect;
