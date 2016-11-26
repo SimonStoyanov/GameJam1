@@ -28,6 +28,7 @@ public:
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 	bool IsGoingUp();
+	int DistanceToPlayer(PhysBody* obj);
 
 private:
 

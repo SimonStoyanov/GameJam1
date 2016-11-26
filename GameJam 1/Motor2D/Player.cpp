@@ -135,10 +135,21 @@ bool Player::Update(float dt)
 			a.maskBits = WORLD;
 			player->pbody->body->GetFixtureList()->SetFilterData(a);
 
-			a.categoryBits = WORLD;
-			a.maskBits = PLAYER;
-			if (curr_platform != nullptr)
-				curr_platform->body->GetFixtureList()->SetFilterData(a);
+			if(abs(DistanceToPlayer(curr_platform)) > 200)
+			{
+				a.categoryBits = 324213;
+				a.maskBits = 4124;
+				if (curr_platform != nullptr)
+					curr_platform->body->GetFixtureList()->SetFilterData(a);
+			}
+			else
+			{
+
+				a.categoryBits = WORLD;
+				a.maskBits = PLAYER;
+				if (curr_platform != nullptr)
+					curr_platform->body->GetFixtureList()->SetFilterData(a);
+			}
 		}
 	}
 	
@@ -170,6 +181,21 @@ bool Player::IsGoingUp()
 	}
 	last_pos = player->GetPosition().y;
 	return ret;
+}
+
+int Player::DistanceToPlayer(PhysBody* obj)
+{
+	int x; int y;
+	obj->GetPosition(x, y);
+
+	int dX0 = App->player->player->GetPosition().x;
+	int dX1 = x;
+
+	int dY0 = App->player->player->GetPosition().y;
+	int dY1 = y;
+	int dis = sqrt((dX1 - dX0)*(dX1 - dX0) + (dY1 - dY0)*(dY1 - dY0));
+
+	return dis;
 }
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
