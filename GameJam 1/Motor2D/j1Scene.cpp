@@ -117,17 +117,20 @@ bool j1Scene::PostUpdate()
 	}
 
 	// Temporal UI
-	SDL_Rect rect; rect.x = 340; rect.y = 545; rect.w = 170; rect.h = 50;
-	App->render->DrawQuad(rect, 0, 0, 0, 150, true, false);
-	rect.x = 0, rect.y = 0; rect.w = 900; rect.h = 25;
-	App->render->DrawQuad(rect, 0, 0, 0, 150, true, false);
+	if (current_scene == dummy_scene)
+	{
+		SDL_Rect rect; rect.x = 340; rect.y = 545; rect.w = 170; rect.h = 50;
+		App->render->DrawQuad(rect, 0, 0, 0, 150, true, false);
+		rect.x = 0, rect.y = 0; rect.w = 900; rect.h = 25;
+		App->render->DrawQuad(rect, 0, 0, 0, 150, true, false);
 
-	App->text->fps->PrintText();
-	App->text->position->PrintText();
-	App->text->cdQ->PrintText();
-	App->text->cdW->PrintText();
-	App->text->cdE->PrintText();
-	App->text->cdR->PrintText();
+		App->text->fps->PrintText();
+		App->text->position->PrintText();
+		App->text->cdQ->PrintText();
+		App->text->cdW->PrintText();
+		App->text->cdE->PrintText();
+		App->text->cdR->PrintText();
+	}
 
 
 	return ret;
