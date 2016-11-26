@@ -31,4 +31,13 @@
       <frame x="132" y="456" w="132" h="114"/>
     </anim>
   </fearball>
+  <dust>
+    <drawoffset x="-80" y="-25"/> <!--Ivan: Change this when implemented!-->
+    <size w="30" h="30"/>         <!--Ivan: Change this when implemented!-->
+    <anim type="0" speed ="0.2f" loop = "false">  <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
+      <frame x="22" y="821" w="156" h="65"/>
+      <frame x="22" y="891" w="156" h="65"/>
+      <frame x="22" y="961" w="156" h="65"/>
+    </anim>
+  </dust>
 </config>
