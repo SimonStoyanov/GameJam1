@@ -102,24 +102,25 @@ void RandomGenerator::Blit(int x, int to_del)
 	for(int i = 0; i < to_blit.count(); i++)
 	{
 		int compensation = 0;
+		int plat_x = 0;
 		switch(to_blit[i].plat)
 		{
 		case 0:
-			compensation = 60; //60
+			compensation = 40; //60
 			break;
 		case 1:
-			compensation = 80; //80
+			compensation = 60; //80
 			break;
 		case 2:
-			compensation = 55; //55
+			compensation = 35; //55
 			break;
 		case 3:
-			//compensation = 100; //100
+			compensation = 50; //100
 			break;
 		}
 
 		if(to_blit[i].plat == 3)
-			App->render->Blit(texture, to_blit[i].prefab->GetPosition().x - 100, to_blit[i].prefab->GetPosition().y, &rects[to_blit[i].plat]);
+			App->render->Blit(texture, to_blit[i].prefab->GetPosition().x - 40, to_blit[i].prefab->GetPosition().y - compensation, &rects[to_blit[i].plat]);
 		else
 			App->render->Blit(texture, to_blit[i].prefab->GetPosition().x, to_blit[i].prefab->GetPosition().y - compensation, &rects[to_blit[i].plat]);
 
