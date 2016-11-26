@@ -137,14 +137,13 @@ bool Player::Update(float dt)
 
 			if(abs(DistanceToPlayer(curr_platform)) > 200)
 			{
-				a.categoryBits = 324213;
-				a.maskBits = 4124;
+				a.categoryBits = PLAYER;
+				a.maskBits = PLAYER;
 				if (curr_platform != nullptr)
 					curr_platform->body->GetFixtureList()->SetFilterData(a);
 			}
 			else
 			{
-
 				a.categoryBits = WORLD;
 				a.maskBits = PLAYER;
 				if (curr_platform != nullptr)

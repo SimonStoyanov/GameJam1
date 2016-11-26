@@ -64,13 +64,13 @@ void RandomGenerator::CheckRand(int x, int y, int to_del)
 			tmp->sprite.pos.x = pos.x;
 			tmp->sprite.pos.y = ground;
 
-			tmp->CreateStaticCollision(50, 150, WORLD, PLAYER);
+			tmp->CreateStaticCollision(50, 150, PLAYER, PLAYER);
 			tmp->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(ground)), 0);
 			tmp->pbody->type = wall;
 
 			b2Filter a;
 			a.categoryBits = PLAYER;
-			a.maskBits = WORLD;
+			a.maskBits = PLAYER;
 			tmp->pbody->body->GetFixtureList()->SetFilterData(a);
 
 			prefabAndPlat pap(tmp, plat_number);
@@ -160,7 +160,7 @@ PhysBody* RandomGenerator::GetClosestPlat()
 
 			int dis = sqrt((dX1 - dX0)*(dX1 - dX0) + (dY1 - dY0)*(dY1 - dY0));
 
-			if (cdistance > dis)
+			if (cdistance > dis && dis > 0)
 			{
 				cdistance = dis;
 				closest = i;
