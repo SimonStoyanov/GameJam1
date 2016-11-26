@@ -11,6 +11,7 @@
 #include "Dummy_Scene.h"
 #include "SpellManager.h"
 #include "RandomGenerator.h"
+#include "ModulePhysics.h"
 
 Player::Player() : j1Module()
 {
@@ -124,9 +125,12 @@ bool Player::Update(float dt)
 		}
 		else
 		{
-			a.categoryBits = PLAYER;
-			a.maskBits = WORLD;
-			player->pbody->body->GetFixtureList()->SetFilterData(a);
+			if (!isTouching(player->pbody, curr_platform))
+			{
+				a.categoryBits = PLAYER;
+				a.maskBits = WORLD;
+				player->pbody->body->GetFixtureList()->SetFilterData(a);
+			}
 		}
 
 		if (curr_platform->type == wall)
@@ -182,6 +186,18 @@ bool Player::IsGoingUp()
 	return ret;
 }
 
+bool Player::IsGoingDown()
+{
+	bool ret = false;
+
+	if (player->GetPosition().y > last_pos)
+	{
+		ret = true;
+	}
+	last_pos = player->GetPosition().y;
+	return ret;
+}
+
 int Player::DistanceToPlayer(PhysBody* obj)
 {
 	int x; int y;
@@ -195,6 +211,15 @@ int Player::DistanceToPlayer(PhysBody* obj)
 	int dis = sqrt((dX1 - dX0)*(dX1 - dX0) + (dY1 - dY0)*(dY1 - dY0));
 
 	return dis;
+}
+
+bool Player::isTouching(PhysBody * body1, PhysBody * body2)
+{
+	b2Body* b1 = body1->body;
+	b2Body* b2 = body2->body;
+
+	bool overlap = b2TestOverlap(b1->GetFixtureList()->GetShape(), 1, b2->GetFixtureList()->GetShape(), 1,  b1->GetTransform(), b2->GetTransform());
+	return overlap;
 }
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)

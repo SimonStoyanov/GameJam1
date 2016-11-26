@@ -27,8 +27,12 @@ public:
 	void LoadTextures();
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
+	// Platforms
 	bool IsGoingUp();
+	bool IsGoingDown();
 	int DistanceToPlayer(PhysBody* obj);
+	bool isTouching(PhysBody* body1, PhysBody* body2);
+
 
 private:
 
