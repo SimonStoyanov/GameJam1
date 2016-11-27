@@ -1,15 +1,15 @@
-#ifndef _SHAPEBALL_
-#define _SHAPEBALL_
+#ifndef _HAIRBALL_
+#define _HAIRBALL_
 
 #include "Spell.h"
 
-class Shapeball : public Spell {
+class Hairball : public Spell {
 private:
 	float fearball_speed = -5;
 	iPoint draw_offset;
 public:
-	Shapeball(pugi::xml_node& config);
-	~Shapeball();
+	Hairball(pugi::xml_node& config);
+	~Hairball();
 
 	void Start();
 	bool Update();
@@ -17,5 +17,4 @@ public:
 };
 
 #endif // !Shapeball_
-
 

@@ -272,7 +272,7 @@ void Player::ChangeShape(Shape newshape)
 		App->spellmanager->R = unknown;
 		break;
 	case Cat:
-		App->spellmanager->Q = unknown;
+		App->spellmanager->Q = hairball;
 		App->spellmanager->W = unknown;
 		App->spellmanager->E = Spelltypes::ghost;
 		App->spellmanager->R = unknown;

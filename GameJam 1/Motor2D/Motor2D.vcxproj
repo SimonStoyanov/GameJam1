@@ -79,6 +79,7 @@
     <ClCompile Include="Dummy_Scene.cpp" />
     <ClCompile Include="FearBall.cpp" />
     <ClCompile Include="Fireball.cpp" />
+    <ClCompile Include="Hairball.cpp" />
     <ClCompile Include="InsanityEye.cpp" />
     <ClCompile Include="IntroScene.cpp" />
     <ClCompile Include="JumpAttack.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="FearBall.h" />
     <ClInclude Include="FearBoss.h" />
     <ClInclude Include="Fireball.h" />
+    <ClInclude Include="Hairball.h" />
     <ClInclude Include="InsanityBoss.h" />
     <ClInclude Include="InsanityEye.h" />
     <ClInclude Include="IntroScene.h" />

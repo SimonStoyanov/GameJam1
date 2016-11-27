@@ -13,6 +13,7 @@
 #include "j1Render.h"
 #include "Player.h"
 #include "ShapeBall.h"
+#include "Hairball.h"
 
 #define EMPTY -1
 
@@ -211,7 +212,7 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) {
 			for (p2List_item<Boss*>* boss_item = App->enemies->enemies.start; boss_item != nullptr; boss_item = boss_item->next) {
 				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) {
-					boss_item->data->curr_hp -= 1;
+					boss_item->data->curr_hp -= GetSpell(bodyA)->GetDamage();
 				}
 			}
 			if (GetSpell(bodyA)->type != shield)
@@ -311,6 +312,11 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		App->player->Ghost();
 		App->player->ghost_timer.Start();
 		break;
+	case hairball:
+		spell = new Hairball(spells_config.child("hairball"));
+		spell->SetDamage(2);
+		spell->Start();
+		break;
 	default:
 		break;
 	}
@@ -336,6 +342,8 @@ int SpellManager::GetCd(Spelltypes type)
 	case ghost:
 		return 12;
 		break;
+	case hairball:
+		return 2;
 	case unknown:
 		return EMPTY;
 	default:

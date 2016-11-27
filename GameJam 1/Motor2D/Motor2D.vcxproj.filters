@@ -103,6 +103,9 @@
     <ClCompile Include="ShapeBall.cpp">
       <Filter>Development\Game\Spells</Filter>
     </ClCompile>
+    <ClCompile Include="Hairball.cpp">
+      <Filter>Development\Game\Spells\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -239,6 +242,9 @@
     </ClInclude>
     <ClInclude Include="ShapeBall.h">
       <Filter>Development\Game\Spells</Filter>
+    </ClInclude>
+    <ClInclude Include="Hairball.h">
+      <Filter>Development\Game\Spells\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

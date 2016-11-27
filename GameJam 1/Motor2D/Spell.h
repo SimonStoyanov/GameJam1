@@ -14,6 +14,7 @@ enum Spelltypes {
 	insanity_eye,
 	shapeball,
 	ghost,
+	hairball,
 	unknown
 };
 
