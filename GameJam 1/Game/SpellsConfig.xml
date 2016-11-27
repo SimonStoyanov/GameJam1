@@ -105,15 +105,15 @@
     <drawoffset x="-80" y="-25"/>
     <size w="30" h="30"/>
     <anim type="0" speed ="0.2f">
-      <frame x="0" y="0" w="132" h="114"/>
-      <frame x="0" y="114" w="132" h="114"/>
-      <frame x="0" y="228" w="132" h="114"/>
-      <frame x="0" y="342" w="132" h="114"/>
+      <frame x="813" y="0" w="132" h="114"/>
+      <frame x="813" y="114" w="132" h="114"/>
+      <frame x="813" y="228" w="132" h="114"/>
+      <frame x="813" y="342" w="132" h="114"/>
     </anim>
     <anim type="5" speed ="0.2f" loop ="false">
-      <frame x="0" y="456" w="132" h="114"/>
-      <frame x="0" y="600" w="132" h="114"/>
-      <frame x="0" y="714" w="132" h="114"/>
+      <frame x="813" y="456" w="132" h="114"/>
+      <frame x="813" y="600" w="132" h="114"/>
+      <frame x="813" y="714" w="132" h="114"/>
     </anim>
   </hairball>
 
