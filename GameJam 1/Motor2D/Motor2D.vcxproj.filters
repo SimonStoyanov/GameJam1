@@ -251,7 +251,7 @@
     <Xml Include="..\Game\WinScene.xml">
       <Filter>Development\Scenes\Win</Filter>
     </Xml>
-    <Xml Include="LoseScene.xml">
+    <Xml Include="..\Game\LoseScene.xml">
       <Filter>Development\Scenes\Lose</Filter>
     </Xml>
   </ItemGroup>

@@ -13,6 +13,7 @@
 #include "Scene.h"
 #include "Dummy_Scene.h"
 #include "IntroScene.h"
+#include "LoseScene.h"
 #include "Player.h"
 #include "SpellManager.h"
 #include "WinScene.h"
@@ -43,6 +44,7 @@ bool j1Scene::Start()
 	dummy_scene = new Dummy();
 	intro_scene = new IntroScene();
 	win_scene = new WinScene();
+	lose_scene = new LoseScene();
 	current_scene = intro_scene;
 
 	if (current_scene != nullptr)

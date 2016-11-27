@@ -14,6 +14,7 @@
 #include "RandomGenerator.h"
 #include "ModuleEnemies.h"
 #include "FearBoss.h"
+#include "LoseScene.h"
 
 Dummy::Dummy() : Scene()
 {
@@ -109,6 +110,10 @@ bool Dummy::PostUpdate()
 		forward_count++;
 	}
 
+	if (App->player->curr_hp <= 0) {
+		App->scene->ChangeScene(App->scene->lose_scene);
+	}
+
 	return true;
 }
 
@@ -143,6 +148,7 @@ bool Dummy::CleanUp()
 		App->physics->DeleteObject(item->data->pbody);
 		RELEASE(item->data);
 	}
+	grounds.clear();
 	App->enemies->Delete(test_boss);
 	App->audio->StopMusic();
 	App->spellmanager->CleanUp();

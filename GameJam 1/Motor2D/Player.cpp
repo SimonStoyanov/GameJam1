@@ -69,6 +69,8 @@ bool Player::Start()
 	UI_spells_rects.add({ 138, 104, 62, 76 }); // E
 	UI_spells_rects.add({ 202, 104, 62, 76 }); // R
 
+	curr_hp = 3;
+
 	return true;
 }
 

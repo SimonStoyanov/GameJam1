@@ -23,7 +23,7 @@ bool LoseScene::Start()
 	pugi::xml_document Winconfig_doc;
 	pugi::xml_node config_node;
 	char* buf;
-	int size = App->fs->Load("IntroScene.xml", &buf);
+	int size = App->fs->Load("LoseScene.xml", &buf);
 	Winconfig_doc.load_buffer(buf, size);
 	RELEASE(buf);
 	config_node = Winconfig_doc.child("config");
@@ -47,6 +47,10 @@ bool LoseScene::Start()
 	next->current_anim = next->FindAnimation(Idle);
 
 	next_button = new Button(position.x, position.y, position.w, position.h);
+	
+	App->render->camera.x = 0;
+	// Restart rounds
+	App->scene->dummy_scene->round = 1;
 
 	return true;
 }
@@ -59,11 +63,9 @@ bool LoseScene::Update(float dt)
 	}
 
 	if (next_clicked) {
-		if (next->animations[next->current_anim]->Finished()) {
+		if (true) {
 			next_clicked = false;
-			App->player->Start();
-			App->player->active = true;
-			App->scene->ChangeScene(App->scene->dummy_scene);
+			App->scene->ChangeScene(App->scene->intro_scene);
 		}
 	}
 	return true;

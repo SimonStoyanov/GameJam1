@@ -162,10 +162,10 @@
     </Xml>
     <Xml Include="..\Game\IntroScene.xml" />
     <Xml Include="..\Game\LevelScene.xml" />
+    <Xml Include="..\Game\LoseScene.xml" />
     <Xml Include="..\Game\PlayerConfig.xml" />
     <Xml Include="..\Game\SpellsConfig.xml" />
     <Xml Include="..\Game\WinScene.xml" />
-    <Xml Include="LoseScene.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
