@@ -27,6 +27,23 @@ Hairball::Hairball(pugi::xml_node & config) : Spell(hairball, "hairball")
 	size.y = config.child("size").attribute("h").as_int(10);
 }
 
+Hairball::Hairball(pugi::xml_node & config, int off_x, int off_y)
+{
+	PhysBody* player_body = App->player->player->pbody;
+	int x, y;
+	player_body->GetPosition(x, y);
+
+	prefab = new Prefab(x + player_body->width + off_x, y + player_body->height + off_y, "", NULLRECT);
+
+	prefab->LoadAnimations(config);
+	curr_anim = prefab->FindAnimation(Idle);
+
+	draw_offset.x = config.child("drawoffset").attribute("x").as_int(0);
+	draw_offset.y = config.child("drawoffset").attribute("y").as_int(0);
+	size.x = config.child("size").attribute("w").as_int(10);
+	size.y = config.child("size").attribute("h").as_int(10);
+}
+
 Hairball::~Hairball()
 {
 }

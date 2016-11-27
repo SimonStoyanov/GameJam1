@@ -9,6 +9,7 @@ private:
 	iPoint draw_offset;
 public:
 	Hairball(pugi::xml_node& config);
+	Hairball(pugi::xml_node& config, int off_x, int off_y);
 	~Hairball();
 
 	void Start();

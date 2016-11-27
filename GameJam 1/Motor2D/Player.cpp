@@ -98,11 +98,33 @@ bool Player::Update(float dt)
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) 
 	{
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -jump_force), false);
-		current_animation = player->FindAnimation(Jump);
+		switch (shape)
+		{
+		case Human:
+				current_animation = player->FindAnimation(Jump);
+			break;
+		case Cat:
+				current_animation = cat_anims->FindAnimation(Jump);
+			break;
+		default:
+			break;
+		}
 		on_ground = false;
 	}
 	else if (on_ground){
-		current_animation = player->FindAnimation(Run);
+		switch (shape)
+		{
+		case Human:
+			if (!shooting)
+				current_animation = player->FindAnimation(Run);
+			break;
+		case Cat:
+			if (!shooting)
+				current_animation = cat_anims->FindAnimation(Run);
+			break;
+		default:
+			break;
+		}
 	}
 	//-------------
 
@@ -111,11 +133,26 @@ bool Player::Update(float dt)
 
 	//stop shoot anim
 	if (shooting) {
-		if (player->animations[current_animation]->Finished()) {
-			player->animations[current_animation]->Reset();
-			current_animation = player->FindAnimation(Run);
-			shooting = false;
+		switch (shape)
+		{
+		case Human:
+			if (player->animations[current_animation]->Finished()) {
+				player->animations[current_animation]->Reset();
+				current_animation = player->FindAnimation(Run);
+				shooting = false;
+			}
+			break;
+		case Cat:
+			if (cat_anims->animations[current_animation]->Finished()) {
+				cat_anims->animations[current_animation]->Reset();
+				current_animation = player->FindAnimation(Run);
+				shooting = false;
+			}
+			break;
+		default:
+			break;
 		}
+		
 	}
 
 	//Draw
@@ -293,7 +330,7 @@ void Player::ChangeShape(Shape newshape)
 		App->spellmanager->Q = hairball;
 		App->spellmanager->W = shield;
 		App->spellmanager->E = doublejump;
-		App->spellmanager->R = unknown;
+		App->spellmanager->R = hairbarrage;
 		break;
 	default:
 		break;

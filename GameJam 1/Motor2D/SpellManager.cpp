@@ -357,6 +357,20 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 	case doublejump:
 		App->player->player->pbody->body->ApplyForceToCenter(b2Vec2(0, -App->player->jump_force), true);
 		break;
+	case hairbarrage: {
+		spell = new Hairball(spells_config.child("hairball"));
+		spell->SetDamage(2);
+		spell->Start();
+		Spell* spell1 = new Hairball(spells_config.child("hairball"), 0, 50);
+		spell1->SetDamage(2);
+		spell1->Start();
+		spells.add(spell1);
+		Spell* spell2 = new Hairball(spells_config.child("hairball"), 0, -50);
+		spell2->SetDamage(2);
+		spell2->Start(); 
+		spells.add(spell2);
+	}
+		break;
 	default:
 		break;
 	}
@@ -388,6 +402,8 @@ int SpellManager::GetCd(Spelltypes type)
 		return 1;
 	case doublejump:
 		return 1;
+	case hairbarrage:
+		return 20;
 	case unknown:
 		return EMPTY;
 	default:

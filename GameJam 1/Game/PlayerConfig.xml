@@ -13,7 +13,7 @@
       <frame x="1188" y="0" w="198" h="183"/>
       <frame x="1386" y="0" w="198" h="183"/>
     </anim>
-    <anim type="2" speed="0.1" loop="false">
+    <anim type="2" speed="0.2" loop="false">
       <frame x="198" y="183" w="198" h="183"/>
       <frame x="396" y="183" w="198" h="183"/>
     </anim>

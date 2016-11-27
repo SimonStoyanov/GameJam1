@@ -33,7 +33,7 @@ bool ModuleEnemies::Update(float dt)
 {
 	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
 		enemy->data->Update(dt);
-		if (enemy->data->curr_hp == 0) {
+		if (enemy->data->curr_hp <= 0) {
 			switch (enemy->data->type)
 			{
 			case fear:
