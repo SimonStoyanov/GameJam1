@@ -16,6 +16,7 @@ enum Spelltypes {
 	shapeball,
 	ghost,
 	hairball,
+	doublejump,
 	unknown
 };
 

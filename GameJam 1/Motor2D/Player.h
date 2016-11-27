@@ -51,6 +51,9 @@ public:
 	void Ghost();
 	void UnGhost();
 
+	//Shoot anim
+	void Shoot();
+
 
 private:
 
@@ -68,7 +71,7 @@ public:
 	j1Timer ghost_timer;
 	bool ghost;
 	//----------
-
+	int jump_force;
 
 private:
 	bool on_ground = false;
@@ -76,7 +79,6 @@ private:
 	SDL_Rect Sprite_rect;
 	p2SString texture_path;
 
-	int jump_force;
 	iPoint start_pos;
 
 	// Platforms --
@@ -86,6 +88,7 @@ private:
 
 	int current_animation = 0;
 	iPoint draw_offset;
+	bool shooting;
 
 	Prefab* cat_anims;
 

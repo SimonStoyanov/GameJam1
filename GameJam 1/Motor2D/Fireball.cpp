@@ -58,6 +58,7 @@ void Fireball::Start()
 	prefab->pbody->body->SetGravityScale(0);
 	if (prefab->pbody != nullptr)
 		prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
+	prefab->pbody->body->SetTransform(prefab->pbody->body->GetPosition(), alpha);
 }
 
 bool Fireball::Update()

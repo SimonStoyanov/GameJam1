@@ -81,6 +81,7 @@ bool Player::Start()
 
 bool Player::Update(float dt)
 {
+	//Player Update Position
 	if ((player->GetPosition().x + App->render->camera.x) < start_pos.x - 5) {
 		player->pbody->body->SetTransform(b2Vec2(player->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(100 * dt)), player->pbody->body->GetPosition().y), 0);
 	}
@@ -102,9 +103,19 @@ bool Player::Update(float dt)
 	else if (on_ground){
 		current_animation = player->FindAnimation(Run);
 	}
+	//-------------
 
 	if (!player->pbody->body->IsAwake())
 		player->pbody->body->SetAwake(true);
+
+	//stop shoot anim
+	if (shooting) {
+		if (player->animations[current_animation]->Finished()) {
+			player->animations[current_animation]->Reset();
+			current_animation = player->FindAnimation(Run);
+			shooting = false;
+		}
+	}
 
 	//Draw
 	switch (shape)
@@ -118,7 +129,7 @@ bool Player::Update(float dt)
 	default:
 		break;
 	}
-	
+
 	//Return tu human shape
 	if (shape != Human && shape_time.ReadSec() > 10)
 		ChangeShape(Human);
@@ -270,12 +281,13 @@ void Player::ChangeShape(Shape newshape)
 		App->spellmanager->Q = fireball;
 		App->spellmanager->W = shield;
 		App->spellmanager->E = Spelltypes::ghost;
-		App->spellmanager->R = unknown;
+		App->spellmanager->R = firebarrage;
+		player->pbody->body->SetGravityScale(1);
 		break;
 	case Cat:
 		App->spellmanager->Q = hairball;
-		App->spellmanager->W = unknown;
-		App->spellmanager->E = Spelltypes::ghost;
+		App->spellmanager->W = shield;
+		App->spellmanager->E = doublejump;
 		App->spellmanager->R = unknown;
 		break;
 	default:
@@ -303,6 +315,24 @@ void Player::UnGhost()
 	player->pbody->body->GetFixtureList()->SetFilterData(a);
 	ghost = false;
 	player->pbody->body->SetGravityScale(1);
+}
+
+void Player::Shoot()
+{
+	switch (shape)
+	{
+	case Human:
+		current_animation = player->FindAnimation(AnimTypes::Shoot);
+		player->animations[current_animation]->Reset();
+		break;
+	case Cat:
+		current_animation = cat_anims->FindAnimation(AnimTypes::Shoot);
+		cat_anims->animations[current_animation]->Reset();
+		break;
+	default:
+		break;
+	}
+	shooting = true;
 }
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
