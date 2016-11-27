@@ -15,6 +15,7 @@
 #include "Firebarrage.h"
 #include "ModulePhysics.h"
 #include "ShapeBall.h"
+#include "Hairball.h"
 
 #define EMPTY -1
 
@@ -207,7 +208,7 @@ bool SpellManager::CleanUp()
 
 void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 {
-	if (IsSpell(bodyA))
+	if (IsSpell(bodyA) )
 	{
 		if (IsSpell(bodyB) && GetSpell(bodyA)->type != shapeball) 
 		{
@@ -219,7 +220,8 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 			{
 				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) 
 				{
-					boss_item->data->curr_hp -= 1;
+					boss_item->data->curr_hp -= GetSpell(bodyA)->GetDamage();
+
 				}
 			}
 			if (GetSpell(bodyA)->type != shield)
@@ -227,10 +229,17 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 		}
 		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER)
 		{
-			if (GetSpell(bodyA)->type == shapeball)
+			if (GetSpell(bodyA)->type == shapeball && !IsSpell(bodyB))
 				App->player->ChangeShape(Cat);
 			else if (!IsSpell(bodyB))
 				App->player->curr_hp -= 1;
+			if(!IsSpell(bodyB))
+				DeleteSpell(bodyA);
+		}
+	}
+	else if(GetSpell(bodyA)->type == shapeball){
+		if (bodyB == App->player->player->pbody) {
+			App->player->ChangeShape(Cat);
 			DeleteSpell(bodyA);
 		}
 	}
@@ -332,6 +341,11 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		App->player->Ghost();
 		App->player->ghost_timer.Start();
 		break;
+	case hairball:
+		spell = new Hairball(spells_config.child("hairball"));
+		spell->SetDamage(2);
+		spell->Start();
+		break;
 	default:
 		break;
 	}
@@ -355,10 +369,12 @@ int SpellManager::GetCd(Spelltypes type)
 		return 2;
 		break;
 	case firebarrage:
-		return 0;
+		return 20;
 	case ghost:
 		return 12;
 		break;
+	case hairball:
+		return 2;
 	case unknown:
 		return EMPTY;
 	default:
