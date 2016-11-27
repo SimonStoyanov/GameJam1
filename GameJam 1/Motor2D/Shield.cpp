@@ -36,6 +36,7 @@ void Shield::Start()
 
 bool Shield::Update()
 {
+	prefab->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(App->player->player->GetPosition().x + 1), PIXEL_TO_METERS(App->player->player->GetPosition().y + 1.60)), 0);
 	if (collided) {
 		if (prefab->animations[curr_anim]->Finished()) {
 			to_delete = true;
@@ -46,5 +47,5 @@ bool Shield::Update()
 
 void Shield::Draw()
 {
-	App->render->Blit(App->spellmanager->GetAtlas(), prefab->GetPosition().x + draw_offset.x + App->render->camera.x, prefab->GetPosition().y + draw_offset.y, &prefab->animations[curr_anim]->GetCurrentFrameRect());
+	App->render->Blit(App->spellmanager->GetAtlas(), prefab->GetPosition().x + draw_offset.x, prefab->GetPosition().y + draw_offset.y, &prefab->animations[curr_anim]->GetCurrentFrameRect());
 }
