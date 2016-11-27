@@ -45,10 +45,9 @@ bool Dummy::Start()
 	farback_speed = levelconfig.child("parallax").child("farbackground").attribute("speed").as_float(1);
 	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
 
-	test_boss = App->enemies->CreateEnemy(insanity);
+	test_boss = App->enemies->CreateEnemy(fear);
 	test_boss->prefab->pbody->listener = App->enemies;
-	App->text->boss_hp = new Text(10, 10, App->text->timeless_25, 1, 200U, 200U, 255U);
-
+	
 	// Grounds
 	int posx, posy;
 	grounds.add(new Prefab(ground_rect.w / 2, App->win->height - ground_rect.h / 4, parallax_spritesheet.GetString(), ground_rect));
@@ -109,11 +108,7 @@ bool Dummy::PostUpdate()
 		forward_min += forward.rect.w;
 		forward_count++;
 	}
-	App->text->boss_hp->SetPosition(test_boss->prefab->GetPosition().x + 20, test_boss->prefab->GetPosition().y - 60);
-	App->render->DrawQuad({ test_boss->prefab->GetPosition().x + 18,test_boss->prefab->GetPosition().y - 62, 60,34 }, 0, 0, 0, 150, true, true);
-	p2SString bosshp("%d/%d", test_boss->curr_hp, test_boss->max_hp);
-	App->text->boss_hp->SetText(bosshp.GetString());
-	App->text->boss_hp->PrintText();
+
 	return true;
 }
 

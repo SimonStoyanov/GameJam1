@@ -27,6 +27,7 @@ public:
 	virtual void Shoot(){}
 
 public:
+	SDL_Texture* UI_texture;
 	Prefab* prefab;
 	EnemiesTypes type;
 	int max_hp;
