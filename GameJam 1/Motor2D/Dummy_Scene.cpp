@@ -15,6 +15,10 @@
 #include "ModuleEnemies.h"
 #include "FearBoss.h"
 #include "LoseScene.h"
+#include <stdlib.h>
+#include <time.h>
+
+#define NUM_BOSSES 2
 
 Dummy::Dummy() : Scene()
 {
@@ -46,7 +50,24 @@ bool Dummy::Start()
 	farback_speed = levelconfig.child("parallax").child("farbackground").attribute("speed").as_float(1);
 	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
 
-	test_boss = App->enemies->CreateEnemy(insanity);
+	//random boss
+
+	srand(time(NULL));
+	int rand_boss = rand() % NUM_BOSSES;
+
+	switch (rand_boss)
+	{
+	case 0:
+		test_boss = App->enemies->CreateEnemy(insanity);
+		break;
+	case 1:
+		test_boss = App->enemies->CreateEnemy(fear);
+		break;
+	default:
+		test_boss = App->enemies->CreateEnemy(insanity);
+		break;
+	}
+
 	test_boss->prefab->pbody->listener = App->enemies;
 	
 	// Grounds
