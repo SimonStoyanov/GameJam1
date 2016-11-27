@@ -46,7 +46,7 @@ bool Dummy::Start()
 	farback_speed = levelconfig.child("parallax").child("farbackground").attribute("speed").as_float(1);
 	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
 
-	test_boss = App->enemies->CreateEnemy(fear);
+	test_boss = App->enemies->CreateEnemy(insanity);
 	test_boss->prefab->pbody->listener = App->enemies;
 	
 	// Grounds

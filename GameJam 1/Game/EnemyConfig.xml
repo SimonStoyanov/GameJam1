@@ -31,7 +31,7 @@
   </fear>
   <insanity>
     <spritesheet path="Spritesheets/boss_sheet.png"/>
-    <collisionsize w="100" h="150"/>
+    <collisionsize w="150" h="250"/>
     <draw_offset x="-45" y="-35"/>
     <movement value="150" speed="3"/>
     <shoot time="2.5"/>

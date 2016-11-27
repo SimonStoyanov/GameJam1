@@ -237,6 +237,10 @@ void SpellManager::DeleteSpell(PhysBody * body)
 		if (spell_item->data->prefab->pbody == body) {
 			spell_item->data->collided = true;
 			spell_item->data->curr_anim = spell_item->data->prefab->FindAnimation(Explode);
+			b2Filter a;
+			a.categoryBits = WORLD;
+			a.maskBits = BOSS;
+			spell_item->data->prefab->pbody->body->GetFixtureList()->SetFilterData(a);
 			break;
 		}
 		spell_item = spell_item->next;
