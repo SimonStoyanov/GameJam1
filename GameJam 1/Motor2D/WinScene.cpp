@@ -23,7 +23,7 @@ bool WinScene::Start()
 	pugi::xml_document Winconfig_doc;
 	pugi::xml_node config_node;
 	char* buf;
-	int size = App->fs->Load("IntroScene.xml", &buf);
+	int size = App->fs->Load("WinScene.xml", &buf);
 	Winconfig_doc.load_buffer(buf, size);
 	RELEASE(buf);
 	config_node = Winconfig_doc.child("config");
@@ -31,10 +31,10 @@ bool WinScene::Start()
 	pugi::xml_node buttons_node = config_node.child("buttons");
 
 	SDL_Rect position;
-	position.x = 10;//buttons_node.child("next").child("position").attribute("x").as_int(0);
-	position.y = 10;//buttons_node.child("next").child("position").attribute("y").as_int(0);
-	position.w = 10;//buttons_node.child("next").child("position").attribute("w").as_int(0);
-	position.h = 10;// buttons_node.child("next").child("position").attribute("h").as_int(0);
+	position.x = buttons_node.child("next").child("position").attribute("x").as_int(0);
+	position.y = buttons_node.child("next").child("position").attribute("y").as_int(0);
+	position.w = buttons_node.child("next").child("position").attribute("w").as_int(0);
+	position.h = buttons_node.child("next").child("position").attribute("h").as_int(0);
 
 	p2SString ui_path(buttons_node.child("image").attribute("path").as_string(nullptr));
 	UI_tex = App->tex->Load(ui_path.GetString());

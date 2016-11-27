@@ -138,7 +138,7 @@ void Dummy::Draw()
 
 bool Dummy::CleanUp()
 {
-	for (p2List_item<Prefab*>* item = grounds.start; item->next != nullptr; item = item->next)
+	for (p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
 	{
 		App->physics->DeleteObject(item->data->pbody);
 		RELEASE(item->data);
