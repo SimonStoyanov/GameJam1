@@ -48,6 +48,17 @@ bool WinScene::Start()
 
 	next_button = new Button(position.x, position.y, position.w, position.h);
 
+	position.x = buttons_node.child("exit").child("position").attribute("x").as_int(0);
+	position.y = buttons_node.child("exit").child("position").attribute("y").as_int(0);
+	position.w = buttons_node.child("exit").child("position").attribute("w").as_int(10);
+	position.h = buttons_node.child("exit").child("position").attribute("h").as_int(10);
+
+	exit = new Prefab(position.x, position.y, UI_tex, NULLRECT);
+	exit->LoadAnimations(buttons_node.child("exit"));
+	exit->current_anim = next->FindAnimation(Idle);
+
+	exit_button = new Button(position.x, position.y, position.w, position.h);
+
 	return true;
 }
 
@@ -59,13 +70,26 @@ bool WinScene::Update(float dt)
 	}
 
 	if (next_clicked) {
-		if (next->animations[next->current_anim]->Finished()) {
+		//if (next->animations[next->current_anim]->Finished()) {
 			next_clicked = false;
 			App->player->Start();
 			App->player->active = true;
 			App->scene->ChangeScene(App->scene->dummy_scene);
-		}
+		//}
 	}
+
+	if (exit_button->MouseDown() && !exit_clicked) {
+		exit->current_anim = exit->FindAnimation(Run);
+		exit_clicked = true;
+	}
+
+	if (exit_clicked) {
+		//if (exit->animations[exit->current_anim]->Finished()) {
+			exit_clicked = false;
+			App->scene->ChangeScene(App->scene->intro_scene);
+		//}
+	}
+
 	return true;
 }
 
@@ -77,6 +101,11 @@ bool WinScene::PostUpdate()
 void WinScene::Draw()
 {
 	next_button->Draw();
+	exit_button->Draw();
+	if (Background_tex != nullptr)			//ALWAYS FIRST
+		App->render->Blit(Background_tex, 0, 0);
+
+	App->render->Blit(next->sprite.texture, next->sprite.pos.x, next->sprite.pos.y, &next->animations[next->current_anim]->GetCurrentFrameRect());
 }
 
 bool WinScene::CleanUp()

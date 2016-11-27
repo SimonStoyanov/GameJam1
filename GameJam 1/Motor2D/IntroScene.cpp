@@ -59,6 +59,7 @@ bool IntroScene::Update(float dt)
 
 	if (play_clicked) {
 		if (play->animations[play->current_anim]->Finished()) {
+			play->animations[play->current_anim]->Reset();
 			play_clicked = false;
 			App->player->Start();
 			App->player->active = true;

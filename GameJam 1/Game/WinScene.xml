@@ -2,16 +2,14 @@
 
 <config>
   <background>
-    <image path="Spritesheets/introscene.png"/>
-    <!--Make the image the same size the window have, it will be drawn automatically-->
+    <image path=""/> <!--Make the image the same size the window have, it will be drawn automatically-->
   </background>
 
   <buttons>
-    <image path="Spritesheets/intro_sheet.png"/>
+    <image path=""/>
     <next>
       <position x="330" y="140" w="150" h="71"/>
-      <anim type="0" speed="1.0">
-        <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
+      <anim type="0" speed="1.0"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
         <frame x="0" y="0" w="150" h="71"/>
       </anim>
       <anim type="1" speed="0.2" loop="false">

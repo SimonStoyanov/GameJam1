@@ -23,7 +23,10 @@ public:
 private:
 	Button* next_button;
 	Prefab* next;
+	Button* exit_button;
+	Prefab* exit;
 	bool next_clicked = false;
+	bool exit_clicked = false;
 	SDL_Texture* UI_tex;
 	SDL_Texture* Background_tex;
 
