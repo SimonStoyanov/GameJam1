@@ -73,6 +73,7 @@ public:
 
 	int jump_force;
 
+	Shape shape = Human;
 
 private:
 
@@ -93,7 +94,6 @@ private:
 
 	Prefab* cat_anims;
 
-	Shape shape = Human;
 	j1Timer shape_time;
 
 };

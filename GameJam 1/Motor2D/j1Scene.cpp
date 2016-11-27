@@ -137,25 +137,41 @@ bool j1Scene::PostUpdate()
 		App->text->cdE->PrintText();
 		App->text->cdR->PrintText();
 
-		// Spells UI
-		App->render->Blit(App->player->UI_texture, 294 - App->render->camera.x, 478 -App->render->camera.y, &App->player->UI_spells_rects[0]);
-		if(!App->spellmanager->Qcd)
-			App->render->Blit(App->player->UI_texture, 302 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[1]);
+		// Spells UI ----
+		int transformation = 0;
+
+		switch (App->player->shape)
+		{
+			case Human:
+			{
+				transformation = 0;
+			}
+			break;
+			case Cat:
+			{
+				transformation = 4;
+			}
+			break;
+		};
+
+		App->render->Blit(App->player->UI_texture, 294 - App->render->camera.x, 478 - App->render->camera.y, &App->player->UI_spells_rects[0]);
+		if (!App->spellmanager->Qcd)
+			App->render->Blit(App->player->UI_texture, 302 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[1 + transformation]);
 		else
-		App->text->cdQ->PrintText();
+			App->text->cdQ->PrintText();
 
 		if (!App->spellmanager->Wcd)
-			App->render->Blit(App->player->UI_texture, 369 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[2]);
+			App->render->Blit(App->player->UI_texture, 369 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[2 + transformation]);
 		else
 			App->text->cdW->PrintText();
 
 		if (!App->spellmanager->Ecd)
-			App->render->Blit(App->player->UI_texture, 432 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[3]);
+			App->render->Blit(App->player->UI_texture, 432 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[3 + transformation]);
 		else
 			App->text->cdE->PrintText();
 
 		if (!App->spellmanager->Rcd)
-			App->render->Blit(App->player->UI_texture, 496 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[4]);
+			App->render->Blit(App->player->UI_texture, 496 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[4 + transformation]);
 		else
 			App->text->cdR->PrintText();
 		// ---------
