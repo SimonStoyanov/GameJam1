@@ -82,6 +82,7 @@
     <ClCompile Include="InsanityEye.cpp" />
     <ClCompile Include="IntroScene.cpp" />
     <ClCompile Include="JumpAttack.cpp" />
+    <ClCompile Include="LoseScreen.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
     <ClCompile Include="j1FileSystem.cpp" />
     <ClCompile Include="j1Main.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="InsanityEye.h" />
     <ClInclude Include="IntroScene.h" />
     <ClInclude Include="JumpAttack.h" />
+    <ClInclude Include="LoseScreen.h" />
     <ClInclude Include="ModuleEnemies.h" />
     <ClInclude Include="j1FileSystem.h" />
     <ClInclude Include="j1Map.h" />
@@ -163,6 +165,7 @@
     <Xml Include="..\Game\PlayerConfig.xml" />
     <Xml Include="..\Game\SpellsConfig.xml" />
     <Xml Include="..\Game\WinScene.xml" />
+    <Xml Include="LoseScreen.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

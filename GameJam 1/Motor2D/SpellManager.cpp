@@ -212,7 +212,8 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 			DeleteSpell(bodyA);
 		}
 		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER) {
-			App->player->curr_hp -= 1;
+			if (!IsSpell(bodyB))
+				App->player->curr_hp -= 1;
 			DeleteSpell(bodyA);
 		}
 	}

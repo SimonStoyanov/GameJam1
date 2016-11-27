@@ -94,6 +94,9 @@
     <ClCompile Include="WinScene.cpp">
       <Filter>Development\Scenes\Win</Filter>
     </ClCompile>
+    <ClCompile Include="LoseScreen.cpp">
+      <Filter>Development\Scenes\Lose</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -222,6 +225,9 @@
     <ClInclude Include="WinScene.h">
       <Filter>Development\Scenes\Win</Filter>
     </ClInclude>
+    <ClInclude Include="LoseScreen.h">
+      <Filter>Development\Scenes\Lose</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\EnemyConfig.xml">
@@ -244,6 +250,9 @@
     </Xml>
     <Xml Include="..\Game\WinScene.xml">
       <Filter>Development\Scenes\Win</Filter>
+    </Xml>
+    <Xml Include="LoseScreen.xml">
+      <Filter>Development\Scenes\Lose</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +300,9 @@
     </Filter>
     <Filter Include="Development\Scenes\Win">
       <UniqueIdentifier>{e9f72a83-c291-4f91-ab0e-c12287b2004e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Development\Scenes\Lose">
+      <UniqueIdentifier>{1c1b83c9-dfc7-4036-a37f-3cb903b315c0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
