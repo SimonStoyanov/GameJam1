@@ -140,8 +140,12 @@ bool Dummy::CleanUp()
 {
 	for (p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
 	{
+		App->physics->DeleteObject(item->data->pbody);
 		RELEASE(item->data);
 	}
+	App->enemies->Delete(test_boss);
+	App->audio->StopMusic();
+
 	return true;
 }
 

@@ -15,6 +15,7 @@
 #include "IntroScene.h"
 #include "Player.h"
 #include "SpellManager.h"
+#include "WinScene.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -41,6 +42,7 @@ bool j1Scene::Start()
 {
 	dummy_scene = new Dummy();
 	intro_scene = new IntroScene();
+	win_scene = new WinScene();
 	current_scene = intro_scene;
 
 	if (current_scene != nullptr)

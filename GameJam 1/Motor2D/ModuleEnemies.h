@@ -24,6 +24,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void Delete(Boss* boss);
+
 	Boss* CreateEnemy(EnemiesTypes type);
 
 private:

@@ -7,6 +7,8 @@
 #include "Boss.h"
 #include "FearBoss.h"
 #include "InsanityBoss.h"
+#include "WinScene.h"
+#include "Player.h"
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -33,7 +35,8 @@ bool ModuleEnemies::Update(float dt)
 		enemy->data->Update(dt);
 		if (enemy->data->curr_hp == 0) {
 			App->scene->dummy_scene->round += 1;
-			enemy->data->curr_hp = enemy->data->max_hp;
+			App->player->Disable();
+			App->scene->ChangeScene(App->scene->win_scene);
 		}
 	}
 	return true;
@@ -49,7 +52,25 @@ bool ModuleEnemies::PostUpdate()
 
 bool ModuleEnemies::CleanUp()
 {
+	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
+		App->physics->DeleteObject(enemy->data->prefab->pbody);
+		App->tex->UnLoad(enemy->data->prefab->sprite.texture);
+		enemy->data->prefab->animations.clear();
+	}
 	return true;
+}
+
+void ModuleEnemies::Delete(Boss* boss)
+{
+	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
+		if (enemy->data == boss) {
+			App->physics->DeleteObject(enemy->data->prefab->pbody);
+			App->tex->UnLoad(enemy->data->prefab->sprite.texture);
+			enemy->data->prefab->animations.clear();
+			enemies.del(enemy);
+			break;
+		}
+	}
 }
 
 Boss * ModuleEnemies::CreateEnemy(EnemiesTypes type)

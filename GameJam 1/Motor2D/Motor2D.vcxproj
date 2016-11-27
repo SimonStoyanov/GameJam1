@@ -105,6 +105,7 @@
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="SpellManager.cpp" />
+    <ClCompile Include="WinScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpellManager.h" />
+    <ClInclude Include="WinScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">
@@ -160,6 +162,7 @@
     <Xml Include="..\Game\LevelScene.xml" />
     <Xml Include="..\Game\PlayerConfig.xml" />
     <Xml Include="..\Game\SpellsConfig.xml" />
+    <Xml Include="..\Game\WinScene.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

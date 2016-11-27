@@ -173,6 +173,10 @@ bool Player::Update(float dt)
 
 bool Player::CleanUp()
 {
+	if (player != nullptr) {
+		App->physics->DeleteObject(player->pbody);
+		App->tex->UnLoad(player->sprite.texture);
+	}
 	return true;
 }
 

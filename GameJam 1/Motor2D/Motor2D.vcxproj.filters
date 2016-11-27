@@ -19,9 +19,6 @@
     <ClCompile Include="PugiXml\src\pugixml.cpp">
       <Filter>Development\Tools\PugiXML</Filter>
     </ClCompile>
-    <ClCompile Include="Dummy_Scene.cpp">
-      <Filter>Development\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="j1Scene.cpp">
       <Filter>Development\Scenes</Filter>
     </ClCompile>
@@ -89,7 +86,13 @@
       <Filter>Development\Game\Spells\Player</Filter>
     </ClCompile>
     <ClCompile Include="IntroScene.cpp">
-      <Filter>Development\Scenes</Filter>
+      <Filter>Development\Scenes\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="Dummy_Scene.cpp">
+      <Filter>Development\Scenes\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="WinScene.cpp">
+      <Filter>Development\Scenes\Win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,9 +128,6 @@
     </ClInclude>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
       <Filter>Development\Tools\PugiXML</Filter>
-    </ClInclude>
-    <ClInclude Include="Dummy_Scene.h">
-      <Filter>Development\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="j1Scene.h">
       <Filter>Development\Scenes</Filter>
@@ -214,7 +214,13 @@
       <Filter>Development\Game\Spells\Player</Filter>
     </ClInclude>
     <ClInclude Include="IntroScene.h">
-      <Filter>Development\Scenes</Filter>
+      <Filter>Development\Scenes\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy_Scene.h">
+      <Filter>Development\Scenes\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="WinScene.h">
+      <Filter>Development\Scenes\Win</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -227,14 +233,17 @@
     <Xml Include="..\Game\SpellsConfig.xml">
       <Filter>Development\Game\Spells</Filter>
     </Xml>
-    <Xml Include="..\Game\LevelScene.xml">
-      <Filter>Development\Scenes</Filter>
-    </Xml>
     <Xml Include="..\Game\config.xml">
       <Filter>Development</Filter>
     </Xml>
     <Xml Include="..\Game\IntroScene.xml">
-      <Filter>Development\Scenes</Filter>
+      <Filter>Development\Scenes\Intro</Filter>
+    </Xml>
+    <Xml Include="..\Game\LevelScene.xml">
+      <Filter>Development\Scenes\Level</Filter>
+    </Xml>
+    <Xml Include="..\Game\WinScene.xml">
+      <Filter>Development\Scenes\Win</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +282,15 @@
     </Filter>
     <Filter Include="Development\Game\Spells\Player">
       <UniqueIdentifier>{28557d32-fc1e-490b-b0bf-3c8aef329824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Development\Scenes\Intro">
+      <UniqueIdentifier>{b7464a10-429d-4f01-9dd5-91d0cb7da87a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Development\Scenes\Level">
+      <UniqueIdentifier>{d0505509-28df-470a-9401-9fffd61a2c9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Development\Scenes\Win">
+      <UniqueIdentifier>{e9f72a83-c291-4f91-ab0e-c12287b2004e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
