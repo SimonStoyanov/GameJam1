@@ -93,7 +93,7 @@
     <anim type="0" speed ="0.2f">
       <frame x="642" y="0" w="80" h="85"/>
       <frame x="642" y="85" w="80" h="85"/>
-      <frame x="642" y="150" w="80" h="85"/>
+      <frame x="642" y="170" w="80" h="85"/>
       <frame x="642" y="85" w="80" h="85"/>
     </anim>
     <anim type="5" speed ="0.15f" loop ="false">
