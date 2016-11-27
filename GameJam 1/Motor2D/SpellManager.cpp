@@ -85,6 +85,7 @@ bool SpellManager::Update(float dt)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
 		{
+			App->player->Shoot();
 			CreateSpell(Q);
 			timeQ = time->ReadSec();
 		}
@@ -164,6 +165,7 @@ bool SpellManager::Update(float dt)
 		{
 			CreateSpell(R);
 			timeR = time->ReadSec();
+			App->player->Shoot();
 		}
 	}
 
@@ -352,6 +354,9 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		spell->SetDamage(2);
 		spell->Start();
 		break;
+	case doublejump:
+		App->player->player->pbody->body->ApplyForceToCenter(b2Vec2(0, -App->player->jump_force), true);
+		break;
 	default:
 		break;
 	}
@@ -380,7 +385,9 @@ int SpellManager::GetCd(Spelltypes type)
 		return 12;
 		break;
 	case hairball:
-		return 2;
+		return 1;
+	case doublejump:
+		return 1;
 	case unknown:
 		return EMPTY;
 	default:

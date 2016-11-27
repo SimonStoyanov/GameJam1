@@ -48,6 +48,9 @@ public:
 	void ChangeShape(Shape newshape);
 
 
+	//Shoot anim
+	void Shoot();
+
 
 private:
 
@@ -68,13 +71,15 @@ public:
 
 	bool on_ground = true;
 
+	int jump_force;
+
+
 private:
 
 
 	SDL_Rect Sprite_rect;
 	p2SString texture_path;
 
-	int jump_force;
 	iPoint start_pos;
 
 	// Platforms --
@@ -84,6 +89,7 @@ private:
 
 	int current_animation = 0;
 	iPoint draw_offset;
+	bool shooting;
 
 	Prefab* cat_anims;
 
