@@ -140,6 +140,17 @@ bool Dummy::PostUpdate()
 	}
 
 	if (App->player->curr_hp <= 0) {
+		switch (test_boss->type)
+		{
+		case fear:
+			App->scene->have_fear = true;
+			break;
+		case insanity:
+			App->scene->crazy = true;
+			break;
+		default:
+			break;
+		}
 		App->scene->ChangeScene(App->scene->lose_scene);
 	}
 

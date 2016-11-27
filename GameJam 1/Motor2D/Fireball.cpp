@@ -4,6 +4,7 @@
 #include "j1Render.h"
 #include "j1Input.h"
 #include <math.h>
+#include "j1Scene.h"
 #include "SpellManager.h"
 
 Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
@@ -24,6 +25,8 @@ Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
 	curr_anim = prefab->FindAnimation(Idle);
 
 	alpha = atan(delta_y / delta_x);
+
+	if (App->scene->crazy) alpha += PI;
 
 	if (delta_x < 0)
 	{
