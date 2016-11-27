@@ -210,11 +210,7 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 			DeleteSpell(bodyA);
 		}
 		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER) {
-			for (p2List_item<Boss*>* boss_item = App->enemies->enemies.start; boss_item != nullptr; boss_item = boss_item->next) {
-				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) {
-					boss_item->data->curr_hp -= 1;
-				}
-			}
+			App->player->curr_hp -= 1;
 			DeleteSpell(bodyA);
 		}
 	}

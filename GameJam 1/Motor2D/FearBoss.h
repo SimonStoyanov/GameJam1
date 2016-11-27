@@ -31,6 +31,9 @@ public:
 	void Start() {
 		prefab->CreateCollision(prefab->sprite.rect.w, prefab->sprite.rect.h, WORLD, PLAYER);
 		prefab->pbody->listener = App->enemies;
+		UI_texture = App->tex->Load("Spritesheets/UI_sheet.png");
+		ui_rect.x = 0;		ui_rect.w = 255;
+		ui_rect.y = 222;	ui_rect.h = 92;
 	}
 
 	bool Update(float dt) {
@@ -61,7 +64,7 @@ public:
 		}
 
 		time += dt;
-
+		
 		return true;
 	}
 
@@ -71,12 +74,14 @@ public:
 
 	void Draw() {
 		App->render->Blit(prefab->sprite.texture, prefab->GetPosition().x + draw_offset.x, prefab->GetPosition().y + draw_offset.y, &prefab->animations[current_anim]->GetCurrentFrameRect());
+		//App->render->Blit(UI_texture, prefab->GetPosition().x + draw_offset.x - 30, prefab->GetPosition().y + draw_offset.y - 30, &ui_rect);
 	}
 
 public:
 	
 private:
 	iPoint initial_pos;
+	SDL_Rect ui_rect;
 	int movement, move = 0, increment;
 private:
 

@@ -45,6 +45,8 @@ private:
 public:
 	Prefab* player = nullptr;
 
+	int curr_hp = 3;
+
 	// Player UI --
 	SDL_Texture* UI_texture;
 	p2List<SDL_Rect> UI_spells_rects;

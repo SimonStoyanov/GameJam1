@@ -50,12 +50,12 @@ bool j1Scene::Start()
 	}
 
 	// fps
-	App->text->fps = new Text(5, 5, App->text->timeless_15, 1);
-	App->text->fps->is_ui = true;
+	App->text->boss_life = new Text(5, 5, App->text->timeless_15, 1);
+	App->text->boss_life->is_ui = true;
 
 	// Mouse position
-	App->text->position = new Text(680, 5, App->text->timeless_15, 1);
-	App->text->position->is_ui = true;
+	App->text->player_life = new Text(680, 5, App->text->timeless_15, 1);
+	App->text->player_life->is_ui = true;
 
 	// cd
 	App->text->cdQ = new Text(320, 543, App->text->timeless_15, 1);
@@ -126,8 +126,8 @@ bool j1Scene::PostUpdate()
 		rect.x = 0, rect.y = 0; rect.w = 900; rect.h = 25;
 		App->render->DrawQuad(rect, 0, 0, 0, 150, true, false);
 
-		App->text->fps->PrintText();
-		App->text->position->PrintText();
+		App->text->boss_life->PrintText();
+		App->text->player_life->PrintText();
 
 		App->text->cdW->PrintText();
 		App->text->cdE->PrintText();

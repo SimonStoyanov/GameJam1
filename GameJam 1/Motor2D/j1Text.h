@@ -58,8 +58,8 @@ public:
 
 public:
 	p2List<TTF_Font*> fonts;
-	Text*				fps;
-	Text*				position;
+	Text*				boss_life;
+	Text*				player_life;
 	Text*				cdQ;
 	Text*				cdW;
 	Text*				cdE;

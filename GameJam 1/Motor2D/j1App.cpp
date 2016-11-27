@@ -236,9 +236,14 @@ void j1App::FinishUpdate()
 	}
 
 	// Fps print -----------------------------
-	p2SString tmp; //tmp.create("%.1f", avg_fps);
-	tmp.create("camera_x: %d camera_y: %d", render->camera.x, render->camera.y);
-	App->text->fps->SetText(tmp);
+	if (App->enemies->enemies.start) {
+		p2SString tmp; //tmp.create("%.1f", avg_fps);
+		tmp.create("boss_hp: %d / %d", App->enemies->enemies.start->data->curr_hp, App->enemies->enemies.start->data->max_hp);
+		App->text->boss_life->SetText(tmp);
+	}
+	p2SString tmp2; //tmp.create("%.1f", avg_fps);
+	tmp2.create("player_hp: %d / 3", App->player->curr_hp);
+	App->text->player_life->SetText(tmp2);
 	// ---------------------------------------
 
 	// Erase Later (position) ----------------
