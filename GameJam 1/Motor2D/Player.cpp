@@ -168,6 +168,17 @@ bool Player::Update(float dt)
 		break;
 	}
 
+	SDL_Rect fullheart = { 0,301,39,38 };
+	int i = 0;
+	for (; i < curr_hp; i++) {
+		App->render->Blit(UI_texture, 5 + i * 40 - App->render->camera.x, 5, &fullheart);
+	}
+	SDL_Rect emptyheart = { 39,301,39,38 };
+	for (; i < 3; i++) {
+		App->render->Blit(UI_texture, 5 + i * 40 - App->render->camera.x, 5, &emptyheart);
+	}
+
+	//-------
 	//Return tu human shape
 	if (shape != Human && shape_time.ReadSec() > 10)
 		ChangeShape(Human);
