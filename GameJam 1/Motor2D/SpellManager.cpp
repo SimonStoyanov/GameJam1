@@ -204,15 +204,19 @@ bool SpellManager::CleanUp()
 void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 {
 	if (IsSpell(bodyA)) {
-		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) {
+		if (IsSpell(bodyB)) {
+			DeleteSpell(bodyA);
+		}
+		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) {
 			for (p2List_item<Boss*>* boss_item = App->enemies->enemies.start; boss_item != nullptr; boss_item = boss_item->next) {
 				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) {
 					boss_item->data->curr_hp -= 1;
 				}
 			}
-			DeleteSpell(bodyA);
+			if (GetSpell(bodyA)->type != shield)
+				DeleteSpell(bodyA);
 		}
-		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER) {
+		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER) {
 			if (!IsSpell(bodyB))
 				App->player->curr_hp -= 1;
 			DeleteSpell(bodyA);
@@ -229,6 +233,17 @@ bool SpellManager::IsSpell(PhysBody * body)
 		spell_item = spell_item->next;
 	}
 	return false;
+}
+
+Spell * SpellManager::GetSpell(PhysBody * body) const
+{
+	p2List_item<Spell*>* spell_item = spells.start;
+	while (spell_item != nullptr) {
+		if (spell_item->data->prefab->pbody == body)
+			return spell_item->data;
+		spell_item = spell_item->next;
+	}
+	return nullptr;
 }
 
 void SpellManager::DeleteSpell(PhysBody * body)
@@ -295,7 +310,7 @@ int SpellManager::GetCd(Spelltypes type)
 		return 1;
 		break;
 	case shield:
-		return 5;
+		return 8;
 		break;
 	case jump_attack:
 		return 2;

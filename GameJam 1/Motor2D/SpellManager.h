@@ -40,6 +40,8 @@ public:
 
 	bool IsSpell(PhysBody* body);
 
+	Spell* GetSpell(PhysBody* body) const;
+
 	void DeleteSpell(PhysBody* body);
 
 	Spell* CreateSpell(Spelltypes type);

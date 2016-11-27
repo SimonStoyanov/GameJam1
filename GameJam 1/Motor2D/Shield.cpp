@@ -12,7 +12,7 @@ Shield::Shield(pugi::xml_node & config) : Spell(shield, "shield")
 	int x, y;
 	player_body->GetPosition(x, y);
 
-	prefab = new Prefab(x + player_body->width, y + player_body->height, "", NULLRECT);
+	prefab = new Prefab(x + player_body->width, y + player_body->height - 20, "", NULLRECT);
 
 	prefab->LoadAnimations(config);
 	curr_anim = prefab->FindAnimation(Idle);
@@ -32,16 +32,24 @@ void Shield::Start()
 	prefab->CreateCollision(size.x, size.y, PLAYER, WORLD);
 	prefab->pbody->listener = App->spellmanager;
 	prefab->pbody->body->SetGravityScale(0);
+	timer = new j1Timer();
+	timer->Start();
 }
 
 bool Shield::Update()
 {
-	prefab->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(App->player->player->GetPosition().x + 1), PIXEL_TO_METERS(App->player->player->GetPosition().y + 1.60)), 0);
+	prefab->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(App->player->player->GetPosition().x + 1), PIXEL_TO_METERS(App->player->player->GetPosition().y + 1.45)), 0);
 	if (collided) {
 		if (prefab->animations[curr_anim]->Finished()) {
 			to_delete = true;
 		}
 	}
+	if (timer->ReadSec() > 3) {
+		to_delete = true;
+		delete timer;
+	}
+
+
 	return true;
 }
 

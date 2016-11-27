@@ -19,7 +19,7 @@
   </fireball>
   <shield>
     <drawoffset x="-25" y="-10"/>
-    <size w="150" h="150"/>
+    <size w="150" h="175"/>
     <anim type="0" speed ="0.1f" loop="false">
       <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
       <frame x="444" y="0" w="198" h="203"/>
