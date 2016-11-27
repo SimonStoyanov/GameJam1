@@ -574,7 +574,7 @@ bool ModulePhysics::PostUpdate()
 			}
 
 			// TODO 1: If mouse button 1 is pressed ...
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (App->input->GetKey(SDL_SCANCODE_F12) == KEY_DOWN) {
 				int mouse_x, mouse_y;
 				App->input->GetMousePosition(mouse_x, mouse_y);
 				b2Vec2 mouse(PIXEL_TO_METERS(mouse_x), PIXEL_TO_METERS(mouse_y));
