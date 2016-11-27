@@ -6,6 +6,7 @@
 #include "j1Textures.h"
 #include "ModuleEnemies.h"
 #include "Fireball.h"
+#include "Shield.h"
 #include "JumpAttack.h"
 #include "FearBall.h"
 #include "InsanityEye.h"
@@ -257,6 +258,11 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		spell->SetDamage(1);
 		spell->Start();
 		break;
+	case shield:
+		spell = new Shield(spells_config.child("shield"));
+		spell->SetTime(1.5);
+		spell->Start();
+		break;
 	case jump_attack:
 		spell = new JumpAttack(spells_config.child("jump_attack"));
 		spell->SetDamage(1);
@@ -287,6 +293,9 @@ int SpellManager::GetCd(Spelltypes type)
 	{
 	case fireball:
 		return 1;
+		break;
+	case shield:
+		return 5;
 		break;
 	case jump_attack:
 		return 2;

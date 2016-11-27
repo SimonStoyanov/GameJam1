@@ -103,6 +103,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Prefabs.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="Shield.cpp" />
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="SpellManager.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="j1Window.h" />
     <ClInclude Include="p2SString.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Shield.h" />
     <ClInclude Include="Spell.h" />
     <ClInclude Include="Prefabs.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />

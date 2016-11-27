@@ -42,3 +42,13 @@ int Spell::GetDamage() const
 {
 	return dmg;
 }
+
+void Spell::SetTime(float time_)
+{
+	time = time_;
+}
+
+float Spell::GetTime() const
+{
+	return time;
+}

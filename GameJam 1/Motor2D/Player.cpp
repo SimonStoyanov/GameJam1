@@ -50,7 +50,7 @@ bool Player::Start()
 
 	// Spells
 	App->spellmanager->Q = fireball;
-	App->spellmanager->W = unknown;
+	App->spellmanager->W = shield;
 	App->spellmanager->E = unknown;
 	App->spellmanager->R = unknown;
 
