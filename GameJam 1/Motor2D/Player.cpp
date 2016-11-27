@@ -52,7 +52,7 @@ bool Player::Start()
 	App->spellmanager->Q = fireball;
 	App->spellmanager->W = unknown;
 	App->spellmanager->E = unknown;
-	App->spellmanager->R = unknown;
+	App->spellmanager->R = Spelltypes::firebarrage;
 
 	LoadTextures();
 	player->LoadAnimations(config_node);

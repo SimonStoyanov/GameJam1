@@ -17,6 +17,22 @@
       <frame x="0" y="714" w="132" h="114"/>
     </anim>
   </fireball>
+  <firebarrage>
+    <drawoffset x="-80" y="-25"/>
+    <size w="30" h="30"/>
+    <anim type="0" speed ="0.2f">
+      <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
+      <frame x="0" y="0" w="132" h="114"/>
+      <frame x="0" y="114" w="132" h="114"/>
+      <frame x="0" y="228" w="132" h="114"/>
+      <frame x="0" y="342" w="132" h="114"/>
+    </anim>
+    <anim type="5" speed ="0.2f" loop ="false">
+      <frame x="0" y="456" w="132" h="114"/>
+      <frame x="0" y="600" w="132" h="114"/>
+      <frame x="0" y="714" w="132" h="114"/>
+    </anim>
+  </firebarrage>
   <fearball>
     <drawoffset x="-50" y="-40"/>
     <size w="30" h="30"/>
@@ -55,5 +71,6 @@
       <frame x="22" y="961" w="156" h="65"/>
     </anim>
   </dust>
+
 
 </config>

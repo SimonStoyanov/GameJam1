@@ -97,6 +97,9 @@
     <ClCompile Include="LoseScene.cpp">
       <Filter>Development\Scenes\Lose</Filter>
     </ClCompile>
+    <ClCompile Include="Firebarrage.cpp">
+      <Filter>Development\Game\Spells\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -227,6 +230,9 @@
     </ClInclude>
     <ClInclude Include="LoseScene.h">
       <Filter>Development\Scenes\Lose</Filter>
+    </ClInclude>
+    <ClInclude Include="Firebarrage.h">
+      <Filter>Development\Game\Spells\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

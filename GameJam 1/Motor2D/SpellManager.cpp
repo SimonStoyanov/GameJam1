@@ -11,6 +11,8 @@
 #include "InsanityEye.h"
 #include "j1Render.h"
 #include "Player.h"
+#include "Firebarrage.h"
+#include "ModulePhysics.h"
 
 #define EMPTY -1
 
@@ -158,22 +160,23 @@ bool SpellManager::Update(float dt)
 		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 		{
 			CreateSpell(R);
-			timeE = time->ReadSec();
+			timeR = time->ReadSec();
 		}
 	}
 
 	p2SString tmpR;
-	if ((timeE + GetCd(R) - time->ReadSec()) > 0)
+	if ((timeR + GetCd(R) - time->ReadSec()) > 0)
 	{
-		tmpR.create("%0.1f", timeE + GetCd(R) - time->ReadSec());
+		tmpR.create("%0.1f", timeR + GetCd(R) - time->ReadSec());
 		Rcd = true;
 	}
 	else
 	{
-		tmpR.create(" 0", timeE + GetCd(R) - time->ReadSec());
+		tmpR.create(" 0", timeR + GetCd(R) - time->ReadSec());
 		Rcd = false;
 	}
 	App->text->cdR->SetText(tmpR);
+
 
 	// -----------------------
 
@@ -202,7 +205,8 @@ bool SpellManager::CleanUp()
 
 void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 {
-	if (IsSpell(bodyA)) {
+	if (IsSpell(bodyA) || bodyA->type == fireb)
+	{
 		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) {
 			for (p2List_item<Boss*>* boss_item = App->enemies->enemies.start; boss_item != nullptr; boss_item = boss_item->next) {
 				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) {
@@ -233,8 +237,10 @@ bool SpellManager::IsSpell(PhysBody * body)
 void SpellManager::DeleteSpell(PhysBody * body)
 {
 	p2List_item<Spell*>* spell_item = spells.start;
-	while (spell_item != nullptr) {
-		if (spell_item->data->prefab->pbody == body) {
+	while (spell_item != nullptr) 
+	{
+		if (spell_item->data->prefab->pbody == body) 
+		{
 			spell_item->data->collided = true;
 			spell_item->data->curr_anim = spell_item->data->prefab->FindAnimation(Explode);
 			b2Filter a;
@@ -272,6 +278,23 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		spell->SetDamage(1);
 		spell->Start();
 		break;
+	case firebarrage:
+	{
+		spell = new Firebarrage(spells_config.child("fireball"), 0, 0);
+		spell->SetDamage(1);
+		spell->Start();
+
+		Spell* spell2 = new Firebarrage(spells_config.child("fireball"), -30,  50);
+		spell2->SetDamage(1);
+		spell2->Start();
+		spells.add(spell2);
+		
+		Spell* spell3 = new Firebarrage(spells_config.child("fireball"), -30, -50);
+		spell3->SetDamage(1);
+		spell3->Start();
+		spells.add(spell3);
+	}
+		break;
 	default:
 		break;
 	}
@@ -290,6 +313,9 @@ int SpellManager::GetCd(Spelltypes type)
 		break;
 	case jump_attack:
 		return 2;
+		break;
+	case firebarrage:
+		return 20;
 		break;
 	case unknown:
 		return EMPTY;

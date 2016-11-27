@@ -62,16 +62,16 @@ bool j1Scene::Start()
 	App->text->player_life->is_ui = true;
 
 	// cd
-	App->text->cdQ = new Text(320, 543, App->text->timeless_15, 1);
+	App->text->cdQ = new Text(328, 543, App->text->timeless_15, 1);
 	App->text->cdQ->is_ui = true;
 
-	App->text->cdW = new Text(403, 543, App->text->timeless_15, 1);
+	App->text->cdW = new Text(390, 543, App->text->timeless_15, 1);
 	App->text->cdW->is_ui = true;
 
-	App->text->cdE = new Text(486, 543, App->text->timeless_15, 1);
+	App->text->cdE = new Text(452, 543, App->text->timeless_15, 1);
 	App->text->cdE->is_ui = true;
 
-	App->text->cdR = new Text(569, 543, App->text->timeless_15, 1);
+	App->text->cdR = new Text(514, 543, App->text->timeless_15, 1);
 	App->text->cdR->is_ui = true;
 
 	return true;
