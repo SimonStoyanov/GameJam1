@@ -194,6 +194,7 @@ bool SpellManager::PostUpdate()
 bool SpellManager::CleanUp()
 {
 	while (spells.count() > 0) {
+		App->physics->DeleteObject(spells.end->data->prefab->pbody);
 		spells.del(spells.end);
 	}
 	return true;
