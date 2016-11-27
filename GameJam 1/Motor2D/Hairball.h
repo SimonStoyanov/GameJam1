@@ -5,7 +5,6 @@
 
 class Hairball : public Spell {
 private:
-	float fearball_speed = -5;
 	iPoint draw_offset;
 public:
 	Hairball(pugi::xml_node& config);

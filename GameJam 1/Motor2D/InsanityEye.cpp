@@ -22,6 +22,7 @@ InsanityEye::InsanityEye(pugi::xml_node& config) : Spell(insanity_eye, "insanity
 	size.x = config.child("size").attribute("w").as_int(10);
 	size.y = config.child("size").attribute("h").as_int(10);
 
+	insanity_speed -= App->scene->dummy_scene->round;
 }
 
 InsanityEye::~InsanityEye()

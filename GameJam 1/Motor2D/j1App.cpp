@@ -235,32 +235,6 @@ void j1App::FinishUpdate()
 		//SDL_Delay(delay);
 	}
 
-	// Boss hp print -----------------------------
-	if (App->enemies->enemies.start) {
-		p2SString tmp; //tmp.create("%.1f", avg_fps);
-		if(scene->have_fear)
-			tmp.create("boss_hp: ×/×");
-		else tmp.create("boss_hp: %d / %d", App->enemies->enemies.start->data->curr_hp, App->enemies->enemies.start->data->max_hp);
-		App->text->boss_life->SetText(tmp);
-	}
-	p2SString tmp2; //tmp.create("%.1f", avg_fps);
-	tmp2.create("player_hp: %d / 3", App->player->curr_hp);
-	App->text->player_life->SetText(tmp2);
-	// ---------------------------------------
-
-	// Erase Later (position) ----------------
-//	int x, y;
-//	App->player->player->pbody->GetPosition(x, y);
-//	iPoint xy;
-//	App->input->GetMousePosition(xy.x, xy.y);
-//	int delta_x = xy.x - App->render->camera.x - x - 4;
-//	int delta_y = xy.y - App->render->camera.y - y - 14;
-//
-//	//p2SString tmp2; tmp2.create("delta_x: %d delta_y: %d", delta_x, delta_y);
-////	App->text->position->SetText(tmp2);
-//	p2SString tmp3; tmp3.create("boss_x: %d boos_y: %d", x, y);
-//	App->text->position->SetText(tmp3);
-	// ---------------------------------------º
 }
 
 // Call modules before each loop iteration

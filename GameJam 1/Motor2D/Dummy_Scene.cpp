@@ -164,6 +164,23 @@ bool Dummy::PostUpdate()
 		App->scene->ChangeScene(App->scene->lose_scene);
 	}
 
+	int i = 0;
+	SDL_Rect bossfullhp = { 46,227,20,46 }; 
+	SDL_Rect bossemptyhp = { 20,227,20,46 };
+	if (App->scene->have_fear)
+	{
+		for (; i < test_boss->max_hp; i++) {
+			App->render->Blit(App->player->UI_texture, test_boss->prefab->GetPosition().x + i * 20 - ((test_boss->max_hp / 4) * 20), test_boss->prefab->GetPosition().y - 70, &bossfullhp);
+		}
+	}
+	else {
+		for (; i < test_boss->curr_hp; i++) {
+			App->render->Blit(App->player->UI_texture, test_boss->prefab->GetPosition().x + i * 20 - ((test_boss->max_hp / 4) * 20), test_boss->prefab->GetPosition().y - 70, &bossfullhp);
+		}
+		for (; i < test_boss->max_hp; i++) {
+			App->render->Blit(App->player->UI_texture, test_boss->prefab->GetPosition().x + i * 20 - ((test_boss->max_hp / 4) * 20), test_boss->prefab->GetPosition().y - 70, &bossemptyhp);
+		}
+	}
 	return true;
 }
 

@@ -22,6 +22,8 @@ Fearball::Fearball(pugi::xml_node& config) : Spell(fearball, "fearball")
 	size.x = config.child("size").attribute("w").as_int(10);
 	size.y = config.child("size").attribute("h").as_int(10);
 
+	fearball_speed -= App->scene->dummy_scene->round;
+
 }
 
 Fearball::~Fearball()
