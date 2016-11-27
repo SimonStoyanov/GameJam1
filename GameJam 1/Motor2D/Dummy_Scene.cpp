@@ -76,6 +76,14 @@ bool Dummy::Start()
 	background = Sprite(0, 0, grounds[0]->sprite.texture, back_rect);
 	forward = Sprite(0, 0, background.texture, forward_rect);
 
+	forward_count = 1;
+	background_count = 1;
+	farback_count = 1;
+
+	forward_min = 0;
+	background_min = 0;
+	farback_min = 0;
+
 	App->audio->PlayMusic("audio/music/Music.ogg");
 
 	return true;
