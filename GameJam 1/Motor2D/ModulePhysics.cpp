@@ -377,6 +377,13 @@ PhysBody * ModulePhysics::CreateStaticChain(int x, int y, int * points, int size
 	return pbody;
 }
 
+void ModulePhysics::CleanBodies()
+{
+	while (world->GetBodyList() != nullptr) {
+		world->DestroyBody(world->GetBodyList());
+	}
+}
+
 void ModulePhysics::DeleteObject(PhysBody * object)
 {
 	world->DestroyBody(object->body);
@@ -489,6 +496,7 @@ void ModulePhysics::DeleteJoint(b2MouseJoint* joint)
 // 
 bool ModulePhysics::PostUpdate()
 {
+
 	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
 
@@ -523,13 +531,13 @@ bool ModulePhysics::PostUpdate()
 					{
 						v = b->GetWorldPoint(polygonShape->GetVertex(i));
 						if(i > 0)
-							App->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 255, 100, 100);
+							App->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 0, 0, 255);
 
 						prev = v;
 					}
 
 					v = b->GetWorldPoint(polygonShape->GetVertex(0));
-					App->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 255, 100, 100);
+					App->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 0, 0, 255);
 				}
 				break;
 
@@ -566,7 +574,7 @@ bool ModulePhysics::PostUpdate()
 			}
 
 			// TODO 1: If mouse button 1 is pressed ...
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (App->input->GetKey(SDL_SCANCODE_F12) == KEY_DOWN) {
 				int mouse_x, mouse_y;
 				App->input->GetMousePosition(mouse_x, mouse_y);
 				b2Vec2 mouse(PIXEL_TO_METERS(mouse_x), PIXEL_TO_METERS(mouse_y));
@@ -618,6 +626,7 @@ bool ModulePhysics::PostUpdate()
 		mouse_joint = nullptr;
 		selected = nullptr;
 	}
+
 
 	return true;
 }

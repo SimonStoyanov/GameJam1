@@ -6,6 +6,7 @@
 #include "j1Textures.h"
 #include "ModuleEnemies.h"
 #include "Fireball.h"
+#include "Shield.h"
 #include "JumpAttack.h"
 #include "FearBall.h"
 #include "InsanityEye.h"
@@ -13,6 +14,7 @@
 #include "Player.h"
 #include "Firebarrage.h"
 #include "ModulePhysics.h"
+#include "ShapeBall.h"
 
 #define EMPTY -1
 
@@ -205,18 +207,29 @@ bool SpellManager::CleanUp()
 
 void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 {
-	if (IsSpell(bodyA) || bodyA->type == fireb)
+	if (IsSpell(bodyA))
 	{
-		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) {
-			for (p2List_item<Boss*>* boss_item = App->enemies->enemies.start; boss_item != nullptr; boss_item = boss_item->next) {
-				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) {
+		if (IsSpell(bodyB) && GetSpell(bodyA)->type != shapeball) 
+		{
+			DeleteSpell(bodyA);
+		}
+		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) 
+		{
+			for (p2List_item<Boss*>* boss_item = App->enemies->enemies.start; boss_item != nullptr; boss_item = boss_item->next) 
+			{
+				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) 
+				{
 					boss_item->data->curr_hp -= 1;
 				}
 			}
-			DeleteSpell(bodyA);
+			if (GetSpell(bodyA)->type != shield)
+				DeleteSpell(bodyA);
 		}
-		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER) {
-			if (!IsSpell(bodyB))
+		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER)
+		{
+			if (GetSpell(bodyA)->type == shapeball)
+				App->player->ChangeShape(Cat);
+			else if (!IsSpell(bodyB))
 				App->player->curr_hp -= 1;
 			DeleteSpell(bodyA);
 		}
@@ -232,6 +245,17 @@ bool SpellManager::IsSpell(PhysBody * body)
 		spell_item = spell_item->next;
 	}
 	return false;
+}
+
+Spell * SpellManager::GetSpell(PhysBody * body) const
+{
+	p2List_item<Spell*>* spell_item = spells.start;
+	while (spell_item != nullptr) {
+		if (spell_item->data->prefab->pbody == body)
+			return spell_item->data;
+		spell_item = spell_item->next;
+	}
+	return nullptr;
 }
 
 void SpellManager::DeleteSpell(PhysBody * body)
@@ -261,6 +285,11 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 	case fireball:
 		spell = new Fireball(spells_config.child("fireball"));
 		spell->SetDamage(1);
+		spell->Start();
+		break;
+	case shield:
+		spell = new Shield(spells_config.child("shield"));
+		spell->SetTime(1.5);
 		spell->Start();
 		break;
 	case jump_attack:
@@ -294,6 +323,14 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		spell3->Start();
 		spells.add(spell3);
 	}
+	break;
+	case shapeball:
+		spell = new Shapeball(spells_config.child("shapeball"));
+		spell->Start();
+		break;
+	case ghost:
+		App->player->Ghost();
+		App->player->ghost_timer.Start();
 		break;
 	default:
 		break;
@@ -311,11 +348,16 @@ int SpellManager::GetCd(Spelltypes type)
 	case fireball:
 		return 1;
 		break;
+	case shield:
+		return 8;
+		break;
 	case jump_attack:
 		return 2;
 		break;
 	case firebarrage:
-		return 20;
+		return 0;
+	case ghost:
+		return 12;
 		break;
 	case unknown:
 		return EMPTY;

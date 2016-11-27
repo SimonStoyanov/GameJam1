@@ -15,6 +15,10 @@
 #include "ModuleEnemies.h"
 #include "FearBoss.h"
 #include "LoseScene.h"
+#include <stdlib.h>
+#include <time.h>
+
+#define NUM_BOSSES 2
 
 Dummy::Dummy() : Scene()
 {
@@ -46,7 +50,24 @@ bool Dummy::Start()
 	farback_speed = levelconfig.child("parallax").child("farbackground").attribute("speed").as_float(1);
 	parallax_spritesheet = levelconfig.child("parallax").child("spritesheet").attribute("path").as_string("");
 
-	test_boss = App->enemies->CreateEnemy(insanity);
+	//random boss
+
+	srand(time(NULL));
+	int rand_boss = rand() % NUM_BOSSES;
+
+	switch (rand_boss)
+	{
+	case 0:
+		test_boss = App->enemies->CreateEnemy(insanity);
+		break;
+	case 1:
+		test_boss = App->enemies->CreateEnemy(fear);
+		break;
+	default:
+		test_boss = App->enemies->CreateEnemy(insanity);
+		break;
+	}
+
 	test_boss->prefab->pbody->listener = App->enemies;
 	
 	// Grounds
@@ -86,6 +107,10 @@ bool Dummy::Start()
 
 	App->audio->PlayMusic("audio/music/Music.ogg");
 
+	//Start shapeball timer
+	shapeball_timer.Start();
+	App->spellmanager->CreateSpell(shapeball);
+
 	return true;
 }
 
@@ -104,6 +129,12 @@ bool Dummy::Update(float dt)
 		grounds.del(grounds.start);
 	}
 	// ------------------ 
+
+	//Create shape ball every 30 sec
+	if (shapeball_timer.ReadSec() > 30) {
+		App->spellmanager->CreateSpell(shapeball);
+		shapeball_timer.Start();
+	}
 	return true;
 }
 
@@ -119,6 +150,17 @@ bool Dummy::PostUpdate()
 	}
 
 	if (App->player->curr_hp <= 0) {
+		switch (test_boss->type)
+		{
+		case fear:
+			App->scene->have_fear = true;
+			break;
+		case insanity:
+			App->scene->crazy = true;
+			break;
+		default:
+			break;
+		}
 		App->scene->ChangeScene(App->scene->lose_scene);
 	}
 
@@ -151,6 +193,7 @@ void Dummy::Draw()
 
 bool Dummy::CleanUp()
 {
+	App->player->Disable();
 	for (p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
 	{
 		App->physics->DeleteObject(item->data->pbody);
@@ -161,6 +204,7 @@ bool Dummy::CleanUp()
 	App->audio->StopMusic();
 	App->spellmanager->CleanUp();
 	App->render->camera.x = 0;
+	App->physics->CleanBodies();
 	return true;
 }
 

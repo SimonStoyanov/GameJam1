@@ -100,6 +100,12 @@
     <ClCompile Include="Firebarrage.cpp">
       <Filter>Development\Game\Spells\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Shield.cpp">
+      <Filter>Development\Game\Spells\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeBall.cpp">
+      <Filter>Development\Game\Spells</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -233,6 +239,12 @@
     </ClInclude>
     <ClInclude Include="Firebarrage.h">
       <Filter>Development\Game\Spells\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield.h">
+      <Filter>Development\Game\Spells\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeBall.h">
+      <Filter>Development\Game\Spells</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

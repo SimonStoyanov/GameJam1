@@ -12,6 +12,7 @@
 #include "SpellManager.h"
 #include "RandomGenerator.h"
 #include "ModulePhysics.h"
+#include "j1Timer.h"
 
 Player::Player() : j1Module()
 {
@@ -50,13 +51,17 @@ bool Player::Start()
 
 	// Spells
 	App->spellmanager->Q = fireball;
-	App->spellmanager->W = unknown;
-	App->spellmanager->E = unknown;
-	App->spellmanager->R = Spelltypes::firebarrage;
+	App->spellmanager->W = shield;
+	App->spellmanager->E = Spelltypes::ghost;
+	App->spellmanager->R = firebarrage;
+
 
 	LoadTextures();
-	player->LoadAnimations(config_node);
+	player->LoadAnimations(config_node.child("human"));
 	current_animation = player->FindAnimation(Run);
+
+	cat_anims = new Prefab(0, 0, "", NULLRECT);
+	cat_anims->LoadAnimations(config_node.child("cat"));
 
 	// Platforms
 	last_pos = player->GetPosition().y;
@@ -89,7 +94,7 @@ bool Player::Update(float dt)
 		player->pbody->body->SetLinearVelocity(b2Vec2(0, player->pbody->body->GetLinearVelocity().y));
 	}
 
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) {
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground && !ghost) {
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -jump_force), false);
 		current_animation = player->FindAnimation(Jump);
 		on_ground = false;
@@ -101,7 +106,26 @@ bool Player::Update(float dt)
 	if (!player->pbody->body->IsAwake())
 		player->pbody->body->SetAwake(true);
 
-	App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y, &player->animations[current_animation]->GetCurrentFrameRect());
+	//Draw
+	switch (shape)
+	{
+	case Human:
+		App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y, &player->animations[current_animation]->GetCurrentFrameRect());
+		break;
+	case Cat:
+		App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y-20, &cat_anims->animations[current_animation]->GetCurrentFrameRect());
+		break;
+	default:
+		break;
+	}
+	
+	//Return tu human shape
+	if (shape != Human && shape_time.ReadSec() > 10)
+		ChangeShape(Human);
+
+	// Stop Ghost
+	if (ghost && ghost_timer.ReadSec() > 5)
+		UnGhost();
 
 	// Random updater ---
 	App->scene->dummy_scene->platforms_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
@@ -169,7 +193,6 @@ bool Player::Update(float dt)
 	}
 	
 	// -------------------------------------------
-	
 	return true;
 }
 
@@ -236,6 +259,50 @@ bool Player::isTouching(PhysBody * body1, PhysBody * body2)
 
 	bool overlap = b2TestOverlap(b1->GetFixtureList()->GetShape(), 1, b2->GetFixtureList()->GetShape(), 1,  b1->GetTransform(), b2->GetTransform());
 	return overlap;
+}
+
+void Player::ChangeShape(Shape newshape)
+{
+	shape = newshape;
+	switch (shape)
+	{
+	case Human:
+		App->spellmanager->Q = fireball;
+		App->spellmanager->W = shield;
+		App->spellmanager->E = Spelltypes::ghost;
+		App->spellmanager->R = unknown;
+		break;
+	case Cat:
+		App->spellmanager->Q = unknown;
+		App->spellmanager->W = unknown;
+		App->spellmanager->E = Spelltypes::ghost;
+		App->spellmanager->R = unknown;
+		break;
+	default:
+		break;
+	}
+	if (shape != Human)
+		shape_time.Start();
+}
+
+void Player::Ghost()
+{
+	b2Filter a;
+	a.categoryBits = WORLD;
+	a.maskBits = PLAYER;
+	player->pbody->body->GetFixtureList()->SetFilterData(a);
+	ghost = true;
+	player->pbody->body->SetGravityScale(0);
+}
+
+void Player::UnGhost()
+{
+	b2Filter a;
+	a.categoryBits = PLAYER;
+	a.maskBits = WORLD;
+	player->pbody->body->GetFixtureList()->SetFilterData(a);
+	ghost = false;
+	player->pbody->body->SetGravityScale(1);
 }
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)

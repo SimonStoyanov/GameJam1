@@ -8,10 +8,13 @@
 
 enum Spelltypes {
 	fireball,
+	shield,
 	jump_attack,
 	fearball,
 	insanity_eye,
 	firebarrage,
+	shapeball,
+	ghost,
 	unknown
 };
 
@@ -36,9 +39,12 @@ public:
 	virtual void Cleanup();
 	void SetDamage(int damage);
 	int GetDamage() const;
+	void SetTime(float time_);
+	float GetTime() const;
 
 private:
 	int dmg;
+	float time;
 };
 
 

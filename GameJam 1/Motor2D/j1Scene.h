@@ -48,6 +48,9 @@ public:
 	WinScene* win_scene = nullptr;
 	LoseScene* lose_scene = nullptr;
 
+	bool have_fear = false;
+	bool crazy = false;
+
 private:
 	Scene* current_scene = nullptr;
 	int camera_speed;

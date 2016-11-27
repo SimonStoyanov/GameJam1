@@ -8,6 +8,7 @@
 #include "j1Textures.h"
 #include "SDL\include\SDL.h"
 #include "Prefabs.h"
+#include "j1Timer.h"
 
 
 class Boss;
@@ -60,6 +61,7 @@ private:
 
 	p2SString parallax_spritesheet;
 	
+	j1Timer shapeball_timer;
 };
 
 #endif
