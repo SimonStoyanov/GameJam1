@@ -7,11 +7,11 @@ class Prefab;
 class Button;
 struct SDL_Texture;
 
-class LoseScreen : public Scene {
+class LoseScene : public Scene {
 public:
-	LoseScreen();
+	LoseScene();
 
-	~LoseScreen();
+	~LoseScene();
 
 	bool Start();
 	bool Update(float dt);

@@ -11,6 +11,7 @@ class Scene;
 class Dummy;
 class IntroScene;
 class WinScene;
+class LoseScene;
 
 class j1Scene : public j1Module
 {
@@ -45,6 +46,7 @@ public:
 	Dummy* dummy_scene = nullptr;
 	IntroScene* intro_scene = nullptr;
 	WinScene* win_scene = nullptr;
+	LoseScene* lose_scene = nullptr;
 
 private:
 	Scene* current_scene = nullptr;

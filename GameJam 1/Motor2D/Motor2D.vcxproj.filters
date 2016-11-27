@@ -94,7 +94,7 @@
     <ClCompile Include="WinScene.cpp">
       <Filter>Development\Scenes\Win</Filter>
     </ClCompile>
-    <ClCompile Include="LoseScreen.cpp">
+    <ClCompile Include="LoseScene.cpp">
       <Filter>Development\Scenes\Lose</Filter>
     </ClCompile>
   </ItemGroup>
@@ -225,7 +225,7 @@
     <ClInclude Include="WinScene.h">
       <Filter>Development\Scenes\Win</Filter>
     </ClInclude>
-    <ClInclude Include="LoseScreen.h">
+    <ClInclude Include="LoseScene.h">
       <Filter>Development\Scenes\Lose</Filter>
     </ClInclude>
   </ItemGroup>
@@ -251,7 +251,7 @@
     <Xml Include="..\Game\WinScene.xml">
       <Filter>Development\Scenes\Win</Filter>
     </Xml>
-    <Xml Include="LoseScreen.xml">
+    <Xml Include="LoseScene.xml">
       <Filter>Development\Scenes\Lose</Filter>
     </Xml>
   </ItemGroup>

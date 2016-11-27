@@ -1,4 +1,4 @@
-#include "LoseScreen.h"
+#include "LoseScene.h"
 #include "Button.h"
 #include "IntroScene.h"
 #include "j1Scene.h"
@@ -10,15 +10,15 @@
 #include "j1Textures.h"
 #include"j1Render.h"
 
-LoseScreen::LoseScreen()
+LoseScene::LoseScene()
 {
 }
 
-LoseScreen::~LoseScreen()
+LoseScene::~LoseScene()
 {
 }
 
-bool LoseScreen::Start()
+bool LoseScene::Start()
 {
 	pugi::xml_document Winconfig_doc;
 	pugi::xml_node config_node;
@@ -51,7 +51,7 @@ bool LoseScreen::Start()
 	return true;
 }
 
-bool LoseScreen::Update(float dt)
+bool LoseScene::Update(float dt)
 {
 	if (next_button->MouseDown() && !next_clicked) {
 		next->current_anim = next->FindAnimation(Run);
@@ -69,17 +69,17 @@ bool LoseScreen::Update(float dt)
 	return true;
 }
 
-bool LoseScreen::PostUpdate()
+bool LoseScene::PostUpdate()
 {
 	return true;
 }
 
-void LoseScreen::Draw()
+void LoseScene::Draw()
 {
 	next_button->Draw();
 }
 
-bool LoseScreen::CleanUp()
+bool LoseScene::CleanUp()
 {
 	return true;
 }
