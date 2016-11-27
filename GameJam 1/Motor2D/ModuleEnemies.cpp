@@ -34,6 +34,17 @@ bool ModuleEnemies::Update(float dt)
 	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
 		enemy->data->Update(dt);
 		if (enemy->data->curr_hp == 0) {
+			switch (enemy->data->type)
+			{
+			case fear:
+				App->scene->have_fear = false;
+				break;
+			case insanity:
+				App->scene->crazy = false;
+				break;
+			default:
+				break;
+			}
 			App->scene->dummy_scene->round += 1;
 			App->scene->ChangeScene(App->scene->win_scene);
 		}

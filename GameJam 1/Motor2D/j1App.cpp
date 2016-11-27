@@ -235,10 +235,12 @@ void j1App::FinishUpdate()
 		//SDL_Delay(delay);
 	}
 
-	// Fps print -----------------------------
+	// Boss hp print -----------------------------
 	if (App->enemies->enemies.start) {
 		p2SString tmp; //tmp.create("%.1f", avg_fps);
-		tmp.create("boss_hp: %d / %d", App->enemies->enemies.start->data->curr_hp, App->enemies->enemies.start->data->max_hp);
+		if(scene->have_fear)
+			tmp.create("boss_hp: ×/×");
+		else tmp.create("boss_hp: %d / %d", App->enemies->enemies.start->data->curr_hp, App->enemies->enemies.start->data->max_hp);
 		App->text->boss_life->SetText(tmp);
 	}
 	p2SString tmp2; //tmp.create("%.1f", avg_fps);
