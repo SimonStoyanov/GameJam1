@@ -25,6 +25,28 @@ Hairball::Hairball(pugi::xml_node & config) : Spell(hairball, "hairball")
 	draw_offset.y = config.child("drawoffset").attribute("y").as_int(0);
 	size.x = config.child("size").attribute("w").as_int(10);
 	size.y = config.child("size").attribute("h").as_int(10);
+
+	iPoint mouse;
+	App->input->GetMousePosition(mouse.x, mouse.y);
+
+	float delta_x = mouse.x - App->render->camera.x - x - player_body->width;
+	float delta_y = mouse.y - App->render->camera.y - y - player_body->height;
+
+	alpha = atan(delta_y / delta_x);
+
+	if (App->scene->crazy) alpha += PI;
+
+	if (delta_x < 0)
+	{
+		vel.x = 15*-cos(alpha);
+		vel.y = 15*-sin(alpha);
+		alpha += PI;
+	}
+	else
+	{
+		vel.x = 15*cos(alpha);
+		vel.y = 15*sin(alpha);
+	}
 }
 
 Hairball::~Hairball()
@@ -36,7 +58,8 @@ void Hairball::Start()
 	prefab->CreateCollision(size.x, size.y, PLAYER, WORLD);
 	prefab->pbody->listener = App->spellmanager;
 	prefab->pbody->body->SetGravityScale(0);
-	prefab->pbody->body->SetLinearVelocity(b2Vec2(15, 0));
+	prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
+	prefab->pbody->body->SetTransform(prefab->pbody->body->GetPosition(), alpha);
 }
 
 bool Hairball::Update()
@@ -53,5 +76,5 @@ bool Hairball::Update()
 
 void Hairball::Draw()
 {
-	App->render->Blit(App->spellmanager->GetAtlas(), prefab->GetPosition().x + draw_offset.x, prefab->GetPosition().y + draw_offset.y, &prefab->animations[curr_anim]->GetCurrentFrameRect());
+	App->render->Blit(App->spellmanager->GetAtlas(), prefab->GetPosition().x + draw_offset.x, prefab->GetPosition().y + draw_offset.y, &prefab->animations[curr_anim]->GetCurrentFrameRect(), 1.0f, RADTODEG*alpha);
 }

@@ -208,7 +208,7 @@ bool SpellManager::CleanUp()
 
 void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 {
-	if (IsSpell(bodyA) )
+	if (IsSpell(bodyA) && GetSpell(bodyA)->type != shapeball)
 	{
 		if (IsSpell(bodyB) && GetSpell(bodyA)->type != shapeball) 
 		{
@@ -221,7 +221,6 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) 
 				{
 					boss_item->data->curr_hp -= GetSpell(bodyA)->GetDamage();
-
 				}
 			}
 			if (GetSpell(bodyA)->type != shield)
