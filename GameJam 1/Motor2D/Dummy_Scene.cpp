@@ -151,6 +151,7 @@ void Dummy::Draw()
 
 bool Dummy::CleanUp()
 {
+	App->player->Disable();
 	for (p2List_item<Prefab*>* item = grounds.start; item != nullptr; item = item->next)
 	{
 		App->physics->DeleteObject(item->data->pbody);
@@ -161,6 +162,7 @@ bool Dummy::CleanUp()
 	App->audio->StopMusic();
 	App->spellmanager->CleanUp();
 	App->render->camera.x = 0;
+	App->physics->CleanBodies();
 	return true;
 }
 

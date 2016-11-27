@@ -35,7 +35,6 @@ bool ModuleEnemies::Update(float dt)
 		enemy->data->Update(dt);
 		if (enemy->data->curr_hp == 0) {
 			App->scene->dummy_scene->round += 1;
-			App->player->Disable();
 			App->scene->ChangeScene(App->scene->win_scene);
 		}
 	}

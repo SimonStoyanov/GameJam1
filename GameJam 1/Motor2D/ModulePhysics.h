@@ -73,6 +73,8 @@ public:
 	PhysBody* CreateChain(int x, int y, int* points, int size, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
 	PhysBody* CreateStaticChain(int x, int y, int* points, int size, float rest = 0.0f, int cat = WORLD, int mask = PLAYER, int angle = 0);
 
+	void CleanBodies();
+
 	void DeleteObject(PhysBody* object);
 
 	b2RevoluteJoint* CreateRevoluteJoint(PhysBody* anchor, PhysBody* body, iPoint anchor_offset, iPoint body_offset, bool enable_limit, float max_angle, float min_angle, bool enable_motor, int motor_speed, int max_torque);

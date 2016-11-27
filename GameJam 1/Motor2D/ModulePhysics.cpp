@@ -377,6 +377,13 @@ PhysBody * ModulePhysics::CreateStaticChain(int x, int y, int * points, int size
 	return pbody;
 }
 
+void ModulePhysics::CleanBodies()
+{
+	while (world->GetBodyList() != nullptr) {
+		world->DestroyBody(world->GetBodyList());
+	}
+}
+
 void ModulePhysics::DeleteObject(PhysBody * object)
 {
 	world->DestroyBody(object->body);
@@ -489,6 +496,7 @@ void ModulePhysics::DeleteJoint(b2MouseJoint* joint)
 // 
 bool ModulePhysics::PostUpdate()
 {
+
 	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
 
@@ -523,7 +531,7 @@ bool ModulePhysics::PostUpdate()
 					{
 						v = b->GetWorldPoint(polygonShape->GetVertex(i));
 						if(i > 0)
-							App->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 255, 100, 100);
+							App->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 0, 0, 255);
 
 						prev = v;
 					}
@@ -618,6 +626,7 @@ bool ModulePhysics::PostUpdate()
 		mouse_joint = nullptr;
 		selected = nullptr;
 	}
+
 
 	return true;
 }

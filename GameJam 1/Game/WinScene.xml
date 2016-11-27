@@ -18,5 +18,16 @@
         <frame x="0" y="0" w="0" h="0"/>
       </anim>
     </next>
+    <exit>
+      <position x="330" y="240" w="150" h="71"/>
+      <anim type="0" speed="1.0">
+        <frame x="0" y="0" w="150" h="71"/>
+      </anim>
+      <anim type="1" speed="0.2" loop="false">
+        <frame x="0" y="71" w="150" h="71"/>
+        <frame x="0" y="142" w="150" h="71"/>
+        <frame x="0" y="0" w="0" h="0"/>
+      </anim>
+    </exit>
   </buttons>
 </config>
