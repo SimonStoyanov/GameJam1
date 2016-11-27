@@ -537,7 +537,7 @@ bool ModulePhysics::PostUpdate()
 					}
 
 					v = b->GetWorldPoint(polygonShape->GetVertex(0));
-					App->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 255, 100, 100);
+					App->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 0, 0, 255);
 				}
 				break;
 
