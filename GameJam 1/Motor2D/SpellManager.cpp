@@ -204,7 +204,7 @@ bool SpellManager::CleanUp()
 
 void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 {
-	if (IsSpell(bodyA)) {
+	if (IsSpell(bodyA) && GetSpell(bodyA)->type != shapeball) {
 		if (IsSpell(bodyB) && GetSpell(bodyA)->type != shapeball) {
 			DeleteSpell(bodyA);
 		}
@@ -218,10 +218,17 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 				DeleteSpell(bodyA);
 		}
 		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER) {
-			if (GetSpell(bodyA)->type == shapeball)
+			if (GetSpell(bodyA)->type == shapeball && !IsSpell(bodyB))
 				App->player->ChangeShape(Cat);
 			else if (!IsSpell(bodyB))
 				App->player->curr_hp -= 1;
+			if(!IsSpell(bodyB))
+				DeleteSpell(bodyA);
+		}
+	}
+	else if(GetSpell(bodyA)->type == shapeball){
+		if (bodyB == App->player->player->pbody) {
+			App->player->ChangeShape(Cat);
 			DeleteSpell(bodyA);
 		}
 	}
