@@ -134,24 +134,24 @@ bool j1Scene::PostUpdate()
 		App->text->cdR->PrintText();
 
 		// Spells UI
-		App->render->Blit(App->player->UI_texture, 270 - App->render->camera.x, 460 -App->render->camera.y, &App->player->UI_spells_rects[0]);
+		App->render->Blit(App->player->UI_texture, 294 - App->render->camera.x, 478 -App->render->camera.y, &App->player->UI_spells_rects[0]);
 		if(!App->spellmanager->Qcd)
-			App->render->Blit(App->player->UI_texture, 288 - App->render->camera.x, 466 - App->render->camera.y, &App->player->UI_spells_rects[1]);
+			App->render->Blit(App->player->UI_texture, 302 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[1]);
 		else
 		App->text->cdQ->PrintText();
 
 		if (!App->spellmanager->Wcd)
-			App->render->Blit(App->player->UI_texture, 372 - App->render->camera.x, 466 - App->render->camera.y, &App->player->UI_spells_rects[2]);
+			App->render->Blit(App->player->UI_texture, 369 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[2]);
 		else
 			App->text->cdW->PrintText();
 
 		if (!App->spellmanager->Ecd)
-			App->render->Blit(App->player->UI_texture, 456 - App->render->camera.x, 466 - App->render->camera.y, &App->player->UI_spells_rects[3]);
+			App->render->Blit(App->player->UI_texture, 432 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[3]);
 		else
 			App->text->cdE->PrintText();
 
 		if (!App->spellmanager->Rcd)
-			App->render->Blit(App->player->UI_texture, 539 - App->render->camera.x, 466 - App->render->camera.y, &App->player->UI_spells_rects[4]);
+			App->render->Blit(App->player->UI_texture, 496 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[4]);
 		else
 			App->text->cdR->PrintText();
 		// ---------

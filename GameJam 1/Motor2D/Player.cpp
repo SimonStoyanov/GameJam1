@@ -63,11 +63,11 @@ bool Player::Start()
 
 	// UI
 	UI_texture = App->tex->Load("Spritesheets/UI_sheet.png");
-	UI_spells_rects.add({173, 0, 365, 119}); // bg
-	UI_spells_rects.add({ 191, 125, 77, 93 }); // Q
-	UI_spells_rects.add({ 274, 125, 77, 93 }); // W
-	UI_spells_rects.add({ 359, 125, 77, 93 }); // E
-	UI_spells_rects.add({ 443, 125, 77, 93 }); // R
+	UI_spells_rects.add({0, 0, 273, 92}); // bg
+	UI_spells_rects.add({ 8, 104, 62, 76 }); // Q
+	UI_spells_rects.add({ 75, 104, 62, 76 }); // W
+	UI_spells_rects.add({ 138, 104, 62, 76 }); // E
+	UI_spells_rects.add({ 202, 104, 62, 76 }); // R
 
 	return true;
 }
