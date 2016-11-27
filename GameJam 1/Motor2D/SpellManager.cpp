@@ -64,7 +64,8 @@ bool SpellManager::PreUpdate()
 
 bool SpellManager::Update(float dt)
 {
-
+	if (!App->player->active)
+		return true;
 	p2List_item<Spell*>* spell_item = spells.start;
 	while (spell_item != nullptr) 
 	{
