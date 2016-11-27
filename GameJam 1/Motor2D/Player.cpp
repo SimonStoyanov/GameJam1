@@ -12,6 +12,7 @@
 #include "SpellManager.h"
 #include "RandomGenerator.h"
 #include "ModulePhysics.h"
+#include "j1Timer.h"
 
 Player::Player() : j1Module()
 {
@@ -55,8 +56,11 @@ bool Player::Start()
 	App->spellmanager->R = unknown;
 
 	LoadTextures();
-	player->LoadAnimations(config_node);
+	player->LoadAnimations(config_node.child("human"));
 	current_animation = player->FindAnimation(Run);
+
+	cat_anims = new Prefab(0, 0, "", NULLRECT);
+	cat_anims->LoadAnimations(config_node.child("cat"));
 
 	// Platforms
 	last_pos = player->GetPosition().y;
@@ -101,7 +105,21 @@ bool Player::Update(float dt)
 	if (!player->pbody->body->IsAwake())
 		player->pbody->body->SetAwake(true);
 
-	App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y, &player->animations[current_animation]->GetCurrentFrameRect());
+	switch (shape)
+	{
+	case Human:
+		App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y, &player->animations[current_animation]->GetCurrentFrameRect());
+		break;
+	case Cat:
+		App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y-20, &cat_anims->animations[current_animation]->GetCurrentFrameRect());
+		break;
+	default:
+		break;
+	}
+	
+	//Return tu human shape
+	if (shape != Human && shape_time.ReadSec() > 10)
+		ChangeShape(Human);
 
 	// Random updater ---
 	App->scene->dummy_scene->platforms_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
@@ -169,7 +187,10 @@ bool Player::Update(float dt)
 	}
 	
 	// -------------------------------------------
-	
+	//Shapeshift test
+	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
+		ChangeShape(Cat);
+	}
 	return true;
 }
 
@@ -236,6 +257,30 @@ bool Player::isTouching(PhysBody * body1, PhysBody * body2)
 
 	bool overlap = b2TestOverlap(b1->GetFixtureList()->GetShape(), 1, b2->GetFixtureList()->GetShape(), 1,  b1->GetTransform(), b2->GetTransform());
 	return overlap;
+}
+
+void Player::ChangeShape(Shape newshape)
+{
+	shape = newshape;
+	switch (shape)
+	{
+	case Human:
+		App->spellmanager->Q = fireball;
+		App->spellmanager->W = shield;
+		App->spellmanager->E = unknown;
+		App->spellmanager->R = unknown;
+		break;
+	case Cat:
+		App->spellmanager->Q = unknown;
+		App->spellmanager->W = unknown;
+		App->spellmanager->E = unknown;
+		App->spellmanager->R = unknown;
+		break;
+	default:
+		break;
+	}
+	if (shape != Human)
+		shape_time.Start();
 }
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)

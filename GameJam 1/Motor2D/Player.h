@@ -11,6 +11,11 @@
 class Prefab;
 struct SDL_Rect;
 struct SDL_Texture;
+
+enum Shape {
+	Human, Cat
+};
+
 class Player : public j1Module
 {
 public:
@@ -38,6 +43,9 @@ public:
 	int DistanceToPlayer(PhysBody* obj);
 	bool isTouching(PhysBody* body1, PhysBody* body2);
 	// -------------
+
+	// Shapeshift
+	void ChangeShape(Shape newshape);
 
 
 private:
@@ -68,6 +76,12 @@ private:
 
 	int current_animation = 0;
 	iPoint draw_offset;
+
+	Prefab* cat_anims;
+
+	Shape shape = Human;
+	j1Timer shape_time;
+
 };
 
 #endif // __PLAYER_H__
