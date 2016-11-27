@@ -107,6 +107,10 @@ bool Dummy::Start()
 
 	App->audio->PlayMusic("audio/music/Music.ogg");
 
+	//Start shapeball timer
+	shapeball_timer.Start();
+	App->spellmanager->CreateSpell(shapeball);
+
 	return true;
 }
 
@@ -125,6 +129,12 @@ bool Dummy::Update(float dt)
 		grounds.del(grounds.start);
 	}
 	// ------------------ 
+
+	//Create shape ball every 30 sec
+	if (shapeball_timer.ReadSec() > 30) {
+		App->spellmanager->CreateSpell(shapeball);
+		shapeball_timer.Start();
+	}
 	return true;
 }
 

@@ -47,6 +47,10 @@ public:
 	// Shapeshift
 	void ChangeShape(Shape newshape);
 
+	//Spell E ghost
+	void Ghost();
+	void UnGhost();
+
 
 private:
 
@@ -59,6 +63,12 @@ public:
 	SDL_Texture* UI_texture;
 	p2List<SDL_Rect> UI_spells_rects;
 	// ------------
+
+	//Spell E Ghost
+	j1Timer ghost_timer;
+	bool ghost;
+	//----------
+
 
 private:
 	bool on_ground = false;

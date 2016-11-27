@@ -12,6 +12,7 @@
 #include "InsanityEye.h"
 #include "j1Render.h"
 #include "Player.h"
+#include "ShapeBall.h"
 
 #define EMPTY -1
 
@@ -204,7 +205,7 @@ bool SpellManager::CleanUp()
 void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 {
 	if (IsSpell(bodyA)) {
-		if (IsSpell(bodyB)) {
+		if (IsSpell(bodyB) && GetSpell(bodyA)->type != shapeball) {
 			DeleteSpell(bodyA);
 		}
 		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) {
@@ -217,7 +218,9 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 				DeleteSpell(bodyA);
 		}
 		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER) {
-			if (!IsSpell(bodyB))
+			if (GetSpell(bodyA)->type == shapeball)
+				App->player->ChangeShape(Cat);
+			else if (!IsSpell(bodyB))
 				App->player->curr_hp -= 1;
 			DeleteSpell(bodyA);
 		}
@@ -293,6 +296,14 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		spell->SetDamage(1);
 		spell->Start();
 		break;
+	case shapeball:
+		spell = new Shapeball(spells_config.child("shapeball"));
+		spell->Start();
+		break;
+	case ghost:
+		App->player->Ghost();
+		App->player->ghost_timer.Start();
+		break;
 	default:
 		break;
 	}
@@ -314,6 +325,9 @@ int SpellManager::GetCd(Spelltypes type)
 		break;
 	case jump_attack:
 		return 2;
+		break;
+	case ghost:
+		return 12;
 		break;
 	case unknown:
 		return EMPTY;

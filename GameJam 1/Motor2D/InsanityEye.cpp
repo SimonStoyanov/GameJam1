@@ -50,8 +50,8 @@ void InsanityEye::Start()
 		float delta_y = -player_y + boss_y - increment;
 		float alpha = atan(delta_y / delta_x);
 
-		vel.x = insanity_speed*cos(alpha);
-		vel.y = insanity_speed*sin(alpha);
+		vel.x = (insanity_speed + App->scene->dummy_scene->round)*cos(alpha);
+		vel.y = (insanity_speed + App->scene->dummy_scene->round)*sin(alpha);
 
 		prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
 	}

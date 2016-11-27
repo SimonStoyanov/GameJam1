@@ -1,4 +1,4 @@
-#include "fearball.h"
+#include "ShapeBall.h"
 #include "j1Scene.h"
 #include "j1App.h"
 #include "j1Render.h"
@@ -10,9 +10,9 @@
 #include "Boss.h"
 #include "ModuleEnemies.h"
 
-Fearball::Fearball(pugi::xml_node& config) : Spell(fearball, "fearball")
+Shapeball::Shapeball(pugi::xml_node & config): Spell(shapeball, "shapeball")
 {
-	prefab = new Prefab(App->scene->dummy_scene->test_boss->prefab->GetPosition().x, App->scene->dummy_scene->test_boss->prefab->GetPosition().y, "", NULLRECT);
+	prefab = new Prefab(App->scene->dummy_scene->test_boss->prefab->GetPosition().x+50, 250, "", NULLRECT);
 
 	prefab->LoadAnimations(config);
 	curr_anim = prefab->FindAnimation(Idle);
@@ -21,43 +21,20 @@ Fearball::Fearball(pugi::xml_node& config) : Spell(fearball, "fearball")
 	draw_offset.y = config.child("drawoffset").attribute("y").as_int(0);
 	size.x = config.child("size").attribute("w").as_int(10);
 	size.y = config.child("size").attribute("h").as_int(10);
-
 }
 
-Fearball::~Fearball()
+Shapeball::~Shapeball()
 {
 }
 
-void Fearball::Start()
+void Shapeball::Start()
 {
 	prefab->CreateCollision(size.x, size.y, WORLD, PLAYER);
 	prefab->pbody->listener = App->spellmanager;
 	prefab->pbody->body->SetGravityScale(0);
-	if (prefab->pbody != nullptr) {
-		iPoint vel;
-		int player_x, player_y;
-		App->player->player->pbody->GetPosition(player_x, player_y);
-		int boss_x, boss_y;
-		for (p2List_item<Boss*>* boss = App->enemies->enemies.start; boss != nullptr; boss = boss->next) {
-			if (boss->data->shoot) {
-				boss->data->prefab->pbody->GetPosition(boss_x, boss_y);
-				break;
-			}
-		}
-		float delta_x = -player_x + boss_x - 400;
-		float increment = 0;
-		if (player_y < 355) increment += 40;
-		float delta_y = -player_y + boss_y - increment;
-		float alpha = atan(delta_y / delta_x);
-
-		vel.x = (fearball_speed + App->scene->dummy_scene->round)*cos(alpha);
-		vel.y = (fearball_speed + App->scene->dummy_scene->round)*sin(alpha);
-
-		prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
-	}
 }
 
-bool Fearball::Update()
+bool Shapeball::Update()
 {
 	if (collided) {
 		if (prefab->pbody->body->GetLinearVelocity().x != 0 || prefab->pbody->body->GetLinearVelocity().y != 0)
@@ -69,7 +46,7 @@ bool Fearball::Update()
 	return true;
 }
 
-void Fearball::Draw()
+void Shapeball::Draw()
 {
 	App->render->Blit(App->spellmanager->GetAtlas(), prefab->GetPosition().x + draw_offset.x, prefab->GetPosition().y + draw_offset.y, &prefab->animations[curr_anim]->GetCurrentFrameRect());
 }

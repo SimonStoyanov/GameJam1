@@ -17,6 +17,7 @@
       <frame x="0" y="714" w="132" h="114"/>
     </anim>
   </fireball>
+  
   <shield>
     <drawoffset x="-25" y="-10"/>
     <size w="150" h="175"/>
@@ -32,11 +33,11 @@
       <frame x="444" y="0" w="198" h="203"/>
     </anim>
   </shield>
+  
   <fearball>
     <drawoffset x="-50" y="-40"/>
     <size w="30" h="30"/>
     <anim type="0" speed ="0.2f">
-      <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
       <frame x="132" y="0" w="132" h="114"/>
       <frame x="132" y="114" w="132" h="114"/>
       <frame x="132" y="228" w="132" h="114"/>
@@ -70,5 +71,19 @@
       <frame x="22" y="961" w="156" h="65"/>
     </anim>
   </dust>
+  <shapeball>
+    <drawoffset x="-0" y="0"/>
+    <size w="80" h="85"/>
+    <anim type="0" speed ="0.2f">
+      <frame x="642" y="0" w="80" h="85"/>
+      <frame x="642" y="85" w="80" h="85"/>
+      <frame x="642" y="150" w="80" h="85"/>
+      <frame x="642" y="85" w="80" h="85"/>
+    </anim>
+    <anim type="5" speed ="0.15f" loop ="false">
+      <frame x="444" y="0" w="198" h="203"/>
+      <frame x="444" y="203" w="198" h="203"/>
+    </anim>
+  </shapeball>
 
 </config>

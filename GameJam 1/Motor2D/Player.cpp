@@ -52,7 +52,7 @@ bool Player::Start()
 	// Spells
 	App->spellmanager->Q = fireball;
 	App->spellmanager->W = shield;
-	App->spellmanager->E = unknown;
+	App->spellmanager->E = Spelltypes::ghost;
 	App->spellmanager->R = unknown;
 
 	LoadTextures();
@@ -93,7 +93,7 @@ bool Player::Update(float dt)
 		player->pbody->body->SetLinearVelocity(b2Vec2(0, player->pbody->body->GetLinearVelocity().y));
 	}
 
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) {
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground && !ghost) {
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -jump_force), false);
 		current_animation = player->FindAnimation(Jump);
 		on_ground = false;
@@ -105,6 +105,7 @@ bool Player::Update(float dt)
 	if (!player->pbody->body->IsAwake())
 		player->pbody->body->SetAwake(true);
 
+	//Draw
 	switch (shape)
 	{
 	case Human:
@@ -120,6 +121,10 @@ bool Player::Update(float dt)
 	//Return tu human shape
 	if (shape != Human && shape_time.ReadSec() > 10)
 		ChangeShape(Human);
+
+	// Stop Ghost
+	if (ghost && ghost_timer.ReadSec() > 5)
+		UnGhost();
 
 	// Random updater ---
 	App->scene->dummy_scene->platforms_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
@@ -187,10 +192,6 @@ bool Player::Update(float dt)
 	}
 	
 	// -------------------------------------------
-	//Shapeshift test
-	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
-		ChangeShape(Cat);
-	}
 	return true;
 }
 
@@ -267,13 +268,13 @@ void Player::ChangeShape(Shape newshape)
 	case Human:
 		App->spellmanager->Q = fireball;
 		App->spellmanager->W = shield;
-		App->spellmanager->E = unknown;
+		App->spellmanager->E = Spelltypes::ghost;
 		App->spellmanager->R = unknown;
 		break;
 	case Cat:
 		App->spellmanager->Q = unknown;
 		App->spellmanager->W = unknown;
-		App->spellmanager->E = unknown;
+		App->spellmanager->E = Spelltypes::ghost;
 		App->spellmanager->R = unknown;
 		break;
 	default:
@@ -281,6 +282,26 @@ void Player::ChangeShape(Shape newshape)
 	}
 	if (shape != Human)
 		shape_time.Start();
+}
+
+void Player::Ghost()
+{
+	b2Filter a;
+	a.categoryBits = WORLD;
+	a.maskBits = PLAYER;
+	player->pbody->body->GetFixtureList()->SetFilterData(a);
+	ghost = true;
+	player->pbody->body->SetGravityScale(0);
+}
+
+void Player::UnGhost()
+{
+	b2Filter a;
+	a.categoryBits = PLAYER;
+	a.maskBits = WORLD;
+	player->pbody->body->GetFixtureList()->SetFilterData(a);
+	ghost = false;
+	player->pbody->body->SetGravityScale(1);
 }
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
