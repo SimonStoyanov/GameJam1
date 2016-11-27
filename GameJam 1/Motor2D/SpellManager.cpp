@@ -183,6 +183,13 @@ bool SpellManager::Update(float dt)
 
 	// -----------------------
 
+	// Ghost -----------------
+	if ((App->player->ghost_t + 3) - time->ReadSec() > 0)
+		App->player->ghost = true;
+	else
+		App->player->ghost = false;
+	// -----------------------
+
 	return true;
 }
 
@@ -230,7 +237,7 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 		{
 			if (GetSpell(bodyA)->type == shapeball && !IsSpell(bodyB))
 				App->player->ChangeShape(Cat);
-			else if (!IsSpell(bodyB))
+			else if (!IsSpell(bodyB) && !App->player->ghost)
 				App->player->curr_hp -= 1;
 			if(!IsSpell(bodyB))
 				DeleteSpell(bodyA);
@@ -321,12 +328,12 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		spell->SetDamage(1);
 		spell->Start();
 
-		Spell* spell2 = new Firebarrage(spells_config.child("fireball"), -30,  50);
+		Spell* spell2 = new Firebarrage(spells_config.child("fireball"), -40,  60);
 		spell2->SetDamage(1);
 		spell2->Start();
 		spells.add(spell2);
 		
-		Spell* spell3 = new Firebarrage(spells_config.child("fireball"), -30, -50);
+		Spell* spell3 = new Firebarrage(spells_config.child("fireball"), -40, -70);
 		spell3->SetDamage(1);
 		spell3->Start();
 		spells.add(spell3);
@@ -337,8 +344,8 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		spell->Start();
 		break;
 	case ghost:
-		App->player->Ghost();
-		App->player->ghost_timer.Start();
+		App->player->ghost_t = time->ReadSec();
+		App->player->on_ground = true;
 		break;
 	case hairball:
 		spell = new Hairball(spells_config.child("hairball"));

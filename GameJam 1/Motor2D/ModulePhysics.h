@@ -18,7 +18,8 @@ enum BodyType
 	null,
 	platform,
 	wall,
-	fireb
+	fireb,
+	player
 };
 
 struct path_joint {

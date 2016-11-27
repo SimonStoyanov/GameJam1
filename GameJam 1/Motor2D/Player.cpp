@@ -94,7 +94,8 @@ bool Player::Update(float dt)
 		player->pbody->body->SetLinearVelocity(b2Vec2(0, player->pbody->body->GetLinearVelocity().y));
 	}
 
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground && !ghost) {
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) 
+	{
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -jump_force), false);
 		current_animation = player->FindAnimation(Jump);
 		on_ground = false;
@@ -118,26 +119,18 @@ bool Player::Update(float dt)
 	default:
 		break;
 	}
-	
-	//Return tu human shape
-	if (shape != Human && shape_time.ReadSec() > 10)
-		ChangeShape(Human);
-
-	// Stop Ghost
-	if (ghost && ghost_timer.ReadSec() > 5)
-		UnGhost();
 
 	// Random updater ---
 	App->scene->dummy_scene->platforms_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
 
-	// Platform shit ---------------------------------
+	// Platform and ghost shit ---------------------------
 
 	curr_platform = App->scene->dummy_scene->platforms_rand->GetClosestPlat();
 
+	b2Filter a;
 	//LOG("%d", player->GetPosition().y);
-	if (curr_platform != nullptr)
+	if (curr_platform != nullptr && !ghost)
 	{
-		b2Filter a;
 		if (player->GetPosition().y < 333 && !IsGoingUp()) //Ground
 		{
 			a.categoryBits = WORLD;
@@ -191,8 +184,15 @@ bool Player::Update(float dt)
 			}
 		}
 	}
+	else if(curr_platform != nullptr && ghost == true)
+	{
+		a.categoryBits = WORLD;
+		a.maskBits = BOSS;
+		curr_platform->body->GetFixtureList()->SetFilterData(a);
+	}
 	
 	// -------------------------------------------
+
 	return true;
 }
 
@@ -209,6 +209,7 @@ void Player::LoadTextures()
 {
 	player = new Prefab(start_pos.x, start_pos.y, texture_path.GetString(), Sprite_rect);
 	player->CreateCollision(Sprite_rect.w, Sprite_rect.h, PLAYER, WORLD);
+	player->pbody->type = BodyType::player;
 	player->pbody->listener = this;
 	player->pbody->body->SetBullet(true);
 }
@@ -285,29 +286,12 @@ void Player::ChangeShape(Shape newshape)
 		shape_time.Start();
 }
 
-void Player::Ghost()
-{
-	b2Filter a;
-	a.categoryBits = WORLD;
-	a.maskBits = PLAYER;
-	player->pbody->body->GetFixtureList()->SetFilterData(a);
-	ghost = true;
-	player->pbody->body->SetGravityScale(0);
-}
 
-void Player::UnGhost()
-{
-	b2Filter a;
-	a.categoryBits = PLAYER;
-	a.maskBits = WORLD;
-	player->pbody->body->GetFixtureList()->SetFilterData(a);
-	ghost = false;
-	player->pbody->body->SetGravityScale(1);
-}
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 {
-	if (bodyA == player->pbody) {
+	if (bodyA == player->pbody || bodyA->type == BodyType::player) 
+	{
 		if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == WORLD) 
 		{
 			on_ground = true;

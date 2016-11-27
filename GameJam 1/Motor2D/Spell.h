@@ -19,7 +19,8 @@ enum Spelltypes {
 	unknown
 };
 
-class Spell{
+class Spell
+{
 public:
 	p2SString name;
 	Spelltypes type;

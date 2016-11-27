@@ -47,9 +47,6 @@ public:
 	// Shapeshift
 	void ChangeShape(Shape newshape);
 
-	//Spell E ghost
-	void Ghost();
-	void UnGhost();
 
 
 private:
@@ -64,14 +61,15 @@ public:
 	p2List<SDL_Rect> UI_spells_rects;
 	// ------------
 
-	//Spell E Ghost
-	j1Timer ghost_timer;
-	bool ghost;
-	//----------
+	//Ghost -------
+	bool ghost = false;
+	float ghost_t = -99;
+	// ------------
 
+	bool on_ground = true;
 
 private:
-	bool on_ground = false;
+
 
 	SDL_Rect Sprite_rect;
 	p2SString texture_path;

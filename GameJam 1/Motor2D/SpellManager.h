@@ -53,16 +53,17 @@ public:
 
 	Spelltypes Q;
 	float timeQ;
-	bool Qcd = false;;
+	bool Qcd = false;
 	Spelltypes W;
 	float timeW;
-	bool Wcd = false;;
+	bool Wcd = false;
 	Spelltypes E;
 	float timeE;
-	bool Ecd = false;;
+	bool Ecd = false;
 	Spelltypes R;
 	float timeR;
-	bool Rcd = false;;
+	bool Rcd = false;
+
 
 private:
 	pugi::xml_document spellconfig_doc;

@@ -109,6 +109,7 @@
     <ClCompile Include="Hairball.cpp">
       <Filter>Development\Game\Spells\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Ghost.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
