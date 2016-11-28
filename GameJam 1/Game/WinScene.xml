@@ -8,7 +8,7 @@
   <buttons>
     <image path="Spritesheets/intro_sheet.png"/>
     <next>
-      <position x="200" y="187" w="444" h="177"/>
+      <position x="200" y="237" w="444" h="177"/>
       <anim type="0" speed="1.0"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
         <frame x="172" y="0" w="444" h="177"/>
       </anim>
@@ -24,7 +24,7 @@
         <frame x="617" y="0" w="272" h="152"/>
       </anim>
       <anim type="1" speed="0.2" loop="false">
-        <frame x="617" y="125" w="272" h="152"/>
+<frame x="617" y="125" w="272" h="152"/>
         <frame x="617" y="250" w="272" h="152"/>
         <frame x="0" y="0" w="0" h="0"/>
       </anim>

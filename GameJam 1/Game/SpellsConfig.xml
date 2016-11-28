@@ -97,8 +97,8 @@
       <frame x="642" y="85" w="80" h="85"/>
     </anim>
     <anim type="5" speed ="0.15f" loop ="false">
-      <frame x="444" y="0" w="198" h="203"/>
-      <frame x="444" y="203" w="198" h="203"/>
+      <frame x="642" y="255" w="80" h="85"/>
+      <frame x="642" y="340" w="80" h="85"/>
     </anim>
   </shapeball>
   <hairball>
