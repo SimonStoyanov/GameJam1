@@ -60,6 +60,11 @@ bool WinScene::Start()
 
 	exit_button = new Button(position.x, position.y, position.w, position.h);
 
+	if (App->text->end_text == nullptr)
+		App->text->end_text = new Text(200, 350, App->text->on_meth_30, 30);
+	p2SString endtext("Congratulations! You Win!");
+	App->text->end_text->SetText(endtext, middle);
+
 	return true;
 }
 
@@ -96,7 +101,7 @@ bool WinScene::Update(float dt)
 
 bool WinScene::PostUpdate()
 {
-	App->text->highscore->PrintText();
+	App->text->end_text->PrintText();
 	return false;
 }
 

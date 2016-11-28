@@ -64,6 +64,7 @@ public:
 	Text*				cdW;
 	Text*				cdE;
 	Text*				cdR;
+	Text*				end_text;
 	uint				timeless_15;
 	uint				on_meth_30;
 
