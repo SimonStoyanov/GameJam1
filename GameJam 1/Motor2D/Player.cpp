@@ -215,7 +215,8 @@ bool Player::Update(float dt)
 		App->render->Blit(UI_texture, 5 + i * 40 - App->render->camera.x, 5, &emptyheart);
 	}
 
-	//-------
+	// -------
+
 	//Return tu human shape
 	if (shape != Human && shape_time.ReadSec() > 10) {
 		ChangeShape(Human);
@@ -230,8 +231,7 @@ bool Player::Update(float dt)
 	curr_platform = App->scene->dummy_scene->platforms_rand->GetClosestPlat();
 
 	b2Filter a;
-	//LOG("%d", player->GetPosition().y);
-	if (curr_platform != nullptr && !ghost)
+	if (curr_platform != nullptr && !ghost && !isTouching(player->pbody, curr_platform))
 	{
 		if (player->GetPosition().y < 333 && !IsGoingUp()) //Ground
 		{
@@ -254,14 +254,11 @@ bool Player::Update(float dt)
 			a.maskBits = BOSS;
 			player->pbody->body->GetFixtureList()->SetFilterData(a);
 		}
-		else
+		else if (!isTouching(player->pbody, curr_platform))
 		{
-			if (!isTouching(player->pbody, curr_platform))
-			{
-				a.categoryBits = PLAYER;
-				a.maskBits = WORLD;
-				player->pbody->body->GetFixtureList()->SetFilterData(a);
-			}
+			a.categoryBits = PLAYER;
+			a.maskBits = WORLD;
+			player->pbody->body->GetFixtureList()->SetFilterData(a);
 		}
 
 		if (curr_platform->type == wall)
