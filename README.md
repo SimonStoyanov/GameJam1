@@ -1,10 +1,10 @@
 # GameJam1
 
-First weekly Game Jam by the team <Teamname>
+First weekly Game Jam by the team BOOLAS STUDIO
 
 #Idea
 
-<Gamename> is an infinite platform shooting game in which the player has to battle against
+BURDEN is an infinite platform shooting game in which the player has to battle against
 its problems and concerns. Being defeated by the enemy means that you're going to be affected by the
 enemy's effect the next turn, and the only way to escape it is either if you win infinitelly, or if you quit
 the game. How many turns can you resist without being defeated by your concerns? 
@@ -23,5 +23,5 @@ the game. How many turns can you resist without being defeated by your concerns?
 
 ##Current state: Prototype, containing:
 
-· 2 bosses (Fear, Madness)
+· 2 bosses (Fear, Insanity)
 · 1 transformation (cat)
