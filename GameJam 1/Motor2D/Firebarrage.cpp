@@ -61,7 +61,7 @@ void Firebarrage::Start()
 		prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
 }
 
-bool Firebarrage::Update()
+bool Firebarrage::Update(float dt)
 {
 	if (collided) 
 	{

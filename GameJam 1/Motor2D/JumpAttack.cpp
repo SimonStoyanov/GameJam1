@@ -18,7 +18,7 @@ void JumpAttack::Start()
 {
 }
 
-bool JumpAttack::Update()
+bool JumpAttack::Update(float dt)
 {
 	App->player->player->pbody->body->SetLinearVelocity(b2Vec2(0, 50));
 

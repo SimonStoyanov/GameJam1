@@ -38,7 +38,7 @@ public:
 	~Spell();
 
 	virtual void Start();
-	virtual bool Update();
+	virtual bool Update(float dt);
 	virtual void Draw();
 	virtual void Cleanup();
 	void SetDamage(int damage);

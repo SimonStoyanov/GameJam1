@@ -12,7 +12,7 @@ public:
 	~InsanityEye();
 
 	void Start();
-	bool Update();
+	bool Update(float dt);
 	void Draw();
 
 	bool PlayerTouched();

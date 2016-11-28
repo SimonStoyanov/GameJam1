@@ -115,7 +115,7 @@ bool Dummy::Start()
 	App->text->round->SetText(roundtext);
 	App->text->round->is_ui = true;
 
-	death_detector = App->physics->CreateRectangleSensor(-300 - App->render->camera.x, 300, 100, 1000);
+	death_detector = App->physics->CreateRectangleSensor(-350 - App->render->camera.x, 300, 100, 1000);
 	death_detector->type = death_detec;
 
 	return true;

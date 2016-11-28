@@ -20,7 +20,7 @@ void Spell::Start()
 {
 }
 
-bool Spell::Update()
+bool Spell::Update(float dt)
 {
 	return true;
 }

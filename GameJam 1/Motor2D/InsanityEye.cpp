@@ -64,8 +64,10 @@ void InsanityEye::Start()
 	}
 }
 
-bool InsanityEye::Update()
+bool InsanityEye::Update(float dt)
 {
+	LOG("%f", dt);
+
 	if (collided)
 	{
 		if (prefab->pbody->body->GetLinearVelocity().x != 0 || prefab->pbody->body->GetLinearVelocity().y != 0)
@@ -81,26 +83,24 @@ bool InsanityEye::Update()
 		prefab->pbody->body->SetLinearVelocity(b2Vec2(0, 0));
 		return_boss = true;
 	}
-	
+
 	if(return_boss)
 	{
-		prefab->pbody->body->SetTransform(b2Vec2(prefab->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(10)), prefab->pbody->body->GetPosition().y), 0);
+		prefab->pbody->body->SetTransform(b2Vec2(prefab->pbody->body->GetPosition().x + PIXEL_TO_METERS((int)(600*dt)), prefab->pbody->body->GetPosition().y), 0);
 
 		if (App->scene->dummy_scene->test_boss->prefab->pbody->body->GetPosition().y > prefab->pbody->body->GetPosition().y)
 		{
-			prefab->pbody->body->SetTransform(b2Vec2(prefab->pbody->body->GetPosition().x, prefab->pbody->body->GetPosition().y + PIXEL_TO_METERS((int)(3))), 0);
+			prefab->pbody->body->SetTransform(b2Vec2(prefab->pbody->body->GetPosition().x, prefab->pbody->body->GetPosition().y + PIXEL_TO_METERS((int)(200*dt))), 0);
 		}
 		else if (App->scene->dummy_scene->test_boss->prefab->pbody->body->GetPosition().y < prefab->pbody->body->GetPosition().y)
 		{
-			prefab->pbody->body->SetTransform(b2Vec2(prefab->pbody->body->GetPosition().x, prefab->pbody->body->GetPosition().y - PIXEL_TO_METERS((int)(3))), 0);
+			prefab->pbody->body->SetTransform(b2Vec2(prefab->pbody->body->GetPosition().x, prefab->pbody->body->GetPosition().y - PIXEL_TO_METERS((int)(200*dt))), 0);
 		}
 
 	
 		if ((int)App->scene->dummy_scene->test_boss->prefab->pbody->body->GetPosition().x < (int)prefab->pbody->body->GetPosition().x && !dead)
 		{
-			LOG("%d < %d", (int)App->scene->dummy_scene->test_boss->prefab->pbody->body->GetPosition().x, (int)prefab->pbody->body->GetPosition().x);
-			App->spellmanager->DeleteSpell(prefab->pbody);
-			dead = true;
+			to_delete = true;
 		}
 	}
 	

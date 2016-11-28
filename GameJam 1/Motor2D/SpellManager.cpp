@@ -74,7 +74,7 @@ bool SpellManager::Update(float dt)
 	p2List_item<Spell*>* spell_item = spells.start;
 	while (spell_item != nullptr) 
 	{
-		spell_item->data->Update();
+		spell_item->data->Update(dt);
 		spell_item = spell_item->next;
 	}
 
