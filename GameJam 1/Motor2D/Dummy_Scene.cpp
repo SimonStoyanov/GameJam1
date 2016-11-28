@@ -87,7 +87,7 @@ bool Dummy::Start()
 	platforms_rand = new RandomGenerator(platform, 1100, 300, 460, 8, 240, 10, 430);
 	platforms_rand->texture = App->tex->Load("Spritesheets/platforms_sheet.png");
 	platforms_rand->rects.add({ 0, 0, 262, 83 });
-	platforms_rand->rects.add({0, 83, 244, 117 });
+	platforms_rand->rects.add({0, 83, 244, 112 });
 	platforms_rand->rects.add({ 262, 42, 225, 145 });
 	platforms_rand->rects.add({ 0, 195, 183, 193 });
 

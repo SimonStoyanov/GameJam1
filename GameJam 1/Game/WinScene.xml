@@ -24,7 +24,7 @@
         <frame x="617" y="0" w="272" h="152"/>
       </anim>
       <anim type="1" speed="0.2" loop="false">
-<frame x="617" y="125" w="272" h="152"/>
+        <frame x="617" y="125" w="272" h="152"/>
         <frame x="617" y="250" w="272" h="152"/>
         <frame x="0" y="0" w="0" h="0"/>
       </anim>
