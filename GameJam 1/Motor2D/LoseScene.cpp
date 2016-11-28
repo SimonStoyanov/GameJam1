@@ -69,12 +69,16 @@ bool LoseScene::Start()
 	else endtext = "You Lose! Don't stay back!";
 	App->text->end_text->SetText(endtext, middle);
 
+	continue_fx = App->audio->LoadFx("audio/music/GameOver.wav");
+	App->audio->PlayFx(continue_fx);
+
 	return true;
 }
 
 bool LoseScene::Update(float dt)
 {
 	if (next_button->MouseDown() && !next_clicked) {
+		App->audio->PlayFx(App->audio->LoadFx("audio/music/Continue.wav"));
 		next->current_anim = next->FindAnimation(Run);
 		next_clicked = true;
 	}

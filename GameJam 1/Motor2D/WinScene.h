@@ -2,6 +2,7 @@
 #define _WINSCENE_
 
 #include "Scene.h"
+#include "p2Defs.h"
 
 class Prefab;
 class Button;
@@ -30,6 +31,7 @@ private:
 	SDL_Texture* UI_tex;
 	SDL_Texture* Background_tex;
 
+	uint continue_fx = NULL;
 };
 
 #endif

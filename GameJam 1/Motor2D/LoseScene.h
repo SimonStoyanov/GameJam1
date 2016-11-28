@@ -2,6 +2,7 @@
 #define _LOSESCREEN_
 
 #include "Scene.h"
+#include "p2Defs.h"
 
 class Prefab;
 class Button;
@@ -26,6 +27,8 @@ private:
 	bool next_clicked = false;
 	SDL_Texture* UI_tex;
 	SDL_Texture* Background_tex;
+
+	uint continue_fx = NULL;
 };
 
 #endif

@@ -2,6 +2,7 @@
 #define _INTROSCENE_
 
 #include "Scene.h"
+#include "p2Defs.h"
 
 class Prefab;
 class Button;

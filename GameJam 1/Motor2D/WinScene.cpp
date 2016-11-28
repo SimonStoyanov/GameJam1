@@ -10,6 +10,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Text.h"
+#include "j1Audio.h"
 
 WinScene::WinScene()
 {
@@ -65,12 +66,15 @@ bool WinScene::Start()
 	p2SString endtext("Congratulations! You Win!");
 	App->text->end_text->SetText(endtext, middle);
 
+	continue_fx = App->audio->LoadFx("audio/game/Win.wav");
+	App->audio->PlayFx(continue_fx);
 	return true;
 }
 
 bool WinScene::Update(float dt)
 {
 	if (next_button->MouseDown() && !next_clicked) {
+		App->audio->PlayFx(App->audio->LoadFx("audio/game/Next.wav"));
 		next->current_anim = next->FindAnimation(Run);
 		next_clicked = true;
 	}
@@ -85,6 +89,7 @@ bool WinScene::Update(float dt)
 	}
 
 	if (exit_button->MouseDown() && !exit_clicked) {
+		App->audio->PlayFx(App->audio->LoadFx("audio/game/Continue.wav"));
 		exit->current_anim = exit->FindAnimation(Run);
 		exit_clicked = true;
 	}
