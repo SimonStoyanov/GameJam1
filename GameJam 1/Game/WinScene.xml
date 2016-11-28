@@ -2,30 +2,30 @@
 
 <config>
   <background>
-    <image path=""/> <!--Make the image the same size the window have, it will be drawn automatically-->
+    <image path="Spritesheets/mid_scene.png"/> <!--Make the image the same size the window have, it will be drawn automatically-->
   </background>
 
   <buttons>
-    <image path=""/>
+    <image path="Spritesheets/intro_sheet.png"/>
     <next>
-      <position x="330" y="140" w="150" h="71"/>
+      <position x="200" y="187" w="444" h="177"/>
       <anim type="0" speed="1.0"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
-        <frame x="0" y="0" w="150" h="71"/>
+        <frame x="172" y="0" w="444" h="177"/>
       </anim>
       <anim type="1" speed="0.2" loop="false">
-        <frame x="0" y="71" w="150" h="71"/>
-        <frame x="0" y="142" w="150" h="71"/>
+        <frame x="172" y="117" w="444" h="177"/>
+        <frame x="172" y="354" w="444" h="177"/>
         <frame x="0" y="0" w="0" h="0"/>
       </anim>
     </next>
     <exit>
-      <position x="330" y="240" w="150" h="71"/>
+      <position x="274" y="99" w="272" h="152"/>
       <anim type="0" speed="1.0">
-        <frame x="0" y="0" w="150" h="71"/>
+        <frame x="617" y="0" w="272" h="152"/>
       </anim>
       <anim type="1" speed="0.2" loop="false">
-        <frame x="0" y="71" w="150" h="71"/>
-        <frame x="0" y="142" w="150" h="71"/>
+        <frame x="617" y="125" w="272" h="152"/>
+        <frame x="617" y="250" w="272" h="152"/>
         <frame x="0" y="0" w="0" h="0"/>
       </anim>
     </exit>

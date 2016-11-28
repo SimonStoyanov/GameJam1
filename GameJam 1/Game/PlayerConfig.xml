@@ -32,11 +32,14 @@
         <frame x="990" y="183" w="198" h="183"/>
       </anim>
       <anim type="2" speed="0.2" loop="false">
-        <frame x="198" y="183" w="198" h="183"/>
-        <frame x="396" y="183" w="198" h="183"/>
+        <frame x="1386" y="183" w="198" h="183"/>
+        <frame x="1584" y="183" w="198" h="183"/>
       </anim>
       <anim type="3" speed="0.2">
-        <frame x="0" y="183" w="198" h="183"/>
+        <frame x="792" y="183" w="198" h="183"/>
+        <frame x="990" y="183" w="198" h="183"/>
+        <frame x="1188" y="183" w="198" h="183"/>
+        <frame x="990" y="183" w="198" h="183"/>
       </anim>
       <anim type="4" speed="0.2">
         <!--This animation is for when the player gets hit!-->
