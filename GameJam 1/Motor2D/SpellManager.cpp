@@ -241,8 +241,11 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 				App->player->ChangeShape(Cat);
 				ResetCD();
 			}
-			else if (!IsSpell(bodyB) && !App->player->ghost)
+			else if (!IsSpell(bodyB) && !App->player->ghost) {
 				App->player->curr_hp -= 1;
+				App->player->hit = true;
+				App->player->SetAnim(Hit);
+			}
 			if(!IsSpell(bodyB))
 				DeleteSpell(bodyA);
 		}
@@ -424,5 +427,4 @@ void SpellManager::ResetCD()
 	timeQ = -99;
 	timeW = -99;
 	timeE = -99;
-	timeR = -99;
 }

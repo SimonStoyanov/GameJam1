@@ -7,6 +7,7 @@
 
 #include "j1App.h"
 #include "p2Point.h"
+#include "Animation.h"
 
 class Prefab;
 struct SDL_Rect;
@@ -51,6 +52,9 @@ public:
 	//Shoot anim
 	void Shoot();
 
+	//Set anim to xxx
+	void SetAnim(AnimTypes anim);
+
 
 private:
 
@@ -74,6 +78,7 @@ public:
 	int jump_force;
 
 	Shape shape = Human;
+	bool hit;
 
 private:
 

@@ -49,6 +49,8 @@ bool Player::Start()
 	draw_offset.x = config_node.child("draw_offset").attribute("x").as_int(0);
 	draw_offset.y = config_node.child("draw_offset").attribute("y").as_int(0);
 
+	hit = false;
+
 	//Start in Human Shape
 	shape = Human;
 
@@ -166,6 +168,27 @@ bool Player::Update(float dt)
 		
 	}
 
+	//Change hit animation to run
+	if (hit) {
+		switch (shape)
+		{
+		case Human:
+			if (player->animations[current_animation]->Finished()) {
+				current_animation = player->FindAnimation(Run);
+				hit = false;
+			}
+			break;
+		case Cat:
+			if (cat_anims->animations[current_animation]->Finished()) {
+				current_animation = cat_anims->FindAnimation(Run);
+				hit = false;
+			}
+			break;
+		default:
+			break;
+		}
+	}
+
 	//Draw
 	switch (shape)
 	{
@@ -178,6 +201,7 @@ bool Player::Update(float dt)
 	default:
 		break;
 	}
+
 
 	SDL_Rect fullheart = { 0,301,39,38 };
 	int i = 0;
@@ -380,6 +404,23 @@ void Player::Shoot()
 		break;
 	}
 	shooting = true;
+}
+
+void Player::SetAnim(AnimTypes anim)
+{
+	switch (shape)
+	{
+	case Human:
+		current_animation = player->FindAnimation(anim);
+		player->animations[current_animation]->Reset();
+		break;
+	case Cat:
+		current_animation = cat_anims->FindAnimation(anim);
+		cat_anims->animations[current_animation]->Reset();
+		break;
+	default:
+		break;
+	}
 }
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
