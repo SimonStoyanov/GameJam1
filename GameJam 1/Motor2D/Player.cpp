@@ -49,12 +49,16 @@ bool Player::Start()
 	draw_offset.x = config_node.child("draw_offset").attribute("x").as_int(0);
 	draw_offset.y = config_node.child("draw_offset").attribute("y").as_int(0);
 
+	//Start in Human Shape
+	shape = Human;
+
 	// Spells
 	App->spellmanager->Q = fireball;
 	App->spellmanager->W = shield;
 	App->spellmanager->E = Spelltypes::ghost;
 	App->spellmanager->R = firebarrage;
 
+	App->spellmanager->ResetCD();
 
 	LoadTextures();
 	player->LoadAnimations(config_node.child("human"));
@@ -187,8 +191,10 @@ bool Player::Update(float dt)
 
 	//-------
 	//Return tu human shape
-	if (shape != Human && shape_time.ReadSec() > 10)
+	if (shape != Human && shape_time.ReadSec() > 10) {
 		ChangeShape(Human);
+		App->spellmanager->ResetCD();
+	}
 
 	// Random updater ---
 	App->scene->dummy_scene->platforms_rand->CheckRand(-App->render->camera.x + 1000, App->player->player->GetPosition().y, 1500);
@@ -342,7 +348,6 @@ void Player::ChangeShape(Shape newshape)
 		App->spellmanager->W = shield;
 		App->spellmanager->E = Spelltypes::ghost;
 		App->spellmanager->R = firebarrage;
-		player->pbody->body->SetGravityScale(1);
 		break;
 	case Cat:
 		App->spellmanager->Q = hairball;

@@ -237,8 +237,10 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 		}
 		else if (bodyB->body->GetFixtureList()->GetFilterData().categoryBits == PLAYER)
 		{
-			if (GetSpell(bodyA)->type == shapeball && !IsSpell(bodyB))
+			if (GetSpell(bodyA)->type == shapeball && !IsSpell(bodyB)) {
 				App->player->ChangeShape(Cat);
+				ResetCD();
+			}
 			else if (!IsSpell(bodyB) && !App->player->ghost)
 				App->player->curr_hp -= 1;
 			if(!IsSpell(bodyB))
@@ -248,6 +250,7 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 	else if(GetSpell(bodyA)->type == shapeball){
 		if (bodyB == App->player->player->pbody) {
 			App->player->ChangeShape(Cat);
+			ResetCD();
 			DeleteSpell(bodyA);
 		}
 	}
@@ -414,4 +417,12 @@ int SpellManager::GetCd(Spelltypes type)
 SDL_Texture * SpellManager::GetAtlas() const
 {
 	return spells_atlas;
+}
+
+void SpellManager::ResetCD()
+{
+	timeQ = -99;
+	timeW = -99;
+	timeE = -99;
+	timeR = -99;
 }

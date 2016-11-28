@@ -12,6 +12,21 @@ class SpellManager : public j1Module {
 public:
 	p2List<Spell*> spells;
 
+	j1Timer* time;
+
+	Spelltypes Q;
+	float timeQ;
+	bool Qcd = false;
+	Spelltypes W;
+	float timeW;
+	bool Wcd = false;
+	Spelltypes E;
+	float timeE;
+	bool Ecd = false;
+	Spelltypes R;
+	float timeR;
+	bool Rcd = false;
+
 public:
 
 	SpellManager();
@@ -49,21 +64,7 @@ public:
 
 	SDL_Texture* GetAtlas()const;
 
-	j1Timer* time;
-
-	Spelltypes Q;
-	float timeQ;
-	bool Qcd = false;
-	Spelltypes W;
-	float timeW;
-	bool Wcd = false;
-	Spelltypes E;
-	float timeE;
-	bool Ecd = false;
-	Spelltypes R;
-	float timeR;
-	bool Rcd = false;
-
+	void ResetCD();
 
 private:
 	pugi::xml_document spellconfig_doc;
