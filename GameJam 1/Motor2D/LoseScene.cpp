@@ -57,7 +57,7 @@ bool LoseScene::Start()
 	App->text->highscore->SetText(highscore);
 
 	if (App->text->end_text == nullptr)
-		App->text->end_text = new Text(200, 350, App->text->on_meth_30, 30);
+		App->text->end_text = new Text(200, 402, App->text->on_meth_30, 30);
 	p2SString endtext;
 	if (App->scene->have_fear && App->scene->crazy)
 		endtext = "You Lose! Now you have:\nFear and Crazy";
