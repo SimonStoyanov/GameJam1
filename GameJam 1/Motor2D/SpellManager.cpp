@@ -370,6 +370,7 @@ Spell* SpellManager::CreateSpell(Spelltypes type)
 		break;
 	case doublejump:
 		App->player->player->pbody->body->ApplyForceToCenter(b2Vec2(0, -App->player->jump_force), true);
+		App->audio->PlayFx(App->audio->LoadFx("audio/music/Jump.wav"));
 		break;
 	case hairbarrage: {
 		spell = new Hairball(spells_config.child("hairball"));

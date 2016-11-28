@@ -9,6 +9,7 @@
 #include "Dummy_Scene.h"
 #include "Boss.h"
 #include "ModuleEnemies.h"
+#include "j1Audio.h"
 
 Hairball::Hairball(pugi::xml_node & config) : Spell(hairball, "hairball")
 {
@@ -25,6 +26,8 @@ Hairball::Hairball(pugi::xml_node & config) : Spell(hairball, "hairball")
 	draw_offset.y = config.child("drawoffset").attribute("y").as_int(0);
 	size.x = config.child("size").attribute("w").as_int(10);
 	size.y = config.child("size").attribute("h").as_int(10);
+
+	fx = App->audio->LoadFx("audio/music/Shoot.wav");
 }
 
 Hairball::Hairball(pugi::xml_node & config, int off_x, int off_y)
@@ -55,6 +58,7 @@ void Hairball::Start()
 	prefab->pbody->body->SetGravityScale(0);
 	prefab->pbody->body->SetLinearVelocity(b2Vec2(15, 0));
 	prefab->pbody->body->SetBullet(true);
+	App->audio->PlayFx(fx);
 }
 
 bool Hairball::Update(float dt)

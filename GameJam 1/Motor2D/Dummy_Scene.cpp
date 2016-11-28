@@ -118,8 +118,15 @@ bool Dummy::Start()
 
 	music = "audio/music/Music1.ogg";
 	reverted_music = "audio/music/Music1Reverted.ogg";
+	fear_music = "audio/music/Fear.ogg";
 
 	if (App->scene->crazy) {
+		App->audio->PlayMusic(reverted_music);
+	}
+	else if (App->scene->have_fear) {
+		App->audio->PlayMusic(fear_music);
+	}
+	else if (App->scene->have_fear && App->scene->crazy) {
 		App->audio->PlayMusic(reverted_music);
 	}
 	else {

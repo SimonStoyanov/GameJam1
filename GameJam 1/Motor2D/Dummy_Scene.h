@@ -68,6 +68,7 @@ private:
 
 	char* music = nullptr;
 	char* reverted_music = nullptr;
+	char* fear_music = nullptr;
 };
 
 #endif
