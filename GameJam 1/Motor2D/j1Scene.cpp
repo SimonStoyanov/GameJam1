@@ -53,14 +53,6 @@ bool j1Scene::Start()
 		current_scene->SetActive(true);
 	}
 
-	// fps
-	App->text->boss_life = new Text(5, 5, App->text->timeless_15, 1);
-	App->text->boss_life->is_ui = true;
-
-	// Mouse position
-	App->text->player_life = new Text(680, 5, App->text->timeless_15, 1);
-	App->text->player_life->is_ui = true;
-
 	// cd
 	App->text->cdQ = new Text(328, 543, App->text->timeless_15, 1);
 	App->text->cdQ->is_ui = true;

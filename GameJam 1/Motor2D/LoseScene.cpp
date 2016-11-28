@@ -8,7 +8,8 @@
 #include "Prefabs.h"
 #include "j1FileSystem.h"
 #include "j1Textures.h"
-#include"j1Render.h"
+#include "j1Render.h"
+#include "j1Text.h"
 
 LoseScene::LoseScene()
 {
@@ -73,6 +74,7 @@ bool LoseScene::Update(float dt)
 
 bool LoseScene::PostUpdate()
 {
+	App->text->highscore->PrintText();
 	return true;
 }
 

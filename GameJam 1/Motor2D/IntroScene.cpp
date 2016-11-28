@@ -7,7 +7,8 @@
 #include "Prefabs.h"
 #include "j1FileSystem.h"
 #include "j1Textures.h"
-#include"j1Render.h"
+#include "j1Render.h"
+#include "j1Text.h"
 
 IntroScene::IntroScene()
 {
@@ -47,6 +48,10 @@ bool IntroScene::Start()
 
 	play_button = new Button(position.x, position.y, position.w, position.h);
 
+	App->text->highscore = new Text(610, 525, App->text->on_meth_30, 1);
+	p2SString highscore("High Score: %d", App->scene->dummy_scene->high_score);
+	App->text->highscore->SetText(highscore);
+
 	return true;
 }
 
@@ -71,7 +76,6 @@ bool IntroScene::Update(float dt)
 
 bool IntroScene::PostUpdate()
 {
-
 	return true;
 }
 

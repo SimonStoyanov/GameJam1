@@ -109,7 +109,11 @@ bool Dummy::Start()
 
 	//Start shapeball timer
 	shapeball_timer.Start();
-	App->spellmanager->CreateSpell(shapeball);
+
+	p2SString roundtext("Round: %d", round);
+	App->text->round = new Text(350, 5, App->text->on_meth_30, 1);
+	App->text->round->SetText(roundtext);
+	App->text->round->is_ui = true;
 
 	death_detector = App->physics->CreateRectangleSensor(-300 - App->render->camera.x, 300, 100, 1000);
 	death_detector->type = death_detec;
@@ -184,6 +188,7 @@ bool Dummy::PostUpdate()
 		default:
 			break;
 		}
+		if (round > high_score) high_score = round;
 		App->scene->ChangeScene(App->scene->lose_scene);
 	}
 
@@ -193,17 +198,20 @@ bool Dummy::PostUpdate()
 	if (App->scene->have_fear)
 	{
 		for (; i < test_boss->max_hp; i++) {
-			App->render->Blit(App->player->UI_texture, test_boss->prefab->GetPosition().x + i * 20 - ((test_boss->max_hp / 4) * 20), test_boss->prefab->GetPosition().y - 70, &bossfullhp);
+			App->render->Blit(App->player->UI_texture, test_boss->prefab->GetPosition().x + test_boss->prefab->pbody->width + i * 20 - ((test_boss->max_hp / 2) * 20), test_boss->prefab->GetPosition().y - 70, &bossfullhp);
 		}
 	}
 	else {
 		for (; i < test_boss->curr_hp; i++) {
-			App->render->Blit(App->player->UI_texture, test_boss->prefab->GetPosition().x + i * 20 - ((test_boss->max_hp / 4) * 20), test_boss->prefab->GetPosition().y - 70, &bossfullhp);
+			App->render->Blit(App->player->UI_texture, test_boss->prefab->GetPosition().x + test_boss->prefab->pbody->width + i * 20 - ((test_boss->max_hp / 2) * 20), test_boss->prefab->GetPosition().y - 70, &bossfullhp);
 		}
 		for (; i < test_boss->max_hp; i++) {
-			App->render->Blit(App->player->UI_texture, test_boss->prefab->GetPosition().x + i * 20 - ((test_boss->max_hp / 4) * 20), test_boss->prefab->GetPosition().y - 70, &bossemptyhp);
+			App->render->Blit(App->player->UI_texture, test_boss->prefab->GetPosition().x + test_boss->prefab->pbody->width + i * 20 - ((test_boss->max_hp / 2) * 20), test_boss->prefab->GetPosition().y - 70, &bossemptyhp);
 		}
 	}
+
+	App->text->round->PrintText();
+
 	return true;
 }
 

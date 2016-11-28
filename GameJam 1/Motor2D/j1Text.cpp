@@ -45,7 +45,7 @@ bool j1Text::Start()
 	bool ret = true;
 
 	timeless_15 = LoadFont("Timeless.ttf", 15);
-	timeless_25 = LoadFont("Timeless.ttf", 25);
+	on_meth_30 = LoadFont("on_meth.ttf", 25);
 
 	return ret;
 }

@@ -8,7 +8,8 @@
 #include "Prefabs.h"
 #include "j1FileSystem.h"
 #include "j1Textures.h"
-#include"j1Render.h"
+#include "j1Render.h"
+#include "j1Text.h"
 
 WinScene::WinScene()
 {
@@ -95,6 +96,7 @@ bool WinScene::Update(float dt)
 
 bool WinScene::PostUpdate()
 {
+	App->text->highscore->PrintText();
 	return false;
 }
 

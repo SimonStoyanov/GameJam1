@@ -35,6 +35,7 @@ public:
 	int round = 1; //round counter (each win adds 1)
 	RandomGenerator* platforms_rand;
 	Boss* test_boss;
+	int high_score = 0;
 private:
 	p2List<Prefab*> grounds;
 	Prefab* platform;

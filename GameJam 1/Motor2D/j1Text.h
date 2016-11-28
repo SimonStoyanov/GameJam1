@@ -57,15 +57,15 @@ public:
 	int LoadFont(char* path, int size);
 
 public:
-	p2List<TTF_Font*> fonts;
-	Text*				boss_life;
-	Text*				player_life;
+	p2List<TTF_Font*>	fonts;
+	Text*				highscore;
+	Text*				round;
 	Text*				cdQ;
 	Text*				cdW;
 	Text*				cdE;
 	Text*				cdR;
 	uint				timeless_15;
-	uint				timeless_25;
+	uint				on_meth_30;
 
 };
 
