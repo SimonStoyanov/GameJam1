@@ -135,6 +135,15 @@ bool Dummy::Update(float dt)
 		App->spellmanager->CreateSpell(shapeball);
 		shapeball_timer.Start();
 	}
+
+	// When player can jump
+	for (int i = 0; i < 3; i++)
+	{
+		if (App->player->isTouching(App->player->player->pbody, grounds[i]->pbody))
+		{
+			App->player->on_ground = true;
+		}
+	}
 	return true;
 }
 
