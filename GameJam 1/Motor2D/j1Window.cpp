@@ -75,6 +75,8 @@ bool j1Window::Awake(pugi::xml_node& config)
 			screen_surface = SDL_GetWindowSurface(window);
 		}
 	}
+	icon = SDL_LoadBMP("Spritesheets/icon.bmp");
+	SDL_SetWindowIcon(window, icon);
 
 	return ret;
 }

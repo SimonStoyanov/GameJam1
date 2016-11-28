@@ -3,8 +3,8 @@
 <config>
   <app>
     <framerate value="60"/>
-    <title>GameJam 1</title>
-    <organization>SuperTeam</organization>
+    <title>Burden</title>
+    <organization>Voolas Studio</organization>
   </app>
 	
   <renderer>
