@@ -2,7 +2,7 @@
 
 <config>
   <background>
-    <image path="Spritesheets/introscene.png"/>
+    <image path="Spritesheets/mid_scene.png"/>
     <!--Make the image the same size the window have, it will be drawn automatically-->
   </background>
 

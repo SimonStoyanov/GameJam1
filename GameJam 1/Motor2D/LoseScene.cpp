@@ -89,6 +89,11 @@ bool LoseScene::Update(float dt)
 
 bool LoseScene::PostUpdate()
 {
+	if (Background_tex != nullptr)			//ALWAYS FIRST
+		App->render->Blit(Background_tex, 0, 0);
+
+	App->render->Blit(next->sprite.texture, next->sprite.pos.x, next->sprite.pos.y, &next->animations[next->current_anim]->GetCurrentFrameRect());
+
 	App->text->end_text->PrintText();
 	App->text->highscore->PrintText();
 	return true;
