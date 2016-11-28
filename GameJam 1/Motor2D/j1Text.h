@@ -58,13 +58,13 @@ public:
 
 public:
 	p2List<TTF_Font*>	fonts;
-	Text*				highscore;
-	Text*				round;
-	Text*				cdQ;
-	Text*				cdW;
-	Text*				cdE;
-	Text*				cdR;
-	Text*				end_text;
+	Text*				highscore = nullptr;
+	Text*				round = nullptr;
+	Text*				cdQ = nullptr;
+	Text*				cdW = nullptr;
+	Text*				cdE = nullptr;
+	Text*				cdR = nullptr;
+	Text*				end_text = nullptr;
 	uint				timeless_15;
 	uint				on_meth_30;
 
