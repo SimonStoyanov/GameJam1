@@ -54,6 +54,7 @@ public:
 
 	//Set anim to xxx
 	void SetAnim(AnimTypes anim);
+	bool AnimFinish();
 
 
 private:
@@ -80,6 +81,8 @@ public:
 	Shape shape = Human;
 	bool hit;
 
+	int current_animation = 0;
+
 private:
 
 
@@ -93,11 +96,12 @@ private:
 	PhysBody* curr_platform = nullptr;
 	// ------------
 
-	int current_animation = 0;
 	iPoint draw_offset;
 	bool shooting;
 
 	Prefab* cat_anims;
+	Prefab* cat_ghost;
+	Prefab* player_ghost;
 
 	j1Timer shape_time;
 

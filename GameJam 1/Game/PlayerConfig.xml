@@ -3,7 +3,7 @@
 <config>
   <draw_offset x="-60" y="-10"/>
   <human>
-    <anim type="1" speed ="0.2"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Fall = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
+    <anim type="1" speed ="0.2"> <!--Idle = 0, Run = 1, Shoot = 2, Jump = 3, Hit = 4, Explode = 5 ¡JUST 1 ANIM OF EACH TYPE!-->
       <frame x="0" y="0" w="198" h="183"/>
       <frame x="198" y="0" w="198" h="183"/>
       <frame x="396" y="0" w="198" h="183"/>
@@ -24,6 +24,30 @@
       <frame x="594" y="183" w="198" h="183"/>
       <frame x="594" y="183" w="198" h="183"/>
     </anim>
+    <ghost> <!--HUMAN GHOST ANIMS-->
+      <anim type="1" speed ="0.2">
+        <frame x="0" y="0" w="198" h="183"/>
+        <frame x="198" y="0" w="198" h="183"/>
+        <frame x="396" y="0" w="198" h="183"/>
+        <frame x="594" y="0" w="198" h="183"/>
+        <frame x="792" y="0" w="198" h="183"/>
+        <frame x="990" y="0" w="198" h="183"/>
+        <frame x="1188" y="0" w="198" h="183"/>
+        <frame x="1386" y="0" w="198" h="183"/>
+      </anim>
+      <anim type="2" speed="0.2" loop="false">
+        <frame x="198" y="183" w="198" h="183"/>
+        <frame x="396" y="183" w="198" h="183"/>
+      </anim>
+      <anim type="3" speed="0.2">
+        <frame x="0" y="183" w="198" h="183"/>
+      </anim>
+      <anim type="4" speed="0.2">
+        <!--This animation is for when the player gets hit!-->
+        <frame x="594" y="183" w="198" h="183"/>
+        <frame x="594" y="183" w="198" h="183"/>
+      </anim>
+    </ghost>
   </human>
   
   <cat>
@@ -48,6 +72,29 @@
       <frame x="594" y="568" w="198" h="203"/>
       <frame x="594" y="568" w="198" h="203"/>
     </anim>
+    <ghost> <!--CAT GHOST ANIMS-->
+      <anim type="1" speed ="0.2">
+        <frame x="0" y="365" w="198" h="203"/>
+        <frame x="198" y="365" w="198" h="203"/>
+        <frame x="396" y="365" w="198" h="203"/>
+        <frame x="594" y="365" w="198" h="203"/>
+        <frame x="792" y="365" w="198" h="203"/>
+        <frame x="990" y="365" w="198" h="203"/>
+        <frame x="1188" y="365" w="198" h="203"/>
+        <frame x="1386" y="365" w="198" h="203"/>
+      </anim>
+      <anim type="2" speed="0.2" loop="false">
+        <frame x="198" y="568" w="198" h="203"/>
+        <frame x="396" y="568" w="198" h="203"/>
+      </anim>
+      <anim type="3" speed="0.2">
+        <frame x="0" y="568" w="198" h="203"/>
+      </anim>
+      <anim type="4" speed="0.2">
+        <frame x="594" y="568" w="198" h="203"/>
+        <frame x="594" y="568" w="198" h="203"/>
+      </anim>
+    </ghost>
   </cat>  
 
 </config>

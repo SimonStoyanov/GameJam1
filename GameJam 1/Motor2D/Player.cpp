@@ -50,6 +50,7 @@ bool Player::Start()
 	draw_offset.y = config_node.child("draw_offset").attribute("y").as_int(0);
 
 	hit = false;
+	ghost = false;
 
 	//Start in Human Shape
 	shape = Human;
@@ -68,6 +69,9 @@ bool Player::Start()
 
 	cat_anims = new Prefab(0, 0, "", NULLRECT);
 	cat_anims->LoadAnimations(config_node.child("cat"));
+
+	player_ghost = new Prefab(0, 0, "", NULLRECT);
+	player_ghost->LoadAnimations(config_node.child("human").child("ghost"));
 
 	// Platforms
 	last_pos = player->GetPosition().y;
@@ -111,32 +115,12 @@ bool Player::Update(float dt)
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) 
 	{
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -jump_force), false);
-		switch (shape)
-		{
-		case Human:
-				current_animation = player->FindAnimation(Jump);
-			break;
-		case Cat:
-				current_animation = cat_anims->FindAnimation(Jump);
-			break;
-		default:
-			break;
-		}
+		SetAnim(Jump);
 		on_ground = false;
 	}
 	else if (on_ground){
-		switch (shape)
-		{
-		case Human:
-			if (!shooting && !hit)
-				current_animation = player->FindAnimation(Run);
-			break;
-		case Cat:
-			if (!shooting && !hit)
-				current_animation = cat_anims->FindAnimation(Run);
-			break;
-		default:
-			break;
+		if (!shooting && !hit) {
+			SetAnim(Run);
 		}
 	}
 	//-------------
@@ -146,48 +130,17 @@ bool Player::Update(float dt)
 
 	//stop shoot anim
 	if (shooting) {
-		switch (shape)
-		{
-		case Human:
-			if (player->animations[current_animation]->Finished()) {
-				player->animations[current_animation]->Reset();
-				current_animation = player->FindAnimation(Run);
-				shooting = false;
-			}
-			break;
-		case Cat:
-			if (cat_anims->animations[current_animation]->Finished()) {
-				cat_anims->animations[current_animation]->Reset();
-				current_animation = player->FindAnimation(Run);
-				shooting = false;
-			}
-			break;
-		default:
-			break;
-		}
-		
+		if (AnimFinish()) {
+			SetAnim(Run);
+			shooting = false;
+		}		
 	}
 
 	//Change hit animation to run
 	if (hit) {
-		switch (shape)
-		{
-		case Human:
-			if (player->animations[current_animation]->Finished()) {
-				player->animations[current_animation]->Reset();
-				current_animation = player->FindAnimation(Run);
-				hit = false;
-			}
-			break;
-		case Cat:
-			if (cat_anims->animations[current_animation]->Finished()) {
-				cat_anims->animations[current_animation]->Reset();
-				current_animation = cat_anims->FindAnimation(Run);
-				hit = false;
-			}
-			break;
-		default:
-			break;
+		if (AnimFinish()) {
+			SetAnim(Run);
+			hit = false;
 		}
 	}
 
@@ -195,7 +148,10 @@ bool Player::Update(float dt)
 	switch (shape)
 	{
 	case Human:
-		App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y, &player->animations[current_animation]->GetCurrentFrameRect());
+		if(ghost)
+			App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y, &player_ghost->animations[current_animation]->GetCurrentFrameRect());
+		else
+			App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y, &player->animations[current_animation]->GetCurrentFrameRect());
 		break;
 	case Cat:
 		App->render->Blit(player->sprite.texture, player->GetPosition().x + draw_offset.x, player->GetPosition().y + draw_offset.y-20, &cat_anims->animations[current_animation]->GetCurrentFrameRect());
@@ -392,8 +348,14 @@ void Player::Shoot()
 	switch (shape)
 	{
 	case Human:
-		current_animation = player->FindAnimation(AnimTypes::Shoot);
-		player->animations[current_animation]->Reset();
+		if (ghost) {
+			current_animation = player_ghost->FindAnimation(AnimTypes::Shoot);
+			player_ghost->animations[current_animation]->Reset();
+		}
+		else {
+			current_animation = player->FindAnimation(AnimTypes::Shoot);
+			player->animations[current_animation]->Reset();
+		}
 		break;
 	case Cat:
 		current_animation = cat_anims->FindAnimation(AnimTypes::Shoot);
@@ -410,16 +372,43 @@ void Player::SetAnim(AnimTypes anim)
 	switch (shape)
 	{
 	case Human:
-		current_animation = player->FindAnimation(anim);
-		player->animations[current_animation]->Reset();
+		if (ghost) {
+			current_animation = player_ghost->FindAnimation(anim);
+			if (anim != Run) player_ghost->animations[current_animation]->Reset();
+		}
+		else {
+			current_animation = player->FindAnimation(anim);
+			if (anim != Run) player->animations[current_animation]->Reset();
+		}
 		break;
 	case Cat:
 		current_animation = cat_anims->FindAnimation(anim);
-		cat_anims->animations[current_animation]->Reset();
+		if (anim != Run) cat_anims->animations[current_animation]->Reset();
 		break;
 	default:
 		break;
 	}
+}
+
+bool Player::AnimFinish()
+{
+	switch (shape)
+	{
+	case Human:
+		if (ghost) {
+			return player_ghost->animations[current_animation]->Finished();
+		}
+		else {
+			return player->animations[current_animation]->Finished();
+		}
+		break;
+	case Cat:
+		return cat_anims->animations[current_animation]->Finished();
+		break;
+	default:
+		return true;
+	}
+
 }
 
 void Player::OnCollision(PhysBody * bodyA, PhysBody * bodyB)

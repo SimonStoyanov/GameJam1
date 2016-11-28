@@ -186,8 +186,10 @@ bool SpellManager::Update(float dt)
 	// -----------------------
 
 	// Ghost -----------------
-	if ((App->player->ghost_t + 3) - time->ReadSec() > 0)
+	if ((App->player->ghost_t + 3) - time->ReadSec() > 0) {
 		App->player->ghost = true;
+		App->player->SetAnim(App->player->player->animations[App->player->current_animation]->type);
+	}
 	else
 		App->player->ghost = false;
 	// -----------------------
