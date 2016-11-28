@@ -12,8 +12,13 @@ public:
 	~InsanityEye();
 
 	void Start();
-	bool Update();
+	bool Update(float dt);
 	void Draw();
+
+	bool PlayerTouched();
+
+	bool return_boss = false;
+	bool dead = false;
 };
 
 #endif // !Fireball_

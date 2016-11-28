@@ -72,13 +72,13 @@ bool Dummy::Start()
 	
 	// Grounds
 	int posx, posy;
-	grounds.add(new Prefab(ground_rect.w / 2, App->win->height - ground_rect.h / 4, parallax_spritesheet.GetString(), ground_rect));
+	grounds.add(new Prefab(ground_rect.w / 2, App->win->height - ground_rect.h / 4 - 30, parallax_spritesheet.GetString(), ground_rect));
 	grounds[0]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 	grounds[0]->pbody->GetPosition(posx, posy);
-	grounds.add(new Prefab(posx+ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4, grounds[0]->sprite.texture, ground_rect));
+	grounds.add(new Prefab(posx+ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4 - 30, grounds[0]->sprite.texture, ground_rect));
 	grounds[1]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 	grounds[1]->pbody->GetPosition(posx, posy);
-	grounds.add(new Prefab(posx + ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4, grounds[0]->sprite.texture, ground_rect));
+	grounds.add(new Prefab(posx + ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4 - 30, grounds[0]->sprite.texture, ground_rect));
 	grounds[2]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 
 	// Random generators ---
@@ -113,7 +113,7 @@ bool Dummy::Start()
 	App->text->round->SetText(roundtext);
 	App->text->round->is_ui = true;
 
-	death_detector = App->physics->CreateRectangleSensor(-300 - App->render->camera.x, 300, 100, 1000);
+	death_detector = App->physics->CreateRectangleSensor(-350 - App->render->camera.x, 300, 100, 1000);
 	death_detector->type = death_detec;
 
 	music = "audio/music/Music1.ogg";
@@ -138,7 +138,7 @@ bool Dummy::Update(float dt)
 	if (-App->render->camera.x > posx) 
 	{
 		grounds[2]->pbody->GetPosition(posx, posy);
-		grounds.add(new Prefab(posx + ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4, grounds[0]->sprite.texture, ground_rect));
+		grounds.add(new Prefab(posx + ground_rect.w*1.5f-1, App->win->height - ground_rect.h / 4 - 30, grounds[0]->sprite.texture, ground_rect));
 		grounds[3]->CreateStaticCollision(ground_rect.w, 8, WORLD, PLAYER);
 		grounds.del(grounds.start);
 	}

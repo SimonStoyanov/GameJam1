@@ -34,9 +34,9 @@ private:
 
 public:
 	p2List<SDL_Rect> rects;
-	SDL_Texture* texture;
+	SDL_Texture* texture = nullptr;
 private:
-	Prefab* prefab;
+	Prefab* prefab = nullptr;
 	p2List<prefabAndPlat> to_blit;
 
 	iPoint pos;

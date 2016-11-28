@@ -24,9 +24,12 @@ private:
 	Button* play_button;
 	Prefab* play;
 	bool play_clicked = false;
-	SDL_Texture* UI_tex;
-	SDL_Texture* Background_tex;
+
 	uint fx = NULL;
+
+	SDL_Texture* UI_tex = nullptr;
+	SDL_Texture* Background_tex = nullptr;
+
 };
 
 #endif

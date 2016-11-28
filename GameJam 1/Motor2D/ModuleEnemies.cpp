@@ -31,8 +31,10 @@ bool ModuleEnemies::Awake(pugi::xml_node &)
 
 bool ModuleEnemies::Update(float dt)
 {
+	bool ret = true;
 	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
-		enemy->data->Update(dt);
+		ret = enemy->data->Update(dt);
+		//check boss dead
 		if (enemy->data->curr_hp <= 0) {
 			switch (enemy->data->type)
 			{
@@ -49,7 +51,7 @@ bool ModuleEnemies::Update(float dt)
 			App->scene->ChangeScene(App->scene->win_scene);
 		}
 	}
-	return true;
+	return ret;
 }
 
 bool ModuleEnemies::PostUpdate()

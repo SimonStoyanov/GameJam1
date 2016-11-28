@@ -12,7 +12,7 @@ public:
 	~Shapeball();
 
 	void Start();
-	bool Update();
+	bool Update(float dt);
 	void Draw();
 };
 

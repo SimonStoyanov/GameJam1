@@ -40,18 +40,23 @@ void Shield::Start()
 	App->audio->PlayFx(fx);
 }
 
-bool Shield::Update()
+bool Shield::Update(float dt)
 {
 	prefab->pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(App->player->player->GetPosition().x + 1), PIXEL_TO_METERS(App->player->player->GetPosition().y + 1.55)), 0);
-	if (collided) {
-		if (prefab->animations[curr_anim]->Finished()) {
+	if (collided)
+	{
+		if (prefab->animations[curr_anim]->Finished()) 
+		{
 			to_delete = true;
 		}
 	}
-	if (timer->ReadSec() > 3) {
+
+	if (timer->ReadSec() > 3) 
+	{
 		to_delete = true;
 		delete timer;
 	}
+
 	if (to_delete) {
 		fx = App->audio->LoadFx("audio/music/Shield_Down.wav");
 		App->audio->PlayFx(fx);

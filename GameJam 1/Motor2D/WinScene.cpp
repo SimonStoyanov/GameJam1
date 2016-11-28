@@ -60,6 +60,11 @@ bool WinScene::Start()
 
 	exit_button = new Button(position.x, position.y, position.w, position.h);
 
+	if (App->text->end_text == nullptr)
+		App->text->end_text = new Text(200, 402, App->text->on_meth_30, 30);
+	p2SString endtext("Congratulations! You Win!");
+	App->text->end_text->SetText(endtext, middle);
+
 	return true;
 }
 
@@ -71,12 +76,12 @@ bool WinScene::Update(float dt)
 	}
 
 	if (next_clicked) {
-		//if (next->animations[next->current_anim]->Finished()) {
+		if (next->animations[next->current_anim]->Finished()) {
 			next_clicked = false;
 			App->player->Start();
 			App->player->active = true;
 			App->scene->ChangeScene(App->scene->dummy_scene);
-		//}
+		}
 	}
 
 	if (exit_button->MouseDown() && !exit_clicked) {
@@ -85,10 +90,10 @@ bool WinScene::Update(float dt)
 	}
 
 	if (exit_clicked) {
-		//if (exit->animations[exit->current_anim]->Finished()) {
+		if (exit->animations[exit->current_anim]->Finished()) {
 			exit_clicked = false;
 			App->scene->ChangeScene(App->scene->intro_scene);
-		//}
+		}
 	}
 
 	return true;
@@ -96,7 +101,7 @@ bool WinScene::Update(float dt)
 
 bool WinScene::PostUpdate()
 {
-	App->text->highscore->PrintText();
+	App->text->end_text->PrintText();
 	return false;
 }
 
@@ -108,6 +113,7 @@ void WinScene::Draw()
 		App->render->Blit(Background_tex, 0, 0);
 
 	App->render->Blit(next->sprite.texture, next->sprite.pos.x, next->sprite.pos.y, &next->animations[next->current_anim]->GetCurrentFrameRect());
+	App->render->Blit(exit->sprite.texture, exit->sprite.pos.x, exit->sprite.pos.y, &exit->animations[exit->current_anim]->GetCurrentFrameRect());
 }
 
 bool WinScene::CleanUp()

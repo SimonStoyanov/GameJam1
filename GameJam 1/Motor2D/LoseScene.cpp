@@ -54,6 +54,21 @@ bool LoseScene::Start()
 	// Restart rounds
 	App->scene->dummy_scene->round = 1;
 
+	p2SString highscore("High Score: %d", App->scene->dummy_scene->high_score);
+	App->text->highscore->SetText(highscore);
+
+	if (App->text->end_text == nullptr)
+		App->text->end_text = new Text(200, 402, App->text->on_meth_30, 30);
+	p2SString endtext;
+	if (App->scene->have_fear && App->scene->crazy)
+		endtext = "You Lose! Now you have:\nFear and Crazy";
+	else if (App->scene->have_fear)
+		endtext = "You Lose! Now you have:\nFear";
+	else if(App->scene->crazy)
+		endtext = "You Lose! Now you have:\nCrazy";
+	else endtext = "You Lose! Don't stay back!";
+	App->text->end_text->SetText(endtext, middle);
+
 	return true;
 }
 
@@ -65,7 +80,7 @@ bool LoseScene::Update(float dt)
 	}
 
 	if (next_clicked) {
-		if (true) {
+		if (next->animations[next->current_anim]->Finished()) {
 			next_clicked = false;
 			App->scene->ChangeScene(App->scene->intro_scene);
 		}
@@ -75,6 +90,8 @@ bool LoseScene::Update(float dt)
 
 bool LoseScene::PostUpdate()
 {
+	
+	App->text->end_text->PrintText();
 	App->text->highscore->PrintText();
 	return true;
 }
@@ -82,6 +99,11 @@ bool LoseScene::PostUpdate()
 void LoseScene::Draw()
 {
 	next_button->Draw();
+	if (Background_tex != nullptr)			//ALWAYS FIRST
+		App->render->Blit(Background_tex, 0, 0);
+
+	App->render->Blit(next->sprite.texture, next->sprite.pos.x, next->sprite.pos.y, &next->animations[next->current_anim]->GetCurrentFrameRect());
+
 }
 
 bool LoseScene::CleanUp()

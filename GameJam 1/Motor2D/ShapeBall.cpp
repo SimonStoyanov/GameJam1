@@ -34,7 +34,7 @@ void Shapeball::Start()
 	prefab->pbody->body->SetGravityScale(0);
 }
 
-bool Shapeball::Update()
+bool Shapeball::Update(float dt)
 {
 	if (collided) {
 		if (prefab->pbody->body->GetLinearVelocity().x != 0 || prefab->pbody->body->GetLinearVelocity().y != 0)

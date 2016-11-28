@@ -67,7 +67,7 @@ void Firebarrage::Start()
 	App->audio->PlayFx(fx);
 }
 
-bool Firebarrage::Update()
+bool Firebarrage::Update(float dt)
 {
 	if (collided) 
 	{

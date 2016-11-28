@@ -51,7 +51,6 @@ public:
 	void CreateStaticCollision(int radius, int cat, int mask);
 	void CreateSensorCollision(int width, int height, int cat, int mask);
 	void CreateSensorCollision(int radius, int cat, int mask);
-	void CreatePlatform(int width, int height, int cat, int mask);
 
 	iPoint GetPosition() const;
 

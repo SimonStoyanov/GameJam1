@@ -64,7 +64,7 @@ void Fireball::Start()
 	App->audio->PlayFx(fx);
 }
 
-bool Fireball::Update()
+bool Fireball::Update(float dt)
 {
 	if (collided) {
 		if(prefab->pbody->body->GetLinearVelocity().x != 0 || prefab->pbody->body->GetLinearVelocity().y != 0)

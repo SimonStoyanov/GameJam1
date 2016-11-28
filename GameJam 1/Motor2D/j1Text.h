@@ -58,12 +58,13 @@ public:
 
 public:
 	p2List<TTF_Font*>	fonts;
-	Text*				highscore;
-	Text*				round;
-	Text*				cdQ;
-	Text*				cdW;
-	Text*				cdE;
-	Text*				cdR;
+	Text*				highscore = nullptr;
+	Text*				round = nullptr;
+	Text*				cdQ = nullptr;
+	Text*				cdW = nullptr;
+	Text*				cdE = nullptr;
+	Text*				cdR = nullptr;
+	Text*				end_text = nullptr;
 	uint				timeless_15;
 	uint				on_meth_30;
 
@@ -103,7 +104,7 @@ public:
 	bool				  is_ui;
 
 private:
-	TTF_Font*			  font;
+	TTF_Font*			  font = nullptr;
 	uint				  longuest_texture;
 	p2List<TexAndLen>     texture_list;
 };
