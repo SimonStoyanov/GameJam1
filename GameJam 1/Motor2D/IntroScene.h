@@ -26,7 +26,7 @@ private:
 	bool play_clicked = false;
 	SDL_Texture* UI_tex;
 	SDL_Texture* Background_tex;
-
+	uint fx = NULL;
 };
 
 #endif

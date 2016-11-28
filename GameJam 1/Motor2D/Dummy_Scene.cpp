@@ -105,8 +105,6 @@ bool Dummy::Start()
 	background_min = 0;
 	farback_min = 0;
 
-	App->audio->PlayMusic("audio/music/Music.ogg");
-
 	//Start shapeball timer
 	shapeball_timer.Start();
 
@@ -118,6 +116,15 @@ bool Dummy::Start()
 	death_detector = App->physics->CreateRectangleSensor(-300 - App->render->camera.x, 300, 100, 1000);
 	death_detector->type = death_detec;
 
+	music = "audio/music/Music1.ogg";
+	reverted_music = "audio/music/Music1Reverted.ogg";
+
+	if (App->scene->crazy) {
+		App->audio->PlayMusic(reverted_music);
+	}
+	else {
+		App->audio->PlayMusic(music);
+	}
 	return true;
 }
 

@@ -37,6 +37,9 @@ public:
 	float shoot_time;
 	float time = 0.0f;
 	bool shoot = false;
+
+	uint hit_fx = NULL;
+	uint down_fx = NULL;
 private:
 	
 private:

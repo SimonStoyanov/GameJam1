@@ -6,6 +6,7 @@
 #include <math.h>
 #include "j1Scene.h"
 #include "SpellManager.h"
+#include "j1Audio.h"
 
 Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
 {
@@ -45,6 +46,7 @@ Fireball::Fireball(pugi::xml_node& config) : Spell(fireball, "fireball")
 	size.x = config.child("size").attribute("w").as_int(10);
 	size.y = config.child("size").attribute("h").as_int(10);
 
+	fx = App->audio->LoadFx("audio/music/Shoot.wav");
 }
 
 Fireball::~Fireball()
@@ -59,6 +61,7 @@ void Fireball::Start()
 	if (prefab->pbody != nullptr)
 		prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
 	prefab->pbody->body->SetTransform(prefab->pbody->body->GetPosition(), alpha);
+	App->audio->PlayFx(fx);
 }
 
 bool Fireball::Update()

@@ -5,7 +5,7 @@
 #include "j1Render.h"
 #include "j1App.h"
 #include <math.h>
-
+#include "j1Audio.h"
 
 class InsanityBoss : public Boss {
 public:
@@ -25,6 +25,9 @@ public:
 		draw_offset.x = config.child("draw_offset").attribute("x").as_int(0);
 		draw_offset.y = config.child("draw_offset").attribute("y").as_int(0);
 		shoot_time = config.child("shoot").attribute("time").as_float(10000.0f);
+
+		hit_fx = App->audio->LoadFx("audio/music/BossHit.wav");
+		down_fx = App->audio->LoadFx("audio/music/BossDead.wav");
 	}
 
 	void Start() {

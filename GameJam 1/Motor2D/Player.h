@@ -83,6 +83,8 @@ public:
 
 	int current_animation = 0;
 
+	uint jump_fx = NULL;
+	uint hit_fx = NULL;
 private:
 
 

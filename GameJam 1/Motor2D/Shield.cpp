@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1Render.h"
 #include "j1Input.h"
+#include "j1Audio.h"
 #include <math.h>
 #include "SpellManager.h"
 
@@ -21,6 +22,8 @@ Shield::Shield(pugi::xml_node & config) : Spell(shield, "shield")
 	draw_offset.y = config.child("drawoffset").attribute("y").as_int(0);
 	size.x = config.child("size").attribute("w").as_int(10);
 	size.y = config.child("size").attribute("h").as_int(10);
+
+	fx = App->audio->LoadFx("audio/music/Shield.wav");
 }
 
 Shield::~Shield()
@@ -34,6 +37,7 @@ void Shield::Start()
 	prefab->pbody->body->SetGravityScale(0);
 	timer = new j1Timer();
 	timer->Start();
+	App->audio->PlayFx(fx);
 }
 
 bool Shield::Update()
@@ -48,7 +52,10 @@ bool Shield::Update()
 		to_delete = true;
 		delete timer;
 	}
-
+	if (to_delete) {
+		fx = App->audio->LoadFx("audio/music/Shield_Down.wav");
+		App->audio->PlayFx(fx);
+	}
 
 	return true;
 }

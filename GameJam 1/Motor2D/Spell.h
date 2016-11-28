@@ -46,7 +46,9 @@ public:
 	void SetTime(float time_);
 	float GetTime() const;
 
+	uint fx = NULL;
 private:
+	
 	int dmg;
 	float time;
 };

@@ -8,6 +8,7 @@
 #include "j1FileSystem.h"
 #include "j1Textures.h"
 #include "j1Render.h"
+#include "j1Audio.h"
 #include "j1Text.h"
 
 IntroScene::IntroScene()
@@ -52,11 +53,15 @@ bool IntroScene::Start()
 	p2SString highscore("High Score: %d", App->scene->dummy_scene->high_score);
 	App->text->highscore->SetText(highscore);
 
+	fx = App->audio->LoadFx("audio/music/StartGame.wav");
+
 	return true;
 }
 
 bool IntroScene::Update(float dt)
 {
+	App->audio->PlayFx(fx);
+
 	if (play_button->MouseDown() && !play_clicked) {
 		play->current_anim = play->FindAnimation(Run);
 		play_clicked = true;

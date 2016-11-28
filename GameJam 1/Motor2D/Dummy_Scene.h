@@ -39,7 +39,7 @@ public:
 private:
 	p2List<Prefab*> grounds;
 	Prefab* platform;
-
+	
 	Sprite background;
 	Sprite forward;
 	Sprite far_background;
@@ -65,6 +65,9 @@ private:
 	j1Timer shapeball_timer;
 
 	PhysBody* death_detector = nullptr;
+
+	char* music = nullptr;
+	char* reverted_music = nullptr;
 };
 
 #endif

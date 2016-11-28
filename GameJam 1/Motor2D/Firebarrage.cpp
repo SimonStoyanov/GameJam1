@@ -6,6 +6,7 @@
 #include <math.h>
 #include "SpellManager.h"
 #include "Firebarrage.h"
+#include "j1Audio.h"
 
 Firebarrage::Firebarrage(pugi::xml_node& config, int _x, int _y) : Spell(fireball, "fireball")
 {
@@ -47,6 +48,8 @@ Firebarrage::Firebarrage(pugi::xml_node& config, int _x, int _y) : Spell(firebal
 	size.y = config.child("size").attribute("h").as_int(10);
 
 	prefab->CreateCollision(size.x, size.y, PLAYER, WORLD);
+
+	fx = App->audio->LoadFx("audio/music/Shoot.wav");
 }
 
 Firebarrage::~Firebarrage()
@@ -59,6 +62,9 @@ void Firebarrage::Start()
 	prefab->pbody->body->SetGravityScale(0);
 	if (prefab->pbody != nullptr)
 		prefab->pbody->body->SetLinearVelocity(b2Vec2(vel.x, vel.y));
+	App->audio->PlayFx(fx);
+	App->audio->PlayFx(fx);
+	App->audio->PlayFx(fx);
 }
 
 bool Firebarrage::Update()

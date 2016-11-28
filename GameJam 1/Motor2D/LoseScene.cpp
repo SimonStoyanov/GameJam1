@@ -10,6 +10,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Text.h"
+#include "j1Audio.h"
 
 LoseScene::LoseScene()
 {

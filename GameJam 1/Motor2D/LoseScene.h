@@ -26,7 +26,6 @@ private:
 	bool next_clicked = false;
 	SDL_Texture* UI_tex;
 	SDL_Texture* Background_tex;
-
 };
 
 #endif

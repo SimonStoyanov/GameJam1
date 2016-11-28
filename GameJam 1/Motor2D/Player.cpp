@@ -93,6 +93,8 @@ bool Player::Start()
 
 	curr_hp = 3;
 
+	jump_fx = App->audio->LoadFx("audio/music/Jump.wav");
+	hit_fx = App->audio->LoadFx("audio/music/PlayerHit.wav");
 	return true;
 }
 
@@ -114,6 +116,7 @@ bool Player::Update(float dt)
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && on_ground) 
 	{
+		App->audio->PlayFx(jump_fx);
 		player->pbody->body->ApplyForceToCenter(b2Vec2(0, -jump_force), false);
 		SetAnim(Jump);
 		on_ground = false;

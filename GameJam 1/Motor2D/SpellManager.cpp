@@ -16,6 +16,7 @@
 #include "ModulePhysics.h"
 #include "ShapeBall.h"
 #include "Hairball.h"
+#include "j1Audio.h"
 
 #define EMPTY -1
 
@@ -231,7 +232,10 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 			{
 				if (boss_item->data->prefab->pbody == bodyB && boss_item->data->curr_hp > 0) 
 				{
+					App->audio->PlayFx(boss_item->data->hit_fx);
 					boss_item->data->curr_hp -= GetSpell(bodyA)->GetDamage();
+					if (boss_item->data->curr_hp <= 0)
+						App->audio->PlayFx(boss_item->data->down_fx);
 				}
 			}
 			if (GetSpell(bodyA)->type != shield)
@@ -244,6 +248,7 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 				ResetCD();
 			}
 			else if (!IsSpell(bodyB) && !App->player->ghost) {
+				App->audio->PlayFx(App->player->hit_fx);
 				App->player->curr_hp -= 1;
 				App->player->hit = true;
 				App->player->SetAnim(Hit);
