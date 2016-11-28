@@ -32,23 +32,28 @@ bool ModuleEnemies::Awake(pugi::xml_node &)
 bool ModuleEnemies::Update(float dt)
 {
 	bool ret = true;
-	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
-		ret = enemy->data->Update(dt);
-		//check boss dead
-		if (enemy->data->curr_hp <= 0) {
-			switch (enemy->data->type)
-			{
-			case fear:
-				App->scene->have_fear = false;
-				break;
-			case insanity:
-				App->scene->crazy = false;
-				break;
-			default:
-				break;
+
+	if (App->scene->dummy_scene == App->scene->current_scene) // <----------
+	{
+		for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next)
+		{
+			ret = enemy->data->Update(dt);
+			//check boss dead
+			if (enemy->data->curr_hp <= 0) {
+				switch (enemy->data->type)
+				{
+				case fear:
+					App->scene->have_fear = false;
+					break;
+				case insanity:
+					App->scene->crazy = false;
+					break;
+				default:
+					break;
+				}
+				App->scene->dummy_scene->round += 1;
+				App->scene->ChangeScene(App->scene->win_scene);
 			}
-			App->scene->dummy_scene->round += 1;
-			App->scene->ChangeScene(App->scene->win_scene);
 		}
 	}
 	return ret;
@@ -68,14 +73,17 @@ bool ModuleEnemies::CleanUp()
 		App->physics->DeleteObject(enemy->data->prefab->pbody);
 		App->tex->UnLoad(enemy->data->prefab->sprite.texture);
 		enemy->data->prefab->animations.clear();
+		enemies.del(enemy);
 	}
 	return true;
 }
 
 void ModuleEnemies::Delete(Boss* boss)
 {
-	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) {
-		if (enemy->data == boss) {
+	for (p2List_item<Boss*>* enemy = enemies.start; enemy != nullptr; enemy = enemy->next) 
+	{
+		if (enemy->data == boss) 
+		{
 			App->physics->DeleteObject(enemy->data->prefab->pbody);
 			App->tex->UnLoad(enemy->data->prefab->sprite.texture);
 			enemy->data->prefab->animations.clear();
@@ -83,6 +91,7 @@ void ModuleEnemies::Delete(Boss* boss)
 			break;
 		}
 	}
+	enemies.clear();
 }
 
 Boss * ModuleEnemies::CreateEnemy(EnemiesTypes type)

@@ -17,6 +17,7 @@
 #include "Player.h"
 #include "SpellManager.h"
 #include "WinScene.h"
+#include "ModuleEnemies.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -177,9 +178,19 @@ bool j1Scene::CleanUp()
 
 void j1Scene::ChangeScene(Scene * new_scene)
 {
+	Scene* last = current_scene;
+	new_scene->Start();
+	new_scene->SetActive(true);
+
+	last->CleanUp();
+	last->SetActive(false);
+
+	current_scene = new_scene;
+	/*
 	current_scene->CleanUp();
 	current_scene->SetActive(false);
 	current_scene = new_scene;
 	current_scene->Start();
 	current_scene->SetActive(true);
+	*/
 }

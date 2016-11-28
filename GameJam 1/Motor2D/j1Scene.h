@@ -50,9 +50,9 @@ public:
 
 	bool have_fear = false;
 	bool crazy = false;
+	Scene* current_scene = nullptr;
 
 private:
-	Scene* current_scene = nullptr;
 	int camera_speed;
 
 };
