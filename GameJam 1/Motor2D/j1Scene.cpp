@@ -125,7 +125,6 @@ bool j1Scene::PostUpdate()
 	// Temporal UI
 	if (current_scene == dummy_scene)
 	{
-
 		App->text->cdW->PrintText();
 		App->text->cdE->PrintText();
 		App->text->cdR->PrintText();
@@ -142,13 +141,12 @@ bool j1Scene::PostUpdate()
 			break;
 			case Cat:
 			{
-				transformation = 5;
+				transformation = 4;
 			}
 			break;
 		};
 
-		App->render->Blit(App->player->UI_texture, 294 - App->render->camera.x, 478 - App->render->camera.y, &App->player->UI_spells_rects[0 + transformation]);
-
+		App->render->Blit(App->player->UI_texture, 294 - App->render->camera.x, 478 - App->render->camera.y, &App->player->UI_spells_rects[0]);
 		if (!App->spellmanager->Qcd)
 			App->render->Blit(App->player->UI_texture, 302 - App->render->camera.x, 463 - App->render->camera.y, &App->player->UI_spells_rects[1 + transformation]);
 		else
