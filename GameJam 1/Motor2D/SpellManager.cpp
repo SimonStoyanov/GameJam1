@@ -436,4 +436,5 @@ void SpellManager::ResetCD()
 	timeQ = -99;
 	timeW = -99;
 	timeE = -99;
+	timeR = -99;
 }
