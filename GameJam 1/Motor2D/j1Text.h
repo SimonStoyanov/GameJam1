@@ -104,7 +104,7 @@ public:
 	bool				  is_ui;
 
 private:
-	TTF_Font*			  font;
+	TTF_Font*			  font = nullptr;
 	uint				  longuest_texture;
 	p2List<TexAndLen>     texture_list;
 };

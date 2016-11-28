@@ -66,7 +66,7 @@ void InsanityEye::Start()
 
 bool InsanityEye::Update(float dt)
 {
-	LOG("%f", dt);
+	//LOG("%f", dt);
 
 	if (collided)
 	{
