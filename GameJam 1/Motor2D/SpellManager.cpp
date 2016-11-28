@@ -252,6 +252,7 @@ void SpellManager::OnCollision(PhysBody * bodyA, PhysBody * bodyB)
 				DeleteSpell(bodyA);
 		}
 	}
+
 	else if(GetSpell(bodyA)->type == shapeball){
 		if (bodyB == App->player->player->pbody) {
 			App->player->ChangeShape(Cat);

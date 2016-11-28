@@ -246,6 +246,7 @@ bool Player::Update(float dt)
 		curr_platform->body->GetFixtureList()->SetFilterData(a);
 	}
 	
+
 	// -------------------------------------------
 
 	return true;

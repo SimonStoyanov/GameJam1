@@ -111,6 +111,9 @@ bool Dummy::Start()
 	shapeball_timer.Start();
 	App->spellmanager->CreateSpell(shapeball);
 
+	death_detector = App->physics->CreateRectangleSensor(-300 - App->render->camera.x, 300, 100, 1000);
+	death_detector->type = death_detec;
+
 	return true;
 }
 
@@ -144,6 +147,17 @@ bool Dummy::Update(float dt)
 			App->player->on_ground = true;
 		}
 	}
+
+	// Player off the camera
+
+	//LOG("%d, %d", x, y);
+	death_detector->body->SetTransform(b2Vec2(death_detector->body->GetPosition().x + PIXEL_TO_METERS((int)(200 * dt)), death_detector->body->GetPosition().y), 0);
+
+	if (App->player->isTouching(App->player->player->pbody, death_detector))
+	{
+		App->scene->ChangeScene(App->scene->lose_scene);
+	}
+
 	return true;
 }
 

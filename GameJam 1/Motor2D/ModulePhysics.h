@@ -19,7 +19,8 @@ enum BodyType
 	platform,
 	wall,
 	fireb,
-	player
+	player,
+	death_detec
 };
 
 struct path_joint {

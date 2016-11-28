@@ -62,6 +62,8 @@ private:
 	p2SString parallax_spritesheet;
 	
 	j1Timer shapeball_timer;
+
+	PhysBody* death_detector = nullptr;
 };
 
 #endif
