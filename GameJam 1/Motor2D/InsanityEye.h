@@ -14,6 +14,11 @@ public:
 	void Start();
 	bool Update();
 	void Draw();
+
+	bool PlayerTouched();
+
+	bool return_boss = false;
+	bool dead = false;
 };
 
 #endif // !Fireball_
