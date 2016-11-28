@@ -128,11 +128,11 @@ bool Player::Update(float dt)
 		switch (shape)
 		{
 		case Human:
-			if (!shooting)
+			if (!shooting && !hit)
 				current_animation = player->FindAnimation(Run);
 			break;
 		case Cat:
-			if (!shooting)
+			if (!shooting && !hit)
 				current_animation = cat_anims->FindAnimation(Run);
 			break;
 		default:
@@ -174,12 +174,14 @@ bool Player::Update(float dt)
 		{
 		case Human:
 			if (player->animations[current_animation]->Finished()) {
+				player->animations[current_animation]->Reset();
 				current_animation = player->FindAnimation(Run);
 				hit = false;
 			}
 			break;
 		case Cat:
 			if (cat_anims->animations[current_animation]->Finished()) {
+				cat_anims->animations[current_animation]->Reset();
 				current_animation = cat_anims->FindAnimation(Run);
 				hit = false;
 			}
