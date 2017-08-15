@@ -2,7 +2,7 @@
 
 First weekly Game Jam by the team BOOLAS STUDIO
 
-#Idea
+# Idea
 
 BURDEN is an infinite platform shooting game in which the player has to battle against
 its problems and concerns. Being defeated by the enemy means that you're going to be affected by the
@@ -10,18 +10,18 @@ enemy's effect the next turn, and the only way to escape it is either if you win
 the game. How many turns can you resist without being defeated by your concerns? 
 
 
-##Controls:
+## Controls:
 
-· Aim with the mouse. The bullet will travel to the direction your mouse was at the moment you shot.
-· Jump with the mouse's left button.
-· Activate special abilities with Q, W, E, and R.
+Â· Aim with the mouse. The bullet will travel to the direction your mouse was at the moment you shot.
+Â· Jump with the mouse's left button.
+Â· Activate special abilities with Q, W, E, and R.
 
-###Win/Lose window:
+### Win/Lose window:
 
-· Press "EXIT" to start again from the beggining.
-· Press "NEXT ROUND" to keep playing onto the next round. 
+Â· Press "EXIT" to start again from the beggining.
+Â· Press "NEXT ROUND" to keep playing onto the next round. 
 
-##Current state: Prototype, containing:
+## Current state: Prototype, containing:
 
-· 2 bosses (Fear, Insanity)
-· 1 transformation (cat)
+Â· 2 bosses (Fear, Insanity)
+Â· 1 transformation (cat)
